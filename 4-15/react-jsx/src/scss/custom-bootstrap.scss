@@ -1,0 +1,13 @@
+// custom-bootstrap.scss
+
+// Import Bootstrap source files
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+// Override Bootstrap variables
+$primary: #ff0000; // Red color
+$secondary: #00ff00; // Green color
+// Add more variable overrides as needed
+
+// Include Bootstrap styles
+// @import "~bootstrap/scss/bootstrap";
