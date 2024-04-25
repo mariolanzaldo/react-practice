@@ -1,0 +1,15 @@
+.contact {
+    /* border: 1px solid black; */
+    list-style-type: none;
+}
+
+/* li {
+    color: blue;
+} */
+
+.favorite::after {
+    content: '★';
+    color: gold;
+    margin-left: 5px;
+    font-size: 1.5em;
+}
