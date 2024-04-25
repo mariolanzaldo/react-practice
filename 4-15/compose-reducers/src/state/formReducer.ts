@@ -1,4 +1,4 @@
-import { FormActionType, FormActionTypes } from "./actionTypes";
+import { FormActionType, FormActionTypes } from "./actions/actionTypes";
 
 interface FormStateInterface {
     name: string;
@@ -41,7 +41,6 @@ const validateName = (name: string): boolean => {
     const nameRegex = /^[A-Za-z\s\-']+$/;
     const isValid = nameRegex.test(name);
     // setIsNameValid(isValid);
-    console.log(isValid);
     return isValid;
 };
 

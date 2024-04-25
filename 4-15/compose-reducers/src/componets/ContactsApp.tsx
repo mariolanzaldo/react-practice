@@ -1,13 +1,10 @@
-//CSS does not belong to JS. Some UI framworks allos us. There are loaders that handle different file types(css will be loaded as a style tag)
-//depending on the loader we could import prepocessed SASS files
-//The styles will be loaded globally. There's a way to load it module-wise
-
-import React from "react";
-import { useSerializable } from "../hooks/serializable";
+import React, { useCallback } from "react";
 import ContactList from "./ContactList";
 import ContactsForm from "./ContactsForm";
 import Modal from "./modal";
 import customClsx from "../utility/customClasses";
+import { useAppContext } from "../state";
+import { addContact, deleteContact, dissmissModal, selectItemToDelete, toggleFavorite } from "../state/actions/actionTypes";
 
 export interface ContactInterface {
     id?: number;
@@ -25,51 +22,13 @@ export interface ContactsAppState {
 
 const ContactsApp:React.FC = function () {
 
-    const initialState = () => {
-        const storedState = localStorage.getItem("contact-app");
-
-        return(storedState ? JSON.parse(storedState) : {
-            contacts: [
-                {
-                    id: 0,
-                    name: 'John',
-                    phone: '13456',
-                    favorite: true
-                },
-            ], 
-            nextId: 1,
-            deleting: null,
-            showModal: false,
-        });
-    }
-    const [state, setState] = useSerializable<ContactsAppState>(() => "contact-app", initialState);
-
-    const onDelete = (targetId: number): void => {
-        setState((prevState: ContactsAppState) => ({
-            ...prevState,
-            contacts: (prevState as ContactsAppState).contacts.filter(({id}) => id !== targetId),
-            deleting: null
-        }));
-    };
-
-    const selectItemToDelete = (contactId: number): void => {
-        setState((prevState: ContactsAppState) => {
-            const deletingContact = prevState.contacts.find((contact: ContactInterface) => contact.id !== undefined && contactId === contact.id);
-            return {
-                ...prevState,
-                deleting: deletingContact || null,
-                showModal: true,
-            };
-        });
-    };
+    const [state, dispatch] = useAppContext();
 
     const { 
-        contacts, 
-        nextId, 
-        deleting 
+      contacts
     } = state;
 
-    const filteredContacts = (contacts as ContactInterface[]).reduce(
+    const filteredContacts = (contacts!.contacts as ContactInterface[]).reduce(
         (res, curr) => {
             curr.favorite ? res.favorites.push(curr) : res.nonFavorites.push(curr)
             return res;
@@ -88,37 +47,33 @@ const ContactsApp:React.FC = function () {
         null,
         undefined,
     );
+
+    const onDeleteFn = useCallback(() => dispatch(deleteContact(contacts!.deleting!.id!)), [contacts, dispatch]);
+    const onDismissFn = useCallback(() => dispatch(dissmissModal(false)), [dispatch]);
+    const onAddContactFn = useCallback((newContact: ContactInterface) => dispatch(addContact(newContact)), [dispatch]);
+    const onDeleteContactFn= useCallback((targetId: number) => dispatch(selectItemToDelete(targetId)), [dispatch]);
+    const onToggleFavoriteFn = useCallback((targetId: number) => dispatch(toggleFavorite(targetId)), [dispatch]);
     
     return(
         <>
         {
-            deleting &&
+            contacts!.deleting &&
             <Modal 
-            title={`Deleting ${deleting.name}`}
+            title={`Deleting ${contacts!.deleting.name}`}
             message={`Are you sure you want to delete?`}
-            onDismiss={() => setState(prevState => ({ ...prevState, deleting: null }))}
-            onDelete={() => onDelete(deleting.id as number)}
+            onDismiss={onDismissFn}
+            onDelete={onDeleteFn}
         />
         }
 
 <ContactsForm
                 className={classNames}
-                onAddContact={(newContact: ContactInterface) => setState(prevState => ({
-                    ...prevState,
-                    contacts: [...prevState.contacts, { ...newContact, id: nextId }],
-                    nextId: nextId as number + 1,
-                }))}
+                onAddContact={onAddContactFn}
             />
             <ContactList
-                // className={contactClass}
                 contacts={orderedContacts}
-                onDeleteContact={(targetId) => selectItemToDelete(targetId)}
-                onToggleFavorite={(targetId: number) => {
-                    setState((prevState: ContactsAppState) => ({
-                        ...prevState,
-                        contacts: prevState.contacts.map((contact) => contact.id === targetId ? { ...contact, favorite: !contact.favorite } : contact)
-                    }))
-                }}
+                onDeleteContact={onDeleteContactFn}
+                onToggleFavorite={onToggleFavoriteFn}
             />
         </>
     );

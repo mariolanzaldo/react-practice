@@ -1,35 +1,12 @@
-import { ContactsAppState } from "../componets/ContactsApp";
-import { ActionTypes, ActionType } from "./actionTypes";
+import { ActionTypes, ActionType } from "../actions/actionTypes";
+import { StateInterface } from "./rootReducer";
 
-export interface StateInterface {
-    counters: number[];
-    contacts?: ContactsAppState;
-}
+function counterReducer (state: StateInterface, action: ActionType) {
 
-export const initialState: StateInterface = {
-    counters: [0, 1, 2],
-    contacts: {
-        contacts: [
-            {
-                id: 0,
-                name: 'John',
-                phone: '13456',
-                favorite: true
-            },
-        ],
-        nextId: 1,
-        deleting: null,
-        showModal: false,
-    },
-};
-
-function appReducer(state: StateInterface, action: ActionType) {
-    const { counters } = state;
     const { payload: { id, value }, type } = action;
-
-
+    const { counters } = state;
+    
     switch(type) {
-
         case ActionTypes.INIT: {
             if (counters.length > 0 && +id! < counters.length) {
                 const newState = [...counters];
@@ -81,7 +58,6 @@ function appReducer(state: StateInterface, action: ActionType) {
         default:
         return state;
     }
-
 }
 
-export default appReducer;
+export default counterReducer;

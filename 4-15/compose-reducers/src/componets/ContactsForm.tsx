@@ -2,7 +2,7 @@ import { FormEvent, useReducer } from "react";
 import { ContactInterface } from "./ContactsApp";
 import customClsx from "../utility/customClasses";
 import formReducer, { initialFormState } from "../state/formReducer";
-import { resetForm, setName, setPhone } from "../state/actionTypes";
+import { resetForm, setName, setPhone } from "../state/actions/actionTypes";
 
 
 export interface ContactsFormProps {

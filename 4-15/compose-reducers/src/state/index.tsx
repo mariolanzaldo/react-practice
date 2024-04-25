@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, createContext, useContext, useEffect, useReducer } from "react";
-import  appReducer, { StateInterface, initialState  } from "./reducer";
-import {ActionType} from "./actionTypes";
+// import  appReducer, { StateInterface, initialState  } from "./reducer";
+import rootReducer, { StateInterface,  initialState } from "./reducers/rootReducer";
+import {ActionType} from "./actions/actionTypes";
 
 type AppCtx = [StateInterface, Dispatch<ActionType>];
 
@@ -13,10 +14,11 @@ export function useAppContext(): AppCtx {
 export function Provider({ children }: { children: ReactNode }) {
   const storeState = JSON.parse(localStorage.getItem("app-state")!);
 
-    const [providerState, dispatchProviderState] = useReducer(
-        appReducer,
+  const initializer = storeState ? storeState : initialState ;
 
-        storeState ? storeState : initialState
+    const [providerState, dispatchProviderState] = useReducer<typeof rootReducer>(
+      rootReducer,
+        initializer as never
     );
 
     useEffect(() => {

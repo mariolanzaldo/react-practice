@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import {useAppContext} from "../state";
 import StatelessCounter from "./StatelessCounter";
-import { increment, decrement, reset } from "../state/actionTypes";
+import { increment, decrement, reset } from "../state/actions/actionTypes";
 import ErrorBoundary from "./ErrorBoundary";
 
 interface CounterProps {
