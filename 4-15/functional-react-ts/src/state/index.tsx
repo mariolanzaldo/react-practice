@@ -13,10 +13,11 @@ export function useAppContext(): AppCtx {
 export function Provider({ children }: { children: ReactNode }) {
   const storeState = JSON.parse(localStorage.getItem("app-state")!);
 
+  const initializer = storeState ? storeState : initialState;
+
     const [providerState, dispatchProviderState] = useReducer(
         appReducer,
-
-        storeState ? storeState : initialState
+        initializer
     );
 
     useEffect(() => {
