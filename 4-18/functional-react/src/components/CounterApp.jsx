@@ -1,6 +1,8 @@
-import { useCallback, useState } from "react";
-import Counter from "./Counter";
-import StatelessCounter from "./StatelessCounter";
+import { useRef, useState } from "react";
+// import Counter from "./Counter";
+// import StatelessCounter from "./StatelessCounter";
+import AnimatedCounter from "./AnimatedCounter";
+import styles from "./styles.module.css";
 // import { useCounterContext } from "../state";
 
 
@@ -35,10 +37,36 @@ export default function CounterApp() {
     // const [count] = useCounterContext();
     // console.log(counts);
 
-    const [inputValue, setInputValue] = useState("");
+    // const [inputValue, setInputValue] = useState("");
+    const [isValidField, setIsValidField] = useState(false);
+    const [count, setCount] = useState(0);
+    const inputValue = useRef("");
+    const inputRef = useRef(null);
+    const errorMsgRef = useRef(null);
 
-    function onInputChange({ target }) {
-        setInputValue(target.value);
+    const onInputChange = function ({ target }) {
+        // setInputValue(target.value);
+        inputValue.current = target.value;
+        const isValid = validation(target.value);
+        if (isValid !== isValidField) {
+            setIsValidField(isValid);
+            if (isValid) {
+                inputRef.current.classList.add(styles.valid);
+                errorMsgRef.current.classList.add(styles.hide);
+            } else {
+                inputRef.current.classList.remove(styles.valid);
+                errorMsgRef.current.classList.remove(styles.hide);
+
+            }
+        }
+    }
+
+    const validation = function (value) {
+        return value.length > 0 && value.length < 10;
+    }
+
+    const handleClick = function () {
+        setCount(count + 1);
     }
 
     // function createSetCount(id) {
@@ -51,16 +79,38 @@ export default function CounterApp() {
 
     // const [dummy] = useState(() => () => console.log(inputValue));
 
-    const dummy = useCallback(() => console.log("a"), []);
+    // const dummy = useCallback(() => console.log("a"), []);
+    console.log("Rendering");
 
     return (
-        <>
+        <div
+            className={styles.appCounter}
+        >
             <input
-                value={inputValue}
+                ref={inputRef}
+                // className={isValidField ? styles.valid : styles.invalid}
+                className={styles.input}
+                // value={inputValue}
                 type="text"
                 onChange={onInputChange}
             />
-            <Counter
+
+            <div
+                ref={errorMsgRef}
+                className={styles.msg}
+            >
+                INVALID INPUT
+            </div>
+
+            <AnimatedCounter value={count} />
+
+            <button
+                onClick={handleClick}
+            >
+                Increment
+            </button>
+
+            {/* <Counter
                 init={inputValue}
                 index={0}
             />
@@ -78,7 +128,7 @@ export default function CounterApp() {
                 count={0}
                 setCount={dummy}
                 id={"static"}
-            />
-        </>
+            /> */}
+        </div>
     );
 }
