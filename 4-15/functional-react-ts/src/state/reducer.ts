@@ -80,7 +80,6 @@ function appReducer(state: StateInterface, action: ActionType) {
         break;
 
         case ActionTypes.ADD_CONTACT: {
-            console.log("FROM REDUCER", action);
             const { contacts } = state;
             const { name, phone } = value as ContactInterface;
             // as Pick<ContactInterface, "name" | "phone">;
