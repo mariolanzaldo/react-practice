@@ -1,0 +1,28 @@
+.navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px;
+}
+
+.title {
+    font-size: larger;
+    /* border: solid black 2px; */
+    border-radius: 5px;
+    color: #fff;
+    margin: 0 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.title:hover {
+    background-color: #0056b3;
+}
+
+.activeTab {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
