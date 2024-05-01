@@ -1,0 +1,373 @@
+/* -------------------------------------- */
+/* .div {
+    position: relative;
+
+}
+
+.input {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+.input:checked+span {
+    background-color: #1890ff;
+}
+
+.input:checked+span::before {
+    left: calc(100% - 2px);
+    transform: translate(-100%);
+}
+
+.input:focus+span {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus:checked+span {
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+
+.span {
+    display: flex;
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    border-radius: 100px;
+    background-color: #bfbfbf;
+    position: relative;
+    transition: #bfbfbf 0.2s;
+}
+
+.span::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    border-radius: 45px;
+    transition: 0.2s;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
+}
+
+.span:active::before {
+    width: 28px;
+} */
+
+/*---------------------  */
+/* :root {
+    --std-h: 32px;
+    --std-w: 52px;
+    --std-br: 28px;
+    --std-scircle: 16px;
+    --std-lcircle: 28px;
+}
+
+.switch {
+    width: var(--std-w);
+    height: var(--std-h);
+    border: 2px solid #79747e;
+    background-color: #E6E0E9;
+    border-radius: 20px;
+
+}
+
+.track {
+    position: relative;
+
+}
+
+.track::before {
+    content: '';
+    position: absolute;
+    transform: translate(-80%, -50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #79747e;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.switch:hover .track::before {
+    animation: handleHover 0.2s forwards;
+}
+
+.innerFocus {
+    animation: innerFocus 0.2s forwards;
+}
+
+.handle {
+    position: absolute;
+    transform: translate(-12%, -50%);
+    transform-origin: center;
+    z-index: 0;
+    width: var(--std-scircle);
+    height: var(--std-scircle);
+    color: black;
+    border: 1px solid #79747e;
+    background-color: #79747e;
+    border-radius: 20px;
+}
+
+.handleActiveFirst {
+    animation: handleActiveFirst 100ms forwards;
+}
+
+.activeMark {
+    animation: activeMark 0.5s forwards
+}
+
+.checkbox {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+.translateHover {
+    animation: trackTranslate 0.2s forwards;
+}
+
+@keyframes innerFocus {
+    from {
+        width: var(--std-scircle);
+        height: var(--std-scircle);
+    }
+
+    to {
+
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        transform: translate(-22%, -50%);
+
+    }
+}
+
+@keyframes handleHover {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.08;
+
+    }
+}
+
+@keyframes handleActiveFirst {
+
+    from {
+        background-color: #79747e;
+    }
+
+    to {
+        background-color: #52c41a;
+    }
+}
+
+@keyframes activeMark {
+    0% {
+        background-color: #79747e;
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+
+    }
+
+    50% {
+        background-color: #E6E0E9;
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+    }
+
+    100% {
+        background-color: white;
+        width: var(--std-scircle);
+        height: var(--std-scircle);
+    }
+}
+
+@keyframes trackTranslate {
+    0% {
+
+        content: '';
+        position: absolute;
+        transform: translate(-80%, -50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: #79747e;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    25% {
+        transform: translateX(-40%);
+    }
+
+    50% {
+        transform: translateX(0%);
+
+    }
+
+    75% {
+        transform: translateX(20%);
+
+    }
+
+    100% {
+        transform: translateX(60%);
+    }
+}
+
+*/
+
+/* Colors */
+:root {
+    --label-colour: #bbb;
+    --disabled-colour: #ddd;
+    --toggle-colour: #2F855A;
+    --white: #fff;
+    --focus-color: #ff0;
+    --std-h: 32px;
+    --std-w: 52px;
+}
+
+.toggle-switch {
+    position: relative;
+    margin-right: 10px;
+    width: 75px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    text-align: left;
+}
+
+.toggle-switch-checkbox {
+    display: none;
+}
+
+.toggle-switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0 solid var(--label-colour);
+    border-radius: 20px;
+    margin: 0;
+}
+
+.toggle-switch-label:focus {
+    outline: none;
+}
+
+.toggle-switch-label:focus>span {
+    box-shadow: 0 0 2px 5px red;
+}
+
+.toggle-switch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.toggle-switch-inner:before,
+.toggle-switch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 34px;
+    padding: 0;
+    line-height: 34px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.toggle-switch-inner:before {
+    content: attr(data-yes);
+    text-transform: uppercase;
+    padding-left: 10px;
+    background-color: var(--toggle-colour);
+    color: var(--white);
+}
+
+.toggle-switch-inner:after {
+    content: attr(data-no);
+    text-transform: uppercase;
+    padding-right: 10px;
+    background-color: var(--label-colour);
+    color: var(--white);
+    text-align: right;
+}
+
+.toggle-switch-disabled {
+    background-color: var(--disabled-colour);
+    cursor: not-allowed;
+}
+
+.toggle-switch-disabled:before {
+    background-color: var(--disabled-colour);
+    cursor: not-allowed;
+}
+
+.toggle-switch-switch {
+    display: block;
+    width: 24px;
+    margin: 5px;
+    background: var(--white);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    border: 0 solid var(--label-colour);
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-inner {
+    margin-left: 0;
+}
+
+.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-switch {
+    right: 0px;
+}
+
+.small-switch {
+    width: 40px;
+}
+
+.small-switch .toggle-switch-inner:after,
+.small-switch .toggle-switch-inner:before {
+    content: "";
+    height: 20px;
+    line-height: 20px;
+}
+
+.small-switch .toggle-switch-switch {
+    width: 16px;
+    right: 20px;
+    margin: 2px;
+}
+
+@media screen and (max-width: 991px) {
+    .toggle-switch {
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .toggle-switch {
+        transform: scale(0.825);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .toggle-switch {
+        transform: scale(0.75);
+    }
+}

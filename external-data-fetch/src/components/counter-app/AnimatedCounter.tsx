@@ -1,73 +1,90 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { ReactElement} from "react";
 import styles from "./styles.module.css";
+import useAnimatedCounter from "../../hooks/useAnimatedCounter";
 
 interface AnimatedCounterProps {
     value: number;
 }
 
 function AnimatedCounter({ value }: AnimatedCounterProps): ReactElement {
+    const [displayValue] = useAnimatedCounter(value);
 
-    const [displayValue, setDisplayValue] = useState<number>(value);
-    const [animationQueue, setAnimationQueue] = useState<number[]>([]);
-    const counterDisplayRef = useRef<HTMLDivElement>(null);
-    const timeoutRef = useRef<number | null>(null);
-
-    // const [displayValue, setDisplayValue] = useState(value);
-    // const [isAnimating, setIsAnimating] = useState(false);
-    // const counterDisplayRef = useRef(null);
-    // const setTimeoutRef = useRef(0);
-
-
-    //TODO: Use a custom hook to switch between states
-    useEffect(() => {
-        if (animationQueue.length === 0) {
-            return;
-        }
-
-        const nextValue = animationQueue[0];
-        const animationDuration = 500; 
     
-        setDisplayValue(nextValue);
-        timeoutRef.current = window.setTimeout(() => {
-            setAnimationQueue(prevQueue => prevQueue.slice(1));
-        }, animationDuration);
-    
-        return () => {
-            if (timeoutRef.current !== null) {
-                clearTimeout(timeoutRef.current as number);
-            }
-        };
-    }, [animationQueue]);
-
-    useEffect(() => {
-        setAnimationQueue(prevQueue => [...prevQueue, value]);
-    }, [value]);
+    // const [displayValue, setDisplayValue] = useState<number>(value);
+    // const [animationQueue, setAnimationQueue] = useState<number[]>([]);
+    // const display = useRef<HTMLDivElement>(null);
+    // const timeoutRef = useRef<number | null>(null);
+  
 
     // useEffect(() => {
+    //     if(value !== animationQueue[0]) {
+    //         setAnimationQueue((prevQueue) => [...prevQueue, value]);
+    //     }
+    // }, [value]);
 
-    //     if (displayValue !== value) {
-    //         clearTimeout(setTimeoutRef.current);
-    //         setIsAnimating(true);
-    //         setTimeoutRef.current = setTimeout(() => {
-    //             setDisplayValue(value);
-    //             setIsAnimating(false);
-    //         }, 1000);
+    // useEffect(() => {
+    //     if(displayValue !== value) {
+    //         display.current?.classList.add(styles.slidein);
     //     }
 
+    //     let nextValue: number;
+    //     if(animationQueue.length > 0) {
+    //         nextValue = animationQueue[0];
 
-    //     return () => clearTimeout(setTimeoutRef.current);
-    // }, [value, displayValue]);
+    //         setDisplayValue(nextValue);
+    //     }
 
-    console.log(animationQueue.length);
+    //     timeoutRef.current = setTimeout(() =>{
+    //         setAnimationQueue([...animationQueue.slice(1)])
+    //         display.current?.classList.remove(styles.slidein);
+    //         display.current?.classList.add(styles.slidein);
+    //     }, 1000 );
+
+    //     if(animationQueue.length < 1) clearTimeout(timeoutRef.current);
+
+    //     return () => {
+    //         if(timeoutRef.current) {
+    //             clearTimeout(timeoutRef.current);
+    //         }
+    //     }
+
+        
+    // }, [ animationQueue])
+    // useEffect(() => {
+    //     if (animationQueue.length === 0) {
+    //         return;
+    //     }
+
+    //     const nextValue = animationQueue[0];
+    //     const animationDuration = 500; 
+    
+    //     setDisplayValue(nextValue);
+    //     timeoutRef.current = window.setTimeout(() => {
+    //         setAnimationQueue(prevQueue => prevQueue.slice(1));
+    //     }, animationDuration);
+    
+    //     return () => {
+    //         if (timeoutRef.current !== null) {
+    //             clearTimeout(timeoutRef.current as number);
+    //         }
+    //     };
+    // }, [animationQueue]);
+
+    // useEffect(() => {
+    //     setAnimationQueue(prevQueue => [...prevQueue, value]);
+    // }, [value]);
+
+    // console.log(animationQueue.length);
     return (
         <>
             <div
-                ref={counterDisplayRef}
-                className={`${styles.animatedDisplay} ${animationQueue.length > 0 ? styles.slidein : ""}`}
+                // ref={display}
+                // className={styles.animatedDisplay}
+                className={`${styles.animatedDisplay} ${displayValue.animationQueue.length > 0 ? styles.slidein : ""}`}
                 // className={`${styles.animatedDisplay} ${isAnimating ? styles.slidein : ""}`}
             >
 
-                {displayValue}
+                {displayValue.displayValue}
 
             </div>
         </>

@@ -39,10 +39,10 @@
 }
 
 .slidein {
-    animation: slidein 0.5s ease-in-out forwards;
+    animation: slideout 0.5s ease-in-out forwards;
 }
 
-@keyframes slidein {
+@keyframes slideout {
     /* from {
         margin-left: 100%;
         width: 100px;
@@ -56,6 +56,23 @@
     0% {
         transform: translateX(100%);
         width: 0;
+    }
+
+    /* 25% {
+        transform: translateX(75%);
+        width: 25px;
+    }
+
+    50% {
+        transform: translateX(50%);
+        width: 50px;
+
+    } */
+
+    75% {
+        transform: translateX(25%);
+        width: 75px;
+
     }
 
     100% {
