@@ -1,0 +1,35 @@
+:root {
+    --color-surface: #FEF7FF;
+    /* --hover-opacity: 0.08; */
+    /* --drawer-active: #E8DEF8; */
+    /* --text-weight: 500; */
+    /* --text-active-weight: 800; */
+    --drawer-width: 360px;
+    /* --collapse-with: 120px; */
+    /* --icon-size: 24px; */
+}
+
+.sidebar {
+    height: 100%;
+    /* width: var(--drawer-width); */
+    width: 100%;
+    background-color: var(--color-surface);
+    border-radius: 3%;
+    /* font-family: 'Roboto'; */
+}
+
+.toggle {
+    position: fixed;
+    left: 30px;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    z-index: 100;
+    background: transparent;
+    border: none;
+}
+
+.hideButton {
+    display: none;
+}

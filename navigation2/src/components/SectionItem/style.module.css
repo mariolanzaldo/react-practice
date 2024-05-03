@@ -1,0 +1,30 @@
+:root {
+    --color-surface: #FEF7FF;
+    --drawer-active: #E8DEF8;
+    --text-weight: 500;
+    --text-active-weight: 800;
+    --drawer-width: 360px;
+    --icon-size: 24px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 14px;
+}
+
+.icon {
+    display: grid;
+    place-items: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.active {
+    background-color: #6750A4;
+}
+
+.title {
+    font-family: inherit;
+}

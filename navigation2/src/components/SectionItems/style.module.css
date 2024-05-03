@@ -1,0 +1,51 @@
+:root {
+    --hover-opacity: 0.58;
+
+}
+
+.sidebarList .row {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 50px;
+    list-style-type: none;
+    margin: 0%;
+    color: black;
+    /* justify-content: center; */
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: var(--text-weight);
+    /* padding: 16px; */
+    margin: 16px;
+}
+
+.sidebarList:hover .row:hover {
+    cursor: pointer;
+    background-color: #625B71;
+    color: #1D1B20;
+    height: 56px;
+    width: 90%;
+    border-radius: 38px;
+    /* opacity: var(--hover-opacity); */
+    /* opacity */
+}
+
+/* .row:hover { */
+/* opacity: 0.08;
+} */
+
+.row:hover {
+    opacity: var(--hover-opacity);
+
+}
+
+.sidebarList {
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.active {
+    background-color: #6750A4;
+    border-radius: 38px;
+}

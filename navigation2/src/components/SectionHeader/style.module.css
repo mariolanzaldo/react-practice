@@ -1,0 +1,13 @@
+:root {
+    --headline-color: #49454F;
+    --text-weight: 500;
+    --headline-size: 14px;
+}
+
+.headline {
+    color: #49454F;
+    font-weight: var(--text-weight);
+    font-size: var(--headline-size);
+    font-family: inherit;
+    padding: 0 28px;
+}
