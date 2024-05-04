@@ -1,15 +1,17 @@
 import { Item } from "../SectionItems";
 import styles from './style.module.css';
 
-function SectionItem({ icon, title}: Item) {
+interface SectionItemProps {
+  item: Item;
+  navbarOpen: boolean
+}
 
-//   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-//     event.stopPropagation();
-// };
+function SectionItem({ item, navbarOpen}: SectionItemProps) {
+  const { icon, title } = item;
+
     return (
       <div
-        className={styles.item}
-        // onClick={handleClick}
+        className={navbarOpen ? styles.item : styles.collapsedItem}
       >
         <div
           className={styles.icon}

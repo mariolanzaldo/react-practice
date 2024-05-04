@@ -5,6 +5,7 @@
     /* --text-weight: 500; */
     /* --text-active-weight: 800; */
     --drawer-width: 360px;
+    --color-collapsed: #F7F2FA;
     /* --collapse-with: 120px; */
     /* --icon-size: 24px; */
 }
@@ -15,21 +16,58 @@
     width: 100%;
     background-color: var(--color-surface);
     border-radius: 3%;
+    margin: 0.3em;
     /* font-family: 'Roboto'; */
 }
 
 .toggle {
-    position: fixed;
-    left: 30px;
+    /* position: fixed; */
+    position: relative;
+    left: 3.5em;
     top: 10px;
-    width: 34px;
+    width: 50px;
     height: 34px;
     cursor: pointer;
     z-index: 100;
     background: transparent;
+    margin-bottom: 3em;
     border: none;
+    /* border: 1px solid red; */
+
 }
 
 .hideButton {
     display: none;
 }
+
+/* .sidebarOpen {
+    animation: sidebarEnter 0.3s forwards;
+}
+
+.sidebarClosed {
+    animation: sidebarExit 0.3s forwards;
+}
+
+@keyframes sidebarEnter {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes sidebarExit {
+    from {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+} */

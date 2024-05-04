@@ -13,37 +13,13 @@ interface SidebarProps{
   // ref: unknown
 }
 
-// function Sidebar ({ navbarOpen, handleClick }: SidebarProps) {
-//     return(
-//         <div
-//           className={styles.sidebar}
-//         >
-//            <button
-//             className={navbarOpen ? `${styles.hideButton}`: `${styles.toggle}`}
-//             onClick={handleClick}
-//         >
-//             <MenuIcon />
-//         </button>
-//           {
-//             sidebarData.map(({ label, items }, index) => (
-//               <div
-//                 key={index}
-//               >
-//                 {navbarOpen ? <SectionHeader headline={label} /> : null }
-//                 <SectionItems items={items} />
-//                 {(sidebarData.length - 1 > index && navbarOpen) ? <Divider> </Divider> : null}              
-//               </div>
-//             ))
-//           }
-//         </div>
-//     )
-// }
-
 const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ navbarOpen, handleClick }, ref) {
+
   return(
       <div
       ref={ref}
         className={styles.sidebar}
+        // className={`${styles.sidebar} ${navbarOpen ? styles.sidebarOpen : styles.sidebarClosed}`}
       >
          <button
           className={navbarOpen ? `${styles.hideButton}`: `${styles.toggle}`}
@@ -56,12 +32,14 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ na
             <div
               key={index}
             >
+
               {navbarOpen ? <SectionHeader headline={label} /> : null }
-              <SectionItems items={items} />
+              <SectionItems items={items} navbarOpen={navbarOpen}/>
               {(sidebarData.length - 1 > index && navbarOpen) ? <Divider> </Divider> : null}              
             </div>
           ))
         }
+
       </div>
   )
 });

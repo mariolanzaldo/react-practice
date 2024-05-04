@@ -49,3 +49,7 @@
     background-color: #6750A4;
     border-radius: 38px;
 }
+
+.inactive {
+    background-color: transparent;
+}
