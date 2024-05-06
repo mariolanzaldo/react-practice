@@ -1,19 +1,20 @@
 import styles from './style.module.css';
-import { sidebarData } from  '../../sidebarData';
-import SectionHeader from '../SectionHeader';
-import SectionItems from '../SectionItems';
-import Divider from '../Divider';
+// import { sidebarData } from  '../../sidebarData';
+// import SectionHeader from '../SectionHeader';
+// import SectionItems from '../SectionItems';
+// import Divider from '../Divider';
 import MenuIcon from '@mui/icons-material/Menu';
-import { forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 
 interface SidebarProps{
   navbarOpen: boolean;
   handleClick: () => void;
+  children: ReactNode;
   // ref: unknown
 }
 
-const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ navbarOpen, handleClick }, ref) {
+const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ navbarOpen, handleClick, children }, ref) {
 
   return(
       <div
@@ -27,7 +28,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ na
       >
           <MenuIcon />
       </button>
-        {
+        {/* {
           sidebarData.map(({ label, items }, index) => (
             <div
               key={index}
@@ -38,7 +39,8 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps> (function Sidebar ({ na
               {(sidebarData.length - 1 > index && navbarOpen) ? <Divider> </Divider> : null}              
             </div>
           ))
-        }
+        } */}
+        { children }
 
       </div>
   )

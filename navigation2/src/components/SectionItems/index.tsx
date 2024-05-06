@@ -62,7 +62,7 @@ function SectionItems({ items, navbarOpen }: SectionItemsProps) {
                     // ref={elRef}
                     key={index} 
                     onClick={() => handleItemClick(index, link!)}
-                    className={`${styles.row} ${activeIndex === index ? styles.active : styles.inactive}`}
+                    className={`${styles.row} ${(activeIndex === index) ? styles.active : styles.inactive}`}
                     // className={`${styles.row}`}
                     // className={`${styles.row} ${activeIndex === id ? styles.active : styles.inactive}`}
                     

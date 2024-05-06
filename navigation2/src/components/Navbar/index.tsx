@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import Sidebar from "../Sidebar";
 import styles from './style.module.css';
-// import MenuIcon from '@mui/icons-material/Menu';
+import { sidebarData } from "../../sidebarData";
+import SectionHeader from "../SectionHeader";
+import SectionItems from "../SectionItems";
+import Divider from "../Divider";
 
 function Navbar() {
     const [ navbarOpen, setNavbarOpen] = useState(false);
@@ -10,6 +13,19 @@ function Navbar() {
             setNavbarOpen(!navbarOpen);
     }
 
+    const largeNavbar = sidebarData.map(({ label, items }, index) => (
+        <div
+          key={index}
+        >
+
+          <SectionHeader headline={label} />
+          <SectionItems items={items} navbarOpen={navbarOpen}/>
+          {(sidebarData.length - 1 > index) ? <Divider> </Divider>  : null }          
+        </div>
+      ));
+
+      const smallNavbar = <SectionItems items={sidebarData[0].items} navbarOpen={navbarOpen}/>
+
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
             if (navbarOpen && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
@@ -17,11 +33,9 @@ function Navbar() {
             }
         };
 
-        // Add event listener to the document body
         document.body.addEventListener('click', handleOutsideClick);
 
         return () => {
-            // Cleanup: remove event listener when component unmounts
             document.body.removeEventListener('click', handleOutsideClick);
         };
     }, [navbarOpen]);
@@ -31,13 +45,19 @@ function Navbar() {
             className={navbarOpen ? styles.navbar: styles.collapsedbar}
         >
 
-
         <Sidebar
             ref={sidebarRef}
               navbarOpen={navbarOpen}
-              handleClick={handleClick}/>
+              handleClick={handleClick}>
+
+        {
+            navbarOpen && largeNavbar
+        } 
+        {
+            !navbarOpen && smallNavbar
+        }
+        </Sidebar>
         <div
-            // className={styles.scrim}
             className={navbarOpen ? `${styles.scrim} ${styles.showScrim}` : `${styles.scrim} ${styles.closeScrim}`}
             onClick={handleClick}
 

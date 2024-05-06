@@ -3,7 +3,9 @@ import styles from './style.module.css';
 
 interface SectionItemProps {
   item: Item;
-  navbarOpen: boolean
+  navbarOpen: boolean;
+  // activeIndex: number | null;
+  // setActiveIndex: () => void;
 }
 
 function SectionItem({ item, navbarOpen}: SectionItemProps) {
@@ -14,7 +16,7 @@ function SectionItem({ item, navbarOpen}: SectionItemProps) {
         className={navbarOpen ? styles.item : styles.collapsedItem}
       >
         <div
-          className={styles.icon}
+          className={`${styles.icon}`}
         >
           {icon}
         </div>

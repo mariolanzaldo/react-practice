@@ -7,24 +7,30 @@
     display: flex;
     flex-direction: row;
     width: 90%;
-    height: 50px;
+    height: 56px;
     list-style-type: none;
-    margin: 0%;
+    margin: 0;
+    /* left: -100px; */
     color: black;
     /* justify-content: center; */
     align-items: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-weight: var(--text-weight);
     /* padding: 16px; */
     margin: 16px;
+}
+
+.row {
+    margin: 0 !important;
 }
 
 .sidebarList:hover .row:hover {
     cursor: pointer;
     background-color: #625B71;
     color: #1D1B20;
-    height: 56px;
+    height: 58px;
     width: 90%;
+    /* width: 85%; */
     border-radius: 38px;
     /* opacity: var(--hover-opacity); */
     /* opacity */
@@ -47,9 +53,11 @@
 
 .active {
     background-color: #6750A4;
+    /* background-color: #6750A4; */
     border-radius: 38px;
 }
 
 .inactive {
     background-color: transparent;
+    /* border: 2px solid red; */
 }

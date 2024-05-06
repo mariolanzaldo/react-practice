@@ -6,6 +6,8 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
+//TODO: Take a look SVGR to custom 
+
 export const sidebarData = [
     {
         label: "Mail",

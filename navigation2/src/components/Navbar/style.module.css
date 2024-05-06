@@ -3,7 +3,7 @@
     --scrim-opacity: 0.4;
     --default-font: 'Roboto', sans-serif;
     --color-surface: #FEF7FF;
-    --collapse-width: 120px;
+    --collapse-width: 100px;
     --drawer-width: 360px;
 }
 
@@ -21,13 +21,13 @@
 .collapsedbar {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     font-family: var(--default-font);
     /* background-color: var(--color-surface);
     border-radius: 3%; */
     width: var(--collapse-width);
     transition: width 0.3s ease;
     height: 100vh;
-
 }
 
 .scrim {
