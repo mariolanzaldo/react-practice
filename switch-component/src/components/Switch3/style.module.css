@@ -1,0 +1,298 @@
+:root {
+    --std-h: 32px;
+    --std-w: 52px;
+    --std-br: 28px;
+    --std-scircle: 16px;
+    --std-mcircle: 24px;
+    --std-lcircle: 28px;
+}
+
+.switch {
+    /* width: var(--std-w);
+    height: var(--std-h);
+    border: 2px solid #79747e;
+    background-color: #E6E0E9;
+    border-radius: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 70px;
+    height: 50px;
+    border: none;
+    /* z-index: -50; */
+
+}
+
+.track {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: var(--std-w);
+    height: var(--std-h);
+    border: 2px solid #79747e;
+    background-color: #E6E0E9;
+    border-radius: 20px;
+
+}
+
+.handle {
+    width: var(--std-scircle);
+    height: var(--std-scircle);
+    border-radius: 50%;
+    background-color: #79747e;
+    position: relative;
+    left: 2px;
+}
+
+
+.handleIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: var(--std-mcircle); */
+    width: 100px;
+
+    height: var(--std-mcircle);
+    border-radius: 50%;
+    background-color: #79747e;
+    position: relative;
+    left: 2px;
+}
+
+
+.handle:hover {
+    box-shadow: 0 0 0 5px rgba(121, 116, 126, 0.08);
+}
+
+.growHandle {
+    animation: innerFocus 1s forwards;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    width: var(--std-scircle);
+    height: var(--std-scircle);
+    align-items: center;
+}
+
+.icon {
+    /* color: black; */
+    display: none;
+    background-color: transparent;
+    fill: green;
+    z-index: 10;
+
+}
+
+.checkbox {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+}
+
+.translateHandle {
+    animation: translateHandle 400ms forwards;
+}
+
+.translateBackHandle {
+    animation: translateBackHandle 800ms forwards;
+    /* animation: translateHandle 400ms backwards; */
+
+}
+
+.activeShrink {
+    /* transform: translateX(80%); */
+    animation: activeShrink 400ms forwards;
+}
+
+.deactiveShrink {
+    animation: deactiveShrink 400ms forwards;
+}
+
+.trackActive {
+    animation: trackActive 400ms forwards;
+}
+
+.trackDeactive {
+    animation: trackActive 400ms backwards;
+}
+
+.growActiveHandle {
+    animation: growActiveHandle 400ms forwards;
+}
+
+.deactiveIcon {
+    width: var(--std-lcircle);
+    height: var(--std-lcircle);
+}
+
+@keyframes deactiveShrink {
+    from {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+    }
+
+    to {
+        width: var(--std-scircle);
+        height: var(--std-scircle);
+    }
+
+}
+
+@keyframes growActiveHandle {
+    from {
+        width: var(--std-mcircle);
+        height: var(--std-mcircle);
+        background-color: #FFFFFF;
+        left: 24px;
+        /* transform: translateX(0%); */
+
+    }
+
+    to {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        left: 24px;
+        /* background-color: #52c41a; */
+        /* opacity: 0.3; */
+        /* transform: translateX(80%); */
+
+    }
+}
+
+
+@keyframes innerFocus {
+    from {
+        width: var(--std-scircle);
+        height: var(--std-scircle);
+    }
+
+    to {
+
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        /* transform: translate(-22%, -50%); */
+
+    }
+}
+
+@keyframes translateHandle {
+    0% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #79747e;
+        /* transform: translateX(0%); */
+        ;
+    }
+
+    25% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #79747e;
+        /* opacity: 0.5; */
+
+        /* transform: translateX(20%); */
+        left: 5px;
+
+    }
+
+
+    50% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #E6E0E9;
+        left: 10px;
+
+    }
+
+    75% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #E6E0E9;
+        left: 20px;
+    }
+
+    100% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #FFFFFF;
+        left: 24px;
+    }
+}
+
+@keyframes translateBackHandle {
+    0% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #FFFFFF;
+        left: 24px !important;
+    }
+
+    25% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #FFFFFF;
+        left: 18px !important;
+
+
+    }
+
+
+    50% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        opacity: 0.7;
+        background-color: #79747e;
+        left: 12px !important;
+
+    }
+
+    75% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #79747e;
+        left: 6px !important;
+
+    }
+
+    100% {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #79747e;
+        left: 0px !important;
+
+
+    }
+}
+
+@keyframes trackActive {
+
+    from {
+        background-color: #79747e;
+    }
+
+    to {
+        background-color: #52c41a;
+    }
+}
+
+@keyframes activeShrink {
+    from {
+        width: var(--std-lcircle);
+        height: var(--std-lcircle);
+        background-color: #FFFFFF;
+        transform: translateX(80%);
+
+    }
+
+    to {
+        width: var(--std-mcircle);
+        height: var(--std-mcircle);
+        background-color: #FFFFFF;
+        transform: translateX(100%);
+
+    }
+}

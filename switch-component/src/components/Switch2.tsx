@@ -1,10 +1,10 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./style.module.css";
 import delay from "../utils/delayFn";
 
 
 interface SwitchProps {
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange: () => void;
     toggled: boolean;
 }
 
@@ -13,27 +13,39 @@ function Switch2({ onChange, toggled }: SwitchProps) {
     const [isOn, setIsOn] = useState(false);
 
     console.log(toggled);
-    console.log(onChange);
+    // console.log(onChange);
 
     const switchRef = useRef<HTMLButtonElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const handleRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
+    // const inputRef = useRef<HTMLInputElement>(null);
     const handleClick = async function () {
 
         if(!isOn) {
+            console.log("OFF")
             handleRef.current?.classList.toggle(styles.innerFocus);
-            await delay(200);
+            await delay(100);
             trackRef.current?.classList.toggle(styles.translateHover);
             switchRef.current?.classList.toggle(styles.handleActiveFirst);
             handleRef.current?.classList.toggle(styles.activeMark);
+            handleRef.current?.classList.remove(styles.innerFocus);
 
-        } else {
+            // setIsOn(!isOn);
+
+        } else if(isOn) {
             console.log("ON!");
+            
+            handleRef.current?.classList.toggle(styles.innerFocus);
+            await delay(100);
+            switchRef.current?.classList.toggle(styles.handleDeactive);
+            trackRef.current?.classList.toggle(styles.translateLeftHover);
+            // handleRef.current?.classList.remove(styles.activeMark);
+            // setIsOn(!isOn);
 
         }
 
         setIsOn(!isOn);
+        onChange();
 
 
 
@@ -60,13 +72,12 @@ function Switch2({ onChange, toggled }: SwitchProps) {
                 </div>
           </div>
         </div>
-        <input
+        {/* <input
             ref={inputRef} 
             type="checkbox" 
             aria-hidden="true" 
             className={styles.checkbox}
-            onChange={onChange}
-        />
+        /> */}
       </button>
     );
 }
