@@ -1,12 +1,9 @@
-import SendIcon from '@mui/icons-material/Send';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-
-//TODO: Take a look SVGR to custom 
+import SendIcon from "../public/send.svg?react";
+import InboxIcon from "../public/inbox.svg?react";
+import FavoriteBorderIcon from "../public/favorite.svg?react";
+import DeleteIcon from "../public/trash.svg?react";
+import AnalyticsIcon from "../public/analytics.svg?react";
+import AddLocationAltIcon from "../public/add_location.svg?react";
 
 export const sidebarData = [
     {
