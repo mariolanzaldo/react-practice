@@ -1,22 +1,13 @@
-:root {
-    --hover-opacity: 0.58;
-
-}
-
 .sidebarList .row {
     display: flex;
     flex-direction: row;
     width: 90%;
-    height: 56px;
+    height: 58px;
     list-style-type: none;
     margin: 0;
-    /* left: -100px; */
     color: black;
-    /* justify-content: center; */
     align-items: center;
-    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-weight: var(--text-weight);
-    /* padding: 16px; */
     margin: 16px;
 }
 
@@ -30,15 +21,8 @@
     color: #1D1B20;
     height: 58px;
     width: 90%;
-    /* width: 85%; */
     border-radius: 38px;
-    /* opacity: var(--hover-opacity); */
-    /* opacity */
 }
-
-/* .row:hover { */
-/* opacity: 0.08;
-} */
 
 .row:hover {
     opacity: var(--hover-opacity);

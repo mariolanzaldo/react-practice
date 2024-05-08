@@ -25,4 +25,7 @@ function Divider({ children }: DividerProps) {
     );
 }
 
+// -----------Or-------------
+//TODO: Simplify this component
+
 export default Divider;

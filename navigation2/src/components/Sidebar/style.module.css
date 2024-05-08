@@ -1,21 +1,11 @@
-:root {
-    --color-surface: #FEF7FF;
-    /* --hover-opacity: 0.08; */
-    /* --drawer-active: #E8DEF8; */
-    /* --text-weight: 500; */
-    /* --text-active-weight: 800; */
-    --drawer-width: 360px;
-    --color-collapsed: #F7F2FA;
-    /* --collapse-with: 120px; */
-    /* --icon-size: 24px; */
-}
-
 .sidebar {
     height: 100vh;
     /* width: var(--drawer-width); */
     width: 100%;
     background-color: var(--color-surface);
-    border-radius: 3% 3% 0 0;
+    /* border-radius: 3% 3% 0 0; */
+    border-radius: 3% 3% 3% 3%;
+
     margin-top: 0.3em;
     margin-left: 0.3em;
     /* font-family: 'Roboto'; */

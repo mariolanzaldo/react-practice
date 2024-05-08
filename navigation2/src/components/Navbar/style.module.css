@@ -1,17 +1,7 @@
-:root {
-    --background-scrim: #322F37;
-    --scrim-opacity: 0.4;
-    --default-font: 'Roboto', sans-serif;
-    --color-surface: #FEF7FF;
-    --collapse-width: 100px;
-    --drawer-width: 360px;
-}
-
 .navbar {
     display: flex;
     flex-direction: column;
     font-family: var(--default-font);
-    /* width: 100%; */
     width: var(--drawer-width);
     transition: width 0.3s ease;
     height: 100vh;
@@ -23,8 +13,6 @@
     flex-direction: column;
     justify-content: center;
     font-family: var(--default-font);
-    /* background-color: var(--color-surface);
-    border-radius: 3%; */
     width: var(--collapse-width);
     transition: width 0.3s ease;
     height: 100vh;
@@ -33,45 +21,19 @@
 .scrim {
     position: absolute;
     background-color: var(--background-scrim);
-    height: 100vh;
+    height: 100%;
     width: 100%;
     opacity: var(--scrim-opacity);
     padding: 10px;
-
     z-index: -10;
 }
 
 
-/* .scrim {
-    background-color: var(--background-scrim);
-    height: 100vh;
-    opacity: var(--scrim-opacity);
-    padding: 10px;
-} */
-
-/* .toggle {
-    position: fixed;
-    left: 30px;
-    top: 10px;
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
-    z-index: 100;
-    background: transparent;
-    border: none;
-}
-
-.hideButton {
-    display: none;
-} */
-
 .showScrim {
     display: flex;
-    /* background-color: var(--background-scrim); */
+    height: 100vh;
 }
 
 .closeScrim {
     display: none;
-
-    /* background-color: inherit; */
 }
