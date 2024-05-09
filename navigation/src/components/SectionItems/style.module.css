@@ -1,0 +1,20 @@
+.sidebarList {
+    list-style-type: none;
+    color: black;
+    font-weight: var(--text-weight);
+    margin: 0 0 3px 0;
+    width: 100%;
+}
+
+
+.sidebarList {
+    height: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebarListCollapsed {
+    width: var(--collapse-width);
+    margin: 0;
+    padding: 0;
+}

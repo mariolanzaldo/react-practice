@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+.border {
+    width: 85%;
+    height: 20px;
+    align-content: center;
+    border-top: 2px solid black;
+}
+
+/* .content {
+    padding: 0.5px 2px;
+    font-weight: 500;
+    font-size: 22px;
+    color: "lightgray";
+} */

@@ -1,13 +1,12 @@
 import './App.css';
-// import NavigationDrawer from './components/NavDrawer';
-import SampleMenu from './components/SampleMenu/SampleMenu';
+import NavbarApp from './components/NavApp';
 
 function App() {
 
   return (
-    <>
-      <SampleMenu />
-    </>
+    <div className='App'>
+      <NavbarApp />
+    </div>
   )
 }
 

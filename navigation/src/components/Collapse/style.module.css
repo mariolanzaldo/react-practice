@@ -1,0 +1,8 @@
+.multiItem {
+    display: block;
+}
+
+.multiItemClose {
+    display: none;
+    border: 1px solid purple;
+}

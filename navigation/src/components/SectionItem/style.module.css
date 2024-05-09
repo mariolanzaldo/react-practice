@@ -1,0 +1,88 @@
+.item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: var(--indicator-width);
+    margin: var(--inner-margin-item);
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+    margin: 0 0 13px var(--margin-item);
+    padding: 0;
+    width: 100%;
+    width: var(--indicator-width);
+    box-sizing: border-box;
+}
+
+.row:hover {
+    cursor: pointer;
+    background-color: #625B71;
+    color: #1D1B20;
+    width: var(--indicator-width);
+    border-radius: 38px;
+    opacity: var(--hover-opacity);
+}
+
+
+.inactive {
+    background-color: transparent;
+    width: var(--indicator-width);
+}
+
+.active {
+    background-color: #6750A4;
+    width: var(--indicator-width);
+    border-radius: 38px;
+}
+
+.collapsedRow {
+    display: flex;
+    align-items: center;
+    margin: 0 0 13px 0;
+    padding: 0;
+    width: var(--collapse-width);
+    box-sizing: border-box;
+}
+
+.collapsedRow:hover {
+    cursor: pointer;
+    background-color: #625B71;
+    color: #1D1B20;
+    /* width: var(--indicator-width); */
+    border-radius: 38px;
+    opacity: var(--hover-opacity);
+}
+
+.collapsedItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    width: var(--collapse-width);
+}
+
+
+.icon {
+    display: grid;
+    place-items: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+.title {
+    flex-grow: 2;
+
+    font-family: inherit;
+}
+
+.multiLevelIcon {
+    display: flex;
+    flex-grow: 0.2;
+    justify-content: center;
+    align-items: center;
+}
