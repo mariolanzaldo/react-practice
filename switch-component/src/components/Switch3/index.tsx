@@ -1,6 +1,6 @@
 import { ReactNode, useRef, useState } from "react";
 import styles from "./style2.module.css";
-import delay from "../../utils/delayFn";
+// import delay from "../../utils/delayFn";
 
 interface SwitchProps {
     onChange: (check?: boolean) => void;
@@ -19,53 +19,11 @@ function Switch3({ onChange, toggled, icon1, icon2 }: SwitchProps) {
     const trackRef = useRef<HTMLDivElement>(null);
     const handleRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    // const handleClick = async function () {
-
-    //     if(!isOn) {
-    //         if(icon){
-    //             handleRef.current?.classList.add(styles.handleIcon);
-
-    //         } 
-                
-    //         handleRef.current?.classList.toggle(styles.growHandle);
-    //         await delay(500);
-    //         handleRef.current?.classList.toggle(styles.translateHandle);
-    //         await delay(500);
-    //         trackRef.current?.classList.toggle(styles.trackActive);
-    //         handleRef.current?.classList.toggle(styles.activeShrink);
-    //         handleRef.current?.classList.remove(styles.translateHandle);
-    //         handleRef.current?.classList.remove(styles.growHandle);
-    //         setIcon(icon1);
-
-    //     } else {
-    //         handleRef.current?.classList.toggle(styles.growActiveHandle);
-    //         handleRef.current?.classList.toggle(styles.translateBackHandle);
-    //         await delay(500);
-    //         // trackRef.current?.classList.remove(styles.trackActive);
-    //         trackRef.current?.classList.remove(styles.trackActive);
-    //         handleRef.current?.classList.remove(styles.activeShrink);
-    //         handleRef.current?.classList.remove(styles.growActiveHandle);
-    //         handleRef.current?.classList.toggle(styles.deactiveShrink);
-    //         handleRef.current?.classList.remove(styles.deactiveShrink);
-    //         handleRef.current?.classList.remove(styles.translateBackHandle);
-    //         setIcon(icon2);
-
-    //         if(icon) {
-    //             handleRef.current?.classList.add(styles.deactiveIcon);
-
-    //         }
-                
-
-    //     }
-    //     onChange();
-
-    //     setIsOn(!isOn);
-    // }
 
     const handleClick = async function () {
         if(!isOn) {
             handleRef.current?.classList.toggle(styles.translateHandle);
-            await delay(100);
+            // await delay(100);
 
             trackRef.current?.classList.toggle(styles.trackActive);
             handleRef.current?.classList.toggle(styles.activeShrink);
@@ -75,11 +33,11 @@ function Switch3({ onChange, toggled, icon1, icon2 }: SwitchProps) {
             handleRef.current?.classList.remove(styles.activeShrink);
             handleRef.current?.classList.toggle(styles.growActiveHandle);
             handleRef.current?.classList.toggle(styles.translateBackHandle);
-            await delay(100);
+            // await delay(100);
             trackRef.current?.classList.remove(styles.trackActive);
             setIcon(icon2);
         }
-
+//TODO: Avoid the usage of delay
         onChange();
         setIsOn(!isOn);
     }

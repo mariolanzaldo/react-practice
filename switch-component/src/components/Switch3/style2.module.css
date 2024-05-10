@@ -83,11 +83,11 @@
 }
 
 .translateHandle {
-    animation: translateHandle 400ms forwards;
+    animation: translateHandle 500ms forwards;
 }
 
 .translateBackHandle {
-    animation: translateBackHandle 800ms forwards;
+    animation: translateBackHandle 900ms forwards;
 }
 
 .trackActive {
