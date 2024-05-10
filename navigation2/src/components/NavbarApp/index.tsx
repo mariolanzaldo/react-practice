@@ -4,6 +4,7 @@ import SectionItems from "../SectionItems";
 import { sidebarData } from "../../sidebarData";
 import { useState } from "react";
 import Divider from "../Divider";
+// import MultiLevel from "../MultiLevel";
 
 function NavbarApp() {
 
@@ -18,9 +19,15 @@ function NavbarApp() {
 
           <SectionHeader headline={label} />
           <SectionItems items={items} navbarOpen={navbarOpen} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
-          {(sidebarData.length - 1 > index) ? <Divider> </Divider>  : null }          
+          {(sidebarData.length - 1 > index) ? <Divider></Divider>  : null }          
         </div>
       ));
+
+      // const {id, icon, items: nestedItems, title } = sidebarData[1].items[1]!.items
+
+      // console.log(sidebarData[1].items[1].items);
+
+      // largeNavbar.push(<MultiLevel items={nestedItems} icon={icon} id={id} title={title} activeIndex={activeIndex} setActiveIndex={setActiveIndex} navbarOpen={navbarOpen} />)
 
       const smallNavbar = <SectionItems items={sidebarData[0].items} navbarOpen={navbarOpen} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
     return(

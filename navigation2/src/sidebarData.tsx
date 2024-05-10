@@ -4,6 +4,7 @@ import FavoriteBorderIcon from "../public/favorite.svg?react";
 import DeleteIcon from "../public/trash.svg?react";
 import AnalyticsIcon from "../public/analytics.svg?react";
 import AddLocationAltIcon from "../public/add_location.svg?react";
+import Square from "../public/square.svg?react";
 
 export const sidebarData = [
     {
@@ -48,7 +49,16 @@ export const sidebarData = [
                 id: 6,
                 title: 'Label 2',
                 icon: <AddLocationAltIcon />,
-                link: '/label2'
+                link: '/label2',
+                items: [
+                    {
+                        id: 7,
+                        title: 'Level 2',
+                        icon: < Square/>,
+                        link: '/level2',
+
+                    }
+                ],
             }
         ]
     }

@@ -8,12 +8,12 @@ interface TileProps {
 }
 
 function Tile( {children, onTileClick, className }: TileProps) {
-    console.log(className);
+    // console.log(className);
     return(
         <Button
             // fullWidth
             onClick={onTileClick}
-            className={className}
+            className={`${className}`}
         >
         {children}
         </Button>

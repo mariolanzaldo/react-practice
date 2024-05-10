@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import styles from './style.module.css';
 
-interface DividerProps {
-    children: ReactNode;
-}
+// interface DividerProps {
+//     children: ReactNode;
+// }
 
-function Divider({ children }: DividerProps) {
+function Divider() {
 
     return(
         <div
@@ -15,12 +15,6 @@ function Divider({ children }: DividerProps) {
                 className={styles.border}
             >
             </div>
-            <span 
-                className={styles.container}
-            >
-                {children}
-            </span>
-
         </div>
     );
 }

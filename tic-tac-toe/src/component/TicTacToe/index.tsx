@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Board from '../Board';
 import Header from '../Header';
 
-
+//TODO: Put  different routes to select the player, another for the player and another one to the history game
 function TicTacToe() {
     const PLAYER_X = 'X';
     const PLAYER_O = 'O';

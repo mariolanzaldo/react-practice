@@ -25,7 +25,16 @@ const theme = createTheme({
           root: {
             width: "100px",
             height: "100px",
+            // borderRight: "0.2em solid #0074a6",
+
           },
+        //   rightBorder: {
+        //     borderRight: "0.2em solid #0074a6",
+        
+        //     },
+        //     bottomBorder: {
+        //     borderBottom: "0.2em solid #0074a6",
+        //     }
         },
       },
     },
@@ -33,6 +42,7 @@ const theme = createTheme({
 
 function Board({tiles, onTileClick }:  BoardProps) {
     return(
+        //TODO: Replace this with variants
         <ThemeProvider theme={theme}>
             <Box
             sx={{
@@ -51,6 +61,7 @@ function Board({tiles, onTileClick }:  BoardProps) {
                             children={tiles[0]}
                             onTileClick={() => onTileClick(1)}
                             className={`${styles.bottomBorder} ${styles.rightBorder}`}
+                            // className={}
 
                         />
                 </Grid>
