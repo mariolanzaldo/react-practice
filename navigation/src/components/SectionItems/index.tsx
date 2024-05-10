@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { PropsWithChildren, ReactElement, ReactNode } from "react";
 import styles from "./style.module.css";
 
 export interface Item {
@@ -6,11 +6,12 @@ export interface Item {
     title: string;
     icon: ReactElement;
     link?: string
+    badge?: number;
     items?: Item[];
 }
 
 interface SectionItemsProps {
-    children: ReactNode;
+    children: PropsWithChildren<ReactNode>;
 //    items: Item[];
    navbarOpen: boolean;
 //    activeIndex: number | null;

@@ -8,5 +8,7 @@ declare const classNames: {
   readonly icon: "icon";
   readonly title: "title";
   readonly multiLevelIcon: "multiLevelIcon";
+  readonly badge: "badge";
+  readonly collapsedBadge: "collapsedBadge";
 };
 export = classNames;

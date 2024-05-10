@@ -1,15 +1,16 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { PropsWithChildren, ReactNode, useEffect, useRef } from "react";
 import Sidebar from "../Sidebar";
 import styles from './style.module.css';
 
 interface NavbarProps {
-    children: ReactNode;
+    children: PropsWithChildren<ReactNode>;
     setNavbarOpen: (arg: boolean) => void;
     navbarOpen: boolean;
 }
 
 function Navbar({ children, navbarOpen, setNavbarOpen }: NavbarProps) {
-    const sidebarRef = useRef<HTMLDivElement>(null)
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
     const handleClick = () => {
             setNavbarOpen(!navbarOpen);
     }

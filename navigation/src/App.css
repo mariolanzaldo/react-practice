@@ -20,6 +20,7 @@
   --item-width: 54px;
   --margin-item: 16px;
   --inner-margin-item: calc(28px - var(--margin-item));
+  --large-badge-color: #49454F;
 
 }
 

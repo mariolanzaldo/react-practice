@@ -11,10 +11,10 @@ function Divider() {
         <div
             className={styles.container}
         >
-            <div
+            {/* <div
                 className={styles.border}
             >
-            </div>
+            </div> */}
         </div>
     );
 }

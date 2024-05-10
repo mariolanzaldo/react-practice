@@ -24,18 +24,24 @@
     width: var(--indicator-width);
     border-radius: 38px;
     opacity: var(--hover-opacity);
+    /* transition: width 0.3 ease-in-out; */
+    /* transition: width 0.3s ease, opacity 0.3s ease; */
 }
 
 
 .inactive {
     background-color: transparent;
     width: var(--indicator-width);
+
+    /* opacity: 0.5; */
 }
 
 .active {
     background-color: #6750A4;
     width: var(--indicator-width);
     border-radius: 38px;
+    transition: width 0.2s ease;
+    /* opacity: 1; */
 }
 
 .collapsedRow {
@@ -43,7 +49,9 @@
     align-items: center;
     margin: 0 0 13px 0;
     padding: 0;
-    width: var(--collapse-width);
+    /* width: var(--collapse-width); */
+    width: 85%;
+    margin-left: 10px;
     box-sizing: border-box;
 }
 
@@ -70,6 +78,7 @@
 .icon {
     display: grid;
     place-items: center;
+    margin-top: 10px;
     width: var(--icon-size);
     height: var(--icon-size);
 }
@@ -78,6 +87,7 @@
     flex-grow: 2;
 
     font-family: inherit;
+    user-select: none;
 }
 
 .multiLevelIcon {
@@ -85,4 +95,54 @@
     flex-grow: 0.2;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    animation: badgeFrame 500ms forwards;
+}
+
+.badge {
+    display: flex;
+    color: var(--large-badge-color);
+    white-space: nowrap;
+    opacity: 0;
+    /* transition: 0; */
+    animation: badgeFrame 500ms forwards;
+}
+
+.collapsedBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    font-weight: bolder;
+    color: white;
+    border-radius: 100%;
+    transform: translate(60%, -130%);
+    background-color: red;
+}
+
+@keyframes badgeFrame {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0.1;
+
+    }
+
+    50% {
+        opacity: 0.3;
+
+    }
+
+    75% {
+        opacity: 0.5
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

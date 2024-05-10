@@ -21,7 +21,7 @@ function NavbarApp() {
     const [ navbarOpen, setNavbarOpen] = useState(false);
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const  [subNavOpen, setSubNavOpen] = useState(true);
+    const  [subNavOpen, setSubNavOpen] = useState(false);
 
 
     const handleToggleMenu = () => {
@@ -39,7 +39,7 @@ function NavbarApp() {
     const largeNavbar = (
         <> 
             <SectionItems navbarOpen={navbarOpen}>
-                <SectionHeader headline={sidebarData[0].label}/>
+                <SectionHeader children={sidebarData[0].label}/>
                 <SectionElement item={mailLabel[0]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
@@ -68,7 +68,7 @@ function NavbarApp() {
             </SectionItems>
 
             <SectionItems navbarOpen={navbarOpen}>
-                <SectionHeader headline={sidebarData[0].label}/>
+                <SectionHeader children={sidebarData[1].label}/>
                 <SectionElement 
                     item={labelsLabel[0]} 
                     navbarOpen={navbarOpen} 
@@ -149,3 +149,5 @@ function NavbarApp() {
 }
 
 export default NavbarApp;
+
+//TODO: Fix padding when the bar is collapsed, add the badges

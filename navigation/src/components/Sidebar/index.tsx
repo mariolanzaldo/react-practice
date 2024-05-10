@@ -1,12 +1,12 @@
 import styles from './style.module.css';
-import { ReactNode, forwardRef } from 'react';
-import MenuIcon from '../../../public/menu.svg?react';
+import { PropsWithChildren, ReactNode, forwardRef } from 'react';
+import MenuIcon from '../../assets/menu.svg?react';
 
 
 interface SidebarProps{
   navbarOpen: boolean;
   handleClick: () => void;
-  children: ReactNode;
+  children:  PropsWithChildren<ReactNode>;
   // ref: unknown
 }
 

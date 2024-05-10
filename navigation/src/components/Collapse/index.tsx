@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import styles from './style.module.css';
 
 interface CollapseProps {
-    children: ReactNode;
+    children: PropsWithChildren<ReactNode>;
     subNavOpen: boolean;
 }
 

@@ -1,10 +1,10 @@
-import SendIcon from "../public/send.svg?react";
-import InboxIcon from "../public/inbox.svg?react";
-import FavoriteBorderIcon from "../public/favorite.svg?react";
-import DeleteIcon from "../public/trash.svg?react";
-import AnalyticsIcon from "../public/analytics.svg?react";
-import AddLocationAltIcon from "../public/add_location.svg?react";
-import Square from "../public/square.svg?react";
+import SendIcon from "./assets/send.svg?react";
+import InboxIcon from "./assets/inbox.svg?react";
+import FavoriteBorderIcon from "./assets/favorite.svg?react";
+import DeleteIcon from "./assets/trash.svg?react";
+import AnalyticsIcon from "./assets/analytics.svg?react";
+import AddLocationAltIcon from "./assets/add_location.svg?react";
+import Square from "./assets/square.svg?react";
 
 export const sidebarData = [
     {
@@ -15,6 +15,7 @@ export const sidebarData = [
                 title: 'Inbox',
                 icon: <InboxIcon />,
                 link: "/inbox",
+                badge: 14,
             }, 
             {
                 id: 2,

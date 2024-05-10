@@ -1,13 +1,12 @@
 import { Item } from "../SectionItems";
 import styles from './style.module.css';
-import ExpandMore from '../../../public/expand_more.svg?react';
-import ExpandLess from '../../../public/expand_less.svg?react';
+import ExpandMore from '../../assets/expand_more.svg?react';
+import ExpandLess from '../../assets/expand_less.svg?react';
 
 interface  SectionElementProps {
     item: Item;
     navbarOpen: boolean;
     activeIndex: number | null;
-    // setActiveIndex: (index: number | null) => void;
     subNavOpen?: boolean;
     handleToggleMenu?: () => void;
     handleClick: (index: number | null) => void;
@@ -23,11 +22,8 @@ function SectionElement({
     subNavOpen,
     multilevel,
   }: SectionElementProps) {
-    const { icon, title, id } = item;
+    const { icon, title, id, badge } = item;
 
-    // const handleClick = () => {
-
-    // }
     return (
       <li
       className={`${(activeIndex !== id) ? styles.inactive : styles.active} ${navbarOpen ? styles.row : styles.collapsedRow}` }
@@ -48,12 +44,19 @@ function SectionElement({
           >
             {title}
           </div>
-
-          { multilevel &&
+          {
+            badge &&
+            <div
+              className={navbarOpen ? styles.badge : styles.collapsedBadge}
+            >
+              {badge}
+            </div>
+          }
+          { multilevel && 
           <div
             className={styles.multiLevelIcon}
           >
-                {subNavOpen ? <ExpandMore/> : <ExpandLess />}
+                {subNavOpen ? <ExpandLess /> : <ExpandMore/>}
 
           </div>
 

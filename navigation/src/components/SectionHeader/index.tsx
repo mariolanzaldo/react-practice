@@ -1,15 +1,16 @@
+import { PropsWithChildren, ReactNode } from 'react';
 import styles from './style.module.css';
 
 interface SectionHeaderProps {
-    headline: string;
+    children: PropsWithChildren<ReactNode>;
 }
 
-function SectionHeader({ headline }: SectionHeaderProps) {
+function SectionHeader({ children }: SectionHeaderProps) {
     return (
         <div
             className={styles.headline}
         >
-            {headline}
+            {children}
         </div>
     );
 }

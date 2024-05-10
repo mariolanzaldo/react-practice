@@ -4,14 +4,12 @@
     font-weight: var(--text-weight);
     margin: 0 0 3px 0;
     width: 100%;
-}
-
-
-.sidebarList {
+    margin-top: 20px;
     height: auto;
     padding: 0;
-    width: 100%;
+    /* transition: width 0.3s ease; */
 }
+
 
 .sidebarListCollapsed {
     width: var(--collapse-width);
