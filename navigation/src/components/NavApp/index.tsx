@@ -1,15 +1,12 @@
-// import SectionElement from "../SectionItem";
 import SectionElement from "../SectionItem";
 import Navbar from "../Navbar";
-// import SectionHeader from "../SectionHeader";
 import SectionItems, { Item } from "../SectionItems";
 import { sidebarData } from "../../sidebarData";
 import { useState } from "react";
 import SectionHeader from "../SectionHeader";
 import Divider from "../Divider";
 import Collapse from "../Collapse";
-// import Divider from "../Divider";
-// import MultiLevel from "../MultiLevel";
+
 
 interface Data {
     label: string;
@@ -22,7 +19,6 @@ function NavbarApp() {
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const  [subNavOpen, setSubNavOpen] = useState(false);
-
 
     const handleToggleMenu = () => {
         setSubNavOpen(!subNavOpen);
@@ -69,13 +65,13 @@ function NavbarApp() {
 
             <SectionItems navbarOpen={navbarOpen}>
                 <SectionHeader children={sidebarData[1].label}/>
-                <SectionElement 
+                {/* <SectionElement 
                     item={labelsLabel[0]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick}
                     multilevel={false}
-                    />
+                    /> */}
                 <SectionElement 
                     item={labelsLabel[1]} 
                     navbarOpen={navbarOpen} 
@@ -86,7 +82,9 @@ function NavbarApp() {
                     handleToggleMenu={handleToggleMenu} 
                     />
 
-                <Collapse /*handleToggleMenu={handleToggleMenu}*/ subNavOpen={subNavOpen}>
+                <Collapse 
+                    subNavOpen={subNavOpen}
+                >
                     {
                         <>
                             <SectionElement 
@@ -100,6 +98,13 @@ function NavbarApp() {
 
                     }
                 </Collapse>
+                <SectionElement 
+                    item={labelsLabel[0]} 
+                    navbarOpen={navbarOpen} 
+                    activeIndex={activeIndex} 
+                    handleClick={handleClick}
+                    multilevel={false}
+                    />
             </SectionItems>
         </>
     );
@@ -149,5 +154,3 @@ function NavbarApp() {
 }
 
 export default NavbarApp;
-
-//TODO: Fix padding when the bar is collapsed, add the badges
