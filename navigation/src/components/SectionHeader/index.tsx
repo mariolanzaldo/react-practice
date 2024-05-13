@@ -1,11 +1,13 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import styles from './style.module.css';
 
-interface SectionHeaderProps {
-    children: PropsWithChildren<ReactNode>;
-}
+// interface SectionHeaderProps {
+//     children: PropsWithChildren<ReactNode>;
+// }
 
-function SectionHeader({ children }: SectionHeaderProps) {
+//TODO: Fix this usage through all  the app
+
+function SectionHeader({ children }: PropsWithChildren) {
     return (
         <div
             className={styles.headline}

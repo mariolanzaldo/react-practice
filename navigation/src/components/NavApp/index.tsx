@@ -40,25 +40,25 @@ function NavbarApp() {
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    multilevel={false}
+                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[1]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    multilevel={false}
+                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[2]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    multilevel={false}
+                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[3]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    multilevel={false}
+                    // multilevel={false}
                 />
             <Divider />
             </SectionItems>
@@ -76,7 +76,7 @@ function NavbarApp() {
                     item={labelsLabel[1]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
-                    multilevel={true}
+                    multilevel
                     handleClick={handleClick} 
                     subNavOpen={subNavOpen} 
                     handleToggleMenu={handleToggleMenu} 
@@ -92,7 +92,7 @@ function NavbarApp() {
                                 navbarOpen={navbarOpen} 
                                 activeIndex={activeIndex} 
                                 handleClick={handleClick}
-                                multilevel={false}    
+                                // multilevel={false}    
                             />
                         </>
 
@@ -103,7 +103,7 @@ function NavbarApp() {
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick}
-                    multilevel={false}
+                    // multilevel={false}
                     />
             </SectionItems>
         </>

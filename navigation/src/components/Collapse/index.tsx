@@ -34,7 +34,7 @@ function Collapse({ children, subNavOpen }: CollapseProps) {
             
     } 
 
-    toogleItems();
+    // toogleItems();
     return(
         <div
             ref={collapseRef}

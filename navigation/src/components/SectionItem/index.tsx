@@ -10,7 +10,7 @@ interface  SectionElementProps {
     subNavOpen?: boolean;
     handleToggleMenu?: () => void;
     handleClick: (index: number | null) => void;
-    multilevel: boolean;
+    multilevel?: boolean;
 }
 
 function SectionElement({ 
@@ -20,7 +20,7 @@ function SectionElement({
     handleClick, 
     handleToggleMenu, 
     subNavOpen,
-    multilevel,
+    multilevel = false, //This can be used for boolean props
   }: SectionElementProps) {
     const { icon, title, id, badge } = item;
 
@@ -67,5 +67,7 @@ function SectionElement({
       
     );
 }
+
+//TODO: Create custom components to the inner parts of the navbar
 
 export default SectionElement;
