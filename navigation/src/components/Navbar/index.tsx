@@ -1,14 +1,14 @@
-import { PropsWithChildren, ReactNode, useEffect, useRef } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import Sidebar from "../Sidebar";
 import styles from './style.module.css';
 
 interface NavbarProps {
-    children: PropsWithChildren<ReactNode>;
     setNavbarOpen: (arg: boolean) => void;
     navbarOpen: boolean;
 }
 
-function Navbar({ children, navbarOpen, setNavbarOpen }: NavbarProps) {
+function Navbar(props: PropsWithChildren<NavbarProps>) {
+    const { navbarOpen, setNavbarOpen } = props;
     const sidebarRef = useRef<HTMLDivElement>(null);
 
     const handleClick = () => {
@@ -39,7 +39,7 @@ function Navbar({ children, navbarOpen, setNavbarOpen }: NavbarProps) {
             navbarOpen={navbarOpen}
             handleClick={handleClick}
         >
-        {children}
+        {props.children!}
         </Sidebar>
         <div
             className={navbarOpen ? `${styles.scrim} ${styles.showScrim}` : `${styles.scrim} ${styles.closeScrim}`}

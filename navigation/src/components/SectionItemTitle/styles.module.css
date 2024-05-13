@@ -1,0 +1,6 @@
+.title {
+    flex-grow: 2;
+
+    font-family: inherit;
+    user-select: none;
+}

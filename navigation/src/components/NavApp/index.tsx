@@ -7,7 +7,6 @@ import SectionHeader from "../SectionHeader";
 import Divider from "../Divider";
 import Collapse from "../Collapse";
 
-
 interface Data {
     label: string;
     items: Item[];
@@ -26,8 +25,7 @@ function NavbarApp() {
 
     const handleClick = (id: number | null) => {
       setActiveIndex(id);
-
-    }
+    };
 
     const itemElements = sidebarData.map((element: Data) => element.items);
     const [mailLabel, labelsLabel] = itemElements;
@@ -40,43 +38,31 @@ function NavbarApp() {
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[1]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[2]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    // multilevel={false}
                 />
                 <SectionElement item={mailLabel[3]}
                     navbarOpen={navbarOpen}
                     activeIndex={activeIndex}
                     handleClick={handleClick}
-                    // multilevel={false}
                 />
             <Divider />
             </SectionItems>
 
             <SectionItems navbarOpen={navbarOpen}>
                 <SectionHeader children={sidebarData[1].label}/>
-                {/* <SectionElement 
-                    item={labelsLabel[0]} 
-                    navbarOpen={navbarOpen} 
-                    activeIndex={activeIndex} 
-                    handleClick={handleClick}
-                    multilevel={false}
-                    /> */}
                 <SectionElement 
                     item={labelsLabel[1]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
-                    multilevel
                     handleClick={handleClick} 
                     subNavOpen={subNavOpen} 
                     handleToggleMenu={handleToggleMenu} 
@@ -92,7 +78,6 @@ function NavbarApp() {
                                 navbarOpen={navbarOpen} 
                                 activeIndex={activeIndex} 
                                 handleClick={handleClick}
-                                // multilevel={false}    
                             />
                         </>
 
@@ -103,7 +88,6 @@ function NavbarApp() {
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick}
-                    // multilevel={false}
                     />
             </SectionItems>
         </>
@@ -117,28 +101,24 @@ function NavbarApp() {
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick} 
-                    multilevel={false}
                 />
                 <SectionElement 
                     item={mailLabel[1]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick} 
-                    multilevel={false}
                 />
                 <SectionElement 
                     item={mailLabel[2]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick} 
-                    multilevel={false}
                 />
                 <SectionElement 
                     item={mailLabel[3]} 
                     navbarOpen={navbarOpen} 
                     activeIndex={activeIndex} 
                     handleClick={handleClick} 
-                    multilevel={false}
                 />
             </SectionItems>
         </>

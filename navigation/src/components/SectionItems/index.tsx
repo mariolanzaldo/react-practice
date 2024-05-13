@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactElement, ReactNode } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 import styles from "./style.module.css";
 
 export interface Item {
@@ -11,14 +11,10 @@ export interface Item {
 }
 
 interface SectionItemsProps {
-    children: PropsWithChildren<ReactNode>;
-//    items: Item[];
    navbarOpen: boolean;
-//    activeIndex: number | null;
-//    setActiveIndex: (index: number | null) => void;
 }
 
-function SectionItems({ children, navbarOpen }: SectionItemsProps) {
+function SectionItems({ children, navbarOpen }: PropsWithChildren<SectionItemsProps>) {
 
     return (
         <ul

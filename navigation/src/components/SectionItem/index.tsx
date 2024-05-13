@@ -2,6 +2,8 @@ import { Item } from "../SectionItems";
 import styles from './style.module.css';
 import ExpandMore from '../../assets/expand_more.svg?react';
 import ExpandLess from '../../assets/expand_less.svg?react';
+import SectionItemTitle from "../SectionItemTitle";
+import SectionItemIcon from "../SectionItemIcon";
 
 interface  SectionElementProps {
     item: Item;
@@ -10,7 +12,6 @@ interface  SectionElementProps {
     subNavOpen?: boolean;
     handleToggleMenu?: () => void;
     handleClick: (index: number | null) => void;
-    multilevel?: boolean;
 }
 
 function SectionElement({ 
@@ -20,7 +21,6 @@ function SectionElement({
     handleClick, 
     handleToggleMenu, 
     subNavOpen,
-    multilevel = false, //This can be used for boolean props
   }: SectionElementProps) {
     const { icon, title, id, badge } = item;
 
@@ -28,22 +28,18 @@ function SectionElement({
       <li
       className={`${(activeIndex !== id) ? styles.inactive : styles.active} ${navbarOpen ? styles.row : styles.collapsedRow}` }
       onClick={() => {
-        (multilevel && handleToggleMenu) ? handleToggleMenu() : handleClick(id);
+        handleToggleMenu ? handleToggleMenu() : handleClick(id);
       }}
       >
         <div
           className={navbarOpen ? styles.item : styles.collapsedItem}
         >
-          <div
-           className={`${styles.icon}`}
-          >
+          <SectionItemIcon>
             {icon}
-          </div>
-          <div
-            className={styles.title}
-          >
+          </SectionItemIcon>
+         <SectionItemTitle>
             {title}
-          </div>
+         </SectionItemTitle>
           {
             badge &&
             <div
@@ -52,7 +48,7 @@ function SectionElement({
               {badge}
             </div>
           }
-          { multilevel && 
+          { handleToggleMenu && 
           <div
             className={styles.multiLevelIcon}
           >
@@ -67,7 +63,5 @@ function SectionElement({
       
     );
 }
-
-//TODO: Create custom components to the inner parts of the navbar
 
 export default SectionElement;

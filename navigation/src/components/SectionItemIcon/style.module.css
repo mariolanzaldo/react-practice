@@ -1,0 +1,7 @@
+.icon {
+    display: grid;
+    place-items: center;
+    margin-top: 10px;
+    width: var(--icon-size);
+    height: var(--icon-size);
+}

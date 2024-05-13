@@ -1,14 +1,14 @@
-import { PropsWithChildren, ReactNode, useEffect, useState, useRef } from "react";
+import { PropsWithChildren, useEffect, useState, useRef } from "react";
 import styles from './style.module.css';
 
 interface CollapseProps {
-    children: PropsWithChildren<ReactNode>;
+    // children: PropsWithChildren<ReactNode>;
     subNavOpen: boolean;
 }
 
 
 
-function Collapse({ children, subNavOpen }: CollapseProps) {
+function Collapse({ children, subNavOpen }: PropsWithChildren<CollapseProps>) {
     const collapseRef = useRef<HTMLDivElement>(null);
 
     const [initialCollapseRender , setInitialCollapseRender] = useState(true);
