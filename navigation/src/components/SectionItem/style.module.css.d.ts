@@ -6,7 +6,5 @@ declare const classNames: {
   readonly collapsedRow: "collapsedRow";
   readonly collapsedItem: "collapsedItem";
   readonly multiLevelIcon: "multiLevelIcon";
-  readonly badge: "badge";
-  readonly collapsedBadge: "collapsedBadge";
 };
 export = classNames;

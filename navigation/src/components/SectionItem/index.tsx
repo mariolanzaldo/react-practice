@@ -4,6 +4,7 @@ import ExpandMore from '../../assets/expand_more.svg?react';
 import ExpandLess from '../../assets/expand_less.svg?react';
 import SectionItemTitle from "../SectionItemTitle";
 import SectionItemIcon from "../SectionItemIcon";
+import Badge from "../Bagde";
 
 interface  SectionElementProps {
     item: Item;
@@ -42,11 +43,9 @@ function SectionElement({
          </SectionItemTitle>
           {
             badge &&
-            <div
-              className={navbarOpen ? styles.badge : styles.collapsedBadge}
-            >
-              {badge}
-            </div>
+           <Badge navbarOpen={navbarOpen}>
+            {badge}
+           </Badge>
           }
           { handleToggleMenu && 
           <div

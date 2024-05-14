@@ -83,30 +83,6 @@
     animation: badgeFrame 500ms forwards;
 }
 
-.badge {
-    display: flex;
-    color: var(--large-badge-color);
-    white-space: nowrap;
-    opacity: 0;
-    /* transition: 0; */
-    animation: badgeFrame 500ms forwards;
-}
-
-.collapsedBadge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    font-size: 10px;
-    font-weight: bolder;
-    color: white;
-    border-radius: 100%;
-    transform: translate(60%, -130%);
-    background-color: red;
-}
-
 @keyframes badgeFrame {
     0% {
         opacity: 0;
