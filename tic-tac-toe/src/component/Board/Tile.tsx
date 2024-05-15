@@ -1,19 +1,17 @@
 import { Button } from "@mui/material";
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 
 interface TileProps {
     onTileClick: () => void;
     children: ReactNode;
-    className: string;
 }
 
-function Tile( {children, onTileClick, className }: TileProps) {
-    // console.log(className);
+function Tile( {children, onTileClick }: PropsWithChildren<TileProps>) {
+
     return(
         <Button
-            // fullWidth
+            fullWidth
             onClick={onTileClick}
-            className={`${className}`}
         >
         {children}
         </Button>

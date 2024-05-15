@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Board from '../Board';
 import Header from '../Header';
+import { useAppContext } from '../../state';
 
 //TODO: Put  different routes to select the player, another for the player and another one to the history game
 function TicTacToe() {
@@ -9,6 +10,15 @@ function TicTacToe() {
     
     const [tiles, setTiles] = useState(Array(9).fill(null));
     const [playerTurn, setPlayerTurn] = useState(PLAYER_X);
+
+    // const [turn, setTurn] = useState(() => {
+    //     const turnFromStorage = window.localStorage.getItem('turn');
+
+    //     return turnFromStorage ?? TURNS.X;
+    // });
+    // eslint-disable-next-line
+    const [state, dispatch ] = useAppContext();
+    console.log(state);
     
     const handleTileClick = function (index: number) {
         if(tiles[index - 1] !== null) {
@@ -25,12 +35,6 @@ function TicTacToe() {
             setPlayerTurn(PLAYER_X);
         }
     };
-
-        // const winningPositions = [
-        //   [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        //   [0, 3, 6], [1, 4, 7], [2, 5, 8], 
-        //   [0, 4, 8], [2, 4, 6]             
-        // ];
     
     return(
         <>

@@ -1,49 +1,14 @@
-import { Box, Grid, ThemeProvider, createTheme } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Tile from "./Tile";
-import styles from "./style.module.css";
-// import Row from "./Row";
 
 interface BoardProps {
-    // children?: ReactNode;
-
     onTileClick: (index: number) => void;
     tiles: (string | null) []
 }
 
-const theme = createTheme({
-    components: {
-      MuiGrid: {
-        styleOverrides: {
-          container: {
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        },
-      },
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            width: "100px",
-            height: "100px",
-            // borderRight: "0.2em solid #0074a6",
-
-          },
-        //   rightBorder: {
-        //     borderRight: "0.2em solid #0074a6",
-        
-        //     },
-        //     bottomBorder: {
-        //     borderBottom: "0.2em solid #0074a6",
-        //     }
-        },
-      },
-    },
-  });
 
 function Board({tiles, onTileClick }:  BoardProps) {
     return(
-        //TODO: Replace this with variants
-        <ThemeProvider theme={theme}>
             <Box
             sx={{
                 flexGrow: 1
@@ -51,105 +16,136 @@ function Board({tiles, onTileClick }:  BoardProps) {
         >
             <Grid
                 container
+                spacing={0}
             >
-                <Grid container item spacing={9}>
+                <Grid 
+                    container 
+                    item 
+                    spacing={0}
+                    >
                     <Grid 
-                        item xs={1} 
-                        // className={`${styles.bottomBorder} ${styles.rightBorder}`}
+                        item 
+                        xs={2}
+                        borderRight={2}
+                        borderBottom={2}
                     >
                         <Tile
-                            children={tiles[0]}
                             onTileClick={() => onTileClick(1)}
-                            className={`${styles.bottomBorder} ${styles.rightBorder}`}
-                            // className={}
+                        >
+                            {tiles[0]}
+                        </Tile>
+                    </Grid>
 
-                        />
-                </Grid>
-
-                <Grid 
-                    item xs={1}
-                >
-                    <Tile
-                        className={`${styles.bottomBorder} ${styles.rightBorder}`}
-                        children={tiles[1]}
-                        onTileClick={() => onTileClick(2)}
-                    />   
-                </Grid>
-                <Grid 
-                    item xs={1}
-                >
-                    <Tile
-                        className={`${styles.bottomBorder}`}
-                        children={tiles[2]}
-                        onTileClick={() => onTileClick(3)}
-                    />  
-                </Grid>
-                </Grid>
-                
-
-                <Grid container item spacing={9}>
                     <Grid 
-                        item xs={1}
+                        item 
+                        xs={2}
+                        borderRight={2}
+                        borderBottom={2}
                     >
                         <Tile
-                            className={`${styles.bottomBorder} ${styles.rightBorder}`}
-                            children={tiles[3]}
+                            onTileClick={() => onTileClick(2)}
+                        >
+                            {tiles[1]}
+                        </Tile>   
+                    </Grid>
+                    <Grid
+                        item 
+                        xs={2}
+                        borderBottom={2}
+                    >
+                        <Tile
+                            onTileClick={() => onTileClick(3)}
+                        >
+                            {tiles[2]}
+                        </Tile>  
+                    </Grid>
+
+                </Grid>
+                <Grid 
+                    container 
+                    item 
+                    spacing={0}
+                    >
+                    <Grid 
+                        item 
+                        xs={2}
+                        borderRight={2}
+                        borderBottom={2}
+                    >
+                        <Tile
                             onTileClick={() => onTileClick(4)}
-                        />
-                </Grid>
+                        >
+                            {tiles[3]}
+                        </Tile>
+                    </Grid>
 
-                <Grid 
-                    item xs={1}
-                >
-                    <Tile
-                        className={`${styles.bottomBorder} ${styles.rightBorder}`}
-                        children={tiles[4]}
-                        onTileClick={() => onTileClick(5)}
-                    />   
-                </Grid>
-                <Grid
-                    item xs={1}
-                >
-                    <Tile
-                        className={`${styles.bottomBorder}`}
-                        children={tiles[5]}
-                        onTileClick={() => onTileClick(6)}
-                    />  
-                </Grid>
-                </Grid>
-
-                <Grid container item spacing={9}>
                     <Grid 
-                        item xs={1}
+                        item 
+                        xs={2}
+                        borderRight={2}
+                        borderBottom={2}
                     >
                         <Tile
-                            className={`${styles.rightBorder}`}
-                            children={tiles[6]}
-                            onTileClick={() => onTileClick(7)}
-                        />
+                            onTileClick={() => onTileClick(5)}
+                        >
+                            {tiles[4]}
+                        </Tile>   
+                    </Grid>
+                    <Grid
+                        item 
+                        xs={2}
+                        borderBottom={2}
+                    >
+                        <Tile
+                            onTileClick={() => onTileClick(6)}
+                        >
+                            {tiles[5]}
+                        </Tile>  
+                    </Grid>
+
                 </Grid>
 
                 <Grid 
-                    item xs={1}                    
+                    container 
+                    item 
+                    spacing={0}
+                    >
+                    <Grid 
+                        item xs={2}
+                        borderRight={2}
+                    >
+                        <Tile
+                            onTileClick={() => onTileClick(7)}
+                        >
+                            {tiles[6]}
+
+                        </Tile>
+                </Grid>
+
+                <Grid 
+                    item 
+                    xs={2}
+                    borderRight={2}                   
                 >
                     <Tile
-                        className={`${styles.rightBorder}`}
-                        children={tiles[7]}
                         onTileClick={() => onTileClick(8)}
-                    />   
+                    >
+                        {tiles[7]}
+                    </Tile>   
                 </Grid>
-                <Grid item xs={1}>
+                <Grid 
+                    item 
+                    xs={2}
+                >
                     <Tile
-                        className=""
-                        children={tiles[8]}
                         onTileClick={() => onTileClick(9)}
-                    />  
+                    >
+                        {tiles[8]}
+                    </Tile>  
                 </Grid>
                 </Grid>
             </Grid>
         </Box>
-
-        </ThemeProvider>
         
     )
 }
