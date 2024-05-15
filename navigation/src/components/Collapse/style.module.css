@@ -1,8 +1,7 @@
 .multiItem {
-    /* display: none; */
     overflow: hidden;
     max-height: 0;
-    /* transition: max-height 0.3 ease; */
+    padding-left: 10px;
 }
 
 

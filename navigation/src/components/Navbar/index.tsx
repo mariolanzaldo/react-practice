@@ -39,7 +39,7 @@ function Navbar(props: PropsWithChildren<NavbarProps>) {
             navbarOpen={navbarOpen}
             handleClick={handleClick}
         >
-        {props.children!}
+        {props.children}
         </Sidebar>
         <div
             className={navbarOpen ? `${styles.scrim} ${styles.showScrim}` : `${styles.scrim} ${styles.closeScrim}`}

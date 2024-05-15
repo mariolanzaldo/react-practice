@@ -1,6 +1,7 @@
 .item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
     width: var(--indicator-width);
     margin: var(--inner-margin-item);
@@ -24,16 +25,12 @@
     width: var(--indicator-width);
     border-radius: 38px;
     opacity: var(--hover-opacity);
-    /* transition: width 0.3 ease-in-out; */
-    /* transition: width 0.3s ease, opacity 0.3s ease; */
 }
 
 
 .inactive {
     background-color: transparent;
     width: var(--indicator-width);
-
-    /* opacity: 0.5; */
 }
 
 .active {
@@ -41,7 +38,6 @@
     width: var(--indicator-width);
     border-radius: 38px;
     transition: width 0.2s ease;
-    /* opacity: 1; */
 }
 
 .collapsedRow {
@@ -49,7 +45,6 @@
     align-items: center;
     margin: 0 0 13px 0;
     padding: 0;
-    /* width: var(--collapse-width); */
     width: 85%;
     margin-left: 10px;
     box-sizing: border-box;
@@ -59,7 +54,6 @@
     cursor: pointer;
     background-color: #625B71;
     color: #1D1B20;
-    /* width: var(--indicator-width); */
     border-radius: 38px;
     opacity: var(--hover-opacity);
 }

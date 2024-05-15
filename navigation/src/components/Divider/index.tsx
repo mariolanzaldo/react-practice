@@ -6,16 +6,10 @@ import styles from './style.module.css';
 // }
 
 function Divider() {
-
     return(
-        <div
-            className={styles.container}
-        >
-            {/* <div
-                className={styles.border}
-            >
-            </div> */}
-        </div>
+        <hr
+            className={styles.divider}
+        />
     );
 }
 

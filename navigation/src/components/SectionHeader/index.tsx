@@ -5,7 +5,7 @@ import styles from './style.module.css';
 //     children: PropsWithChildren<ReactNode>;
 // }
 
-//TODO: Fix this usage through all  the app
+
 
 function SectionHeader({ children }: PropsWithChildren) {
     return (

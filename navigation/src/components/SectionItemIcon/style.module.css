@@ -1,7 +1,7 @@
 .icon {
-    display: grid;
-    place-items: center;
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: var(--icon-size);
     height: var(--icon-size);
 }
