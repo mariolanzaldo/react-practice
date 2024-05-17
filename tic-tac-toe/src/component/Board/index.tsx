@@ -147,7 +147,7 @@ function Board({tiles, onTileClick }:  BoardProps) {
             </Grid>
         </Box>
         
-    )
+    );
 }
 
 export default Board;

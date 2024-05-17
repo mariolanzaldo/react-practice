@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { PropsWithChildren, ReactNode } from "react";
 
 interface TileProps {
@@ -13,7 +13,11 @@ function Tile( {children, onTileClick }: PropsWithChildren<TileProps>) {
             fullWidth
             onClick={onTileClick}
         >
-        {children}
+            <Typography
+                variant="h2"
+            >
+                {children}
+            </Typography>
         </Button>
 
     );

@@ -1,4 +1,4 @@
-import { Dispatch, PropsWithChildren, createContext, useContext, useReducer } from "react";
+import { Dispatch, PropsWithChildren, createContext, useContext, useEffect, useReducer } from "react";
 import { ActionType } from "./actionTypes";
 import appReducer, { Page, Turn, initialState } from "./reducer";
 
@@ -6,6 +6,15 @@ export type Player = {
     name: string;
     symbol: Turn.X | Turn.O;
     moves: number;
+}
+
+export type Game = {
+    board: string[] | null[];
+    turn: Player | null;
+    winner: Player | null;
+    isGameover: boolean;
+    gameStart: number | null;
+    gameEnd: number | null;
 }
 
 export type GameStats = {
@@ -17,10 +26,10 @@ export interface StateInterface {
     settings: {
         player1: Player;
         player2: Player;
-    },
-    board: string[] | null[]; //TODO: This could change in the future
+    };
+    game: Game;
     stats: GameStats[];
-    currentPage: Page.newGame | Page.board | Page.stats;
+    currentPage: Page.main | Page.board | Page.stats;
 }
 
 type AppCtx = [StateInterface, Dispatch<ActionType>]
@@ -34,15 +43,19 @@ export function useAppContext(): AppCtx {
 
 export function Provider({ children }: PropsWithChildren) {
 
-    // const storeState = JSON.parse(localStorage.getItem("app-state")!);
+    const storeState = JSON.parse(localStorage.getItem("app-state")!);
 
-    // const initializer = storeState ? storeState : initialState;
+    const initializer = storeState ?? initialState;
 
-    // const [state, dispatch ] = useReducer(reducer, initializer as never);
+    const [state, dispatch ] = useReducer(
+        appReducer, 
+        initializer as never
+    );
 
-    const [state, dispatch ] = useReducer(appReducer, initialState);
+    useEffect(() => {
+        localStorage.setItem("app-state", JSON.stringify(state));
+    });
 
-    // console.log(state);
     const contextValue: AppCtx = [state, dispatch];
 
     return (

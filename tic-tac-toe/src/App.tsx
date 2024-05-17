@@ -2,7 +2,8 @@ import { ThemeProvider, createTheme } from '@mui/material'
 import './App.css'
 import TicTacToe from './component/TicTacToe';
 import { useAppContext } from './state';
-import Settings from './component/Settings';
+import Main from './component/Main';
+import History from './component/History';
 
 declare module '@mui/material/Button' {
   interface Grid2PropsVariantOverrides {
@@ -26,14 +27,6 @@ const theme = createTheme({
         }, 
         
       },
-      variants: [
-        {
-          props: { border: `dotted`},
-          style: {
-            border: `4px solid purple`
-          }
-        }
-      ]
     },
     MuiButton: {
       styleOverrides: {
@@ -42,6 +35,17 @@ const theme = createTheme({
           height: "100px",
         },
       },
+      variants: [
+          {
+            props: { variant: `contained`},
+            style: {
+              color: "white",
+              fontWeight: "bolder",
+              width: "10em",
+              height: "5em",
+            }
+          }
+        ]
     },
   },
 })
@@ -53,10 +57,9 @@ function App() {
   return (
 
     <ThemeProvider theme={theme}>
-
       {
-        currentPage === "newGame" ? (
-          <Settings />
+        currentPage === "main" ? (
+          <Main />
         ) : null
       }
 
@@ -65,8 +68,12 @@ function App() {
           <TicTacToe />
         ) : null
       }
+      {
+        currentPage === "stats" ? (
+          <History /> 
+        ) : null
+      }
 
-      {/* <TicTacToe /> */}
     </ThemeProvider>
   )
 }

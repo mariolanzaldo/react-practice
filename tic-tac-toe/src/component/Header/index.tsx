@@ -5,6 +5,8 @@ function Header() {
         <Typography
             variant='h3'
             align="center"
+            color="primary"
+            marginBottom={2}
         >
             Tic Tac Toe Game
         </Typography>

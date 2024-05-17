@@ -1,13 +1,18 @@
-import { Box, Button, FormControlLabel, FormGroup, Paper, Switch, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, FormControlLabel, FormGroup, Switch, TextField, Typography, styled } from "@mui/material";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Page, Turn } from "../../state/reducer";
 import { useAppContext } from "../../state";
-import { startGame } from "../../state/actionTypes";
+import { setPage, startGame } from "../../state/actionTypes";
 
-function Settings() {
 
+const StyledCard = styled(Card)(({ theme }) => ({
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(3),
+}));
+
+function Main() {
     // eslint-disable-next-line
-    const [state, dispatch ] = useAppContext();
+    const [_, dispatch ] = useAppContext();
     const [inputFields, setInputfields] = useState({
         player1: "",
         player2: "",
@@ -47,8 +52,17 @@ function Settings() {
         }));
     };
 
+    const handleHistoryClick = () => {
+        dispatch(setPage({
+            currentPage: Page.stats,
+        }));
+    };
+
     return (
-        <Paper>
+        <>
+           <StyledCard
+        >   
+            <CardContent>
             <Typography component="h2">
                 Create new game
             </Typography>
@@ -56,21 +70,47 @@ function Settings() {
             <Box
                 component="form"
                 onSubmit={handleSubmit}
-            >
-                <TextField 
-                    name="player1"
-                    type="text"
-                    placeholder="Player 1"
-                    onChange={handleChange}
-                />
-                <TextField 
-                    name="player2"
-                    type="text"
-                    placeholder="Player 2"
-                    onChange={handleChange}
-                />
+            >   
 
                 <Box>
+                    <TextField 
+                        name="player1"
+                        type="text"
+                        placeholder="Player 1"
+                        onChange={handleChange}
+                        margin="normal"
+                        inputProps={{
+                            maxLength: 25
+                        }}
+                    />
+                </Box>
+
+                <Box>
+                    <TextField 
+                        name="player2"
+                        type="text"
+                        placeholder="Player 2"
+                        onChange={handleChange}
+                        margin="normal"
+                        inputProps={{
+                            maxLength: 25
+                        }}
+                    />
+                </Box>
+
+                <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    flexDirection="column"
+                    mt={5}
+                    mb={3}
+                >
+                    <Typography
+                        component="h3"
+                    >
+                        Choose the icon for player 1
+                    </Typography>
                     <FormGroup>
                         <FormControlLabel
                             control = {
@@ -79,7 +119,7 @@ function Settings() {
                                     onChange={handleSwitchChange}
                                     inputProps={{ "aria-label": "controlled-switch"}}
                                     name="Switch"
-                                    color={ switchChecked? "secondary" : "default"}
+                                    color={ switchChecked? "primary" : "default"}
                                     size="medium"
                                 />
                             }
@@ -89,14 +129,27 @@ function Settings() {
                 </Box>
 
                 <Button
+                    fullWidth
                     type="submit"
                     variant="contained"
                 >
                     New Game
                 </Button>
+
+                
             </Box>
-        </Paper>
+            </CardContent>
+            
+        </StyledCard>
+        <Button
+            variant="outlined"
+            color="secondary"
+            onClick={handleHistoryClick}
+        >
+          Go to history
+        </Button>
+        </>
     );
 }
 
-export default Settings;
+export default Main;
