@@ -20,6 +20,7 @@ export type Game = {
 export type GameStats = {
     winner: Player;
     duration: string;
+    gameEnd: number;
 }
 
 export interface StateInterface {

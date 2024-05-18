@@ -9,6 +9,12 @@ export enum Turn {
     O = '⚪'
 }
 
+export enum Routes {
+    main = "/main",
+    board = "/board",
+    stats = "/stats",
+}
+
 export enum Page {
     main = "main",
     board = "board",
@@ -49,8 +55,8 @@ function appReducer(state: StateInterface, action: ActionType) {
             const { players, currentPage } = payload!;
             const { game } = state;
             const timestamp = Date.now();
-            console.log(game);
 
+            window.location.pathname = Routes.board;
             return {
                 ...state,
                 game: {
@@ -160,7 +166,7 @@ function appReducer(state: StateInterface, action: ActionType) {
                 return {
                     ...state,
                     game: {
-                        board: { ...game.board },
+                        board: [...game.board],
                         turn: {...game.turn},
                         winner: {...playerWinner},
                         isGameover: true,
@@ -172,6 +178,7 @@ function appReducer(state: StateInterface, action: ActionType) {
                         {
                             winner: {...playerWinner},
                             duration: minutesDiff,
+                            gameEnd,
                         }
                     ]
                 }
@@ -180,7 +187,7 @@ function appReducer(state: StateInterface, action: ActionType) {
                 return {
                     ...state,
                     game: {
-                        board: { ...game.board },
+                        board: [...game.board],
                         turn: {...game.turn},
                         winner: null,
                         isGameover: true,
@@ -192,6 +199,7 @@ function appReducer(state: StateInterface, action: ActionType) {
                         {
                             winner: null,
                             duration: minutesDiff,
+                            gameEnd,
                         }
                     ]
                 }
@@ -203,6 +211,7 @@ function appReducer(state: StateInterface, action: ActionType) {
 
         case ActionTypes.RESET_FROM_GAMEOVER: {
             const { stats } = state;
+            window.location.pathname = Routes.main;
 
             return {
                 settings: {
@@ -230,6 +239,8 @@ function appReducer(state: StateInterface, action: ActionType) {
         }
 
         case ActionTypes.RESET_GAME: {
+            window.location.pathname = Routes.main;
+
             return {
                 ...state,
                 settings: {
@@ -259,9 +270,34 @@ function appReducer(state: StateInterface, action: ActionType) {
 
         case ActionTypes.SET_PAGE: {
             const { currentPage } = payload!; 
+            window.location.pathname = `/${currentPage}`;
             return {
                 ...state,
+                game: {
+                    board: Array(9).fill(null),
+                    turn: null,
+                    winner: null,
+                    isGameover: false,
+                    gameStart: null,
+                    gameEnd: null,
+                },
                 currentPage,
+            }
+        }
+
+        case ActionTypes.CLEAR_HISTORY: {
+
+            return {
+                ...state,
+                game: {
+                    board: Array(9).fill(null),
+                    turn: null,
+                    winner: null,
+                    isGameover: false,
+                    gameStart: null,
+                    gameEnd: null,
+                },
+                stats: [],
             }
         }
 

@@ -9,6 +9,7 @@ export enum ActionTypes {
     RESET_FROM_GAMEOVER = "resetFromGameover",
     RESET_GAME = "resetGame",
     SET_PAGE = "setPage",
+    CLEAR_HISTORY = "clearHistory",
 }
 
 export type ActionPayload = {
@@ -69,4 +70,10 @@ export const setPage = ({ currentPage }: { currentPage: Page.main | Page.board |
         type: ActionTypes.SET_PAGE,
         payload: { currentPage }
     })
-}
+};
+
+export const clearHistory = (): ActionType => {
+    return({
+        type: ActionTypes.CLEAR_HISTORY,
+    })
+};

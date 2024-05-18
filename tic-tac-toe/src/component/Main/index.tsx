@@ -3,7 +3,18 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Page, Turn } from "../../state/reducer";
 import { useAppContext } from "../../state";
 import { setPage, startGame } from "../../state/actionTypes";
+// import CustomLink from "../CustomLink";
 
+type PlayerInput = {
+    value: string;
+    error: boolean;
+    errorMessage: string;
+}
+
+type InputFields = {
+    player1: PlayerInput;
+    player2: PlayerInput;
+}
 
 const StyledCard = styled(Card)(({ theme }) => ({
     marginBottom: theme.spacing(1),
@@ -13,17 +24,34 @@ const StyledCard = styled(Card)(({ theme }) => ({
 function Main() {
     // eslint-disable-next-line
     const [_, dispatch ] = useAppContext();
-    const [inputFields, setInputfields] = useState({
-        player1: "",
-        player2: "",
+    const [inputFields, setInputfields] = useState<InputFields>({
+        player1: {
+            value: "",
+            error: false,
+            errorMessage: "Enter a valid player",
+        },
+        player2: {
+            value: "",
+            error: false,
+            errorMessage: "Enter a valid player",
+        }
     });
+    // console.log(state);
 
     const [switchChecked, setSwitchChecked] = useState(false);
 
+    const isFormValid = () => Object.values(inputFields).every((field) => field.value.trim() !== "");
+
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+
         setInputfields((prevState) => ({
             ...prevState,
-            [event.target.name]: event.target.value,
+            [name]: {
+                ...prevState[name as keyof InputFields],
+                value,
+                error: value.trim() === "",
+            },
         }));
     };
 
@@ -34,18 +62,39 @@ function Main() {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const formFields = Object.keys(inputFields) as (keyof InputFields)[];
+        let isValid = true;
+        let newFormValues = { ...inputFields };
+
+        formFields.forEach((field) => {
+            const value = inputFields[field].value.trim();
+            if (value === "") {
+                isValid = false;
+                newFormValues = {
+                    ...newFormValues,
+                    [field]: {
+                        ...newFormValues[field],
+                        error: true,
+                    },
+                };
+            }
+        });
+
+        setInputfields(newFormValues);
+
+        if (!isValid) return;
+
         dispatch(startGame({
             players: [
                 {
-                    name: inputFields.player1,
+                    name: inputFields.player1.value,
                     symbol: switchChecked ? Turn.X : Turn.O,
                     moves: 0,
                 },
                 {
-                    name: inputFields.player2,
+                    name: inputFields.player2.value,
                     symbol: !switchChecked ? Turn.X : Turn.O,
                     moves: 0,
-        
                 },
             ],
             currentPage: Page.board,
@@ -79,6 +128,8 @@ function Main() {
                         placeholder="Player 1"
                         onChange={handleChange}
                         margin="normal"
+                        error={inputFields.player1.error}
+                        helperText={inputFields.player1.error ? inputFields.player1.errorMessage : ""}
                         inputProps={{
                             maxLength: 25
                         }}
@@ -92,6 +143,8 @@ function Main() {
                         placeholder="Player 2"
                         onChange={handleChange}
                         margin="normal"
+                        error={inputFields.player2.error}
+                        helperText={inputFields.player2.error ? inputFields.player2.errorMessage : ""}
                         inputProps={{
                             maxLength: 25
                         }}
@@ -132,6 +185,7 @@ function Main() {
                     fullWidth
                     type="submit"
                     variant="contained"
+                    disabled={!isFormValid()}
                 >
                     New Game
                 </Button>
@@ -146,7 +200,13 @@ function Main() {
             color="secondary"
             onClick={handleHistoryClick}
         >
-          Go to history
+
+            Go to history
+
+          {/* <CustomLink href="stats">
+            Go to history
+
+          </CustomLink> */}
         </Button>
         </>
     );

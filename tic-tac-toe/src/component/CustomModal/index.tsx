@@ -1,9 +1,18 @@
-import { Box, Button, Card, CardContent, Fade, IconButton, Modal, Typography, styled } from "@mui/material";
-import { useAppContext } from "../../state";
-import { resetFromGameover, setPage } from "../../state/actionTypes";
-import RefreshIcon from '@mui/icons-material/Refresh';
-import HistoryIcon from '@mui/icons-material/History';
-import { Page } from "../../state/reducer";
+import { Box, 
+    // Button, 
+    Card, 
+    CardContent, 
+    Fade, 
+    // IconButton, 
+    Modal, 
+    // Typography, 
+    styled } from "@mui/material";
+// import { useAppContext } from "../../state";
+// import { resetFromGameover, setPage } from "../../state/actionTypes";
+// import RefreshIcon from '@mui/icons-material/Refresh';
+// import HistoryIcon from '@mui/icons-material/History';
+// import { Page } from "../../state/reducer";
+import { PropsWithChildren } from "react";
 
 const StyledCard = styled(Card)(({ theme }) => ({
     marginBottom: theme.spacing(1),
@@ -13,34 +22,25 @@ const StyledCard = styled(Card)(({ theme }) => ({
     left: '35%',
     width: 400,
     p: 4,
+    wordBreak: "break-word",
 }));
 
-function CustomModal() {
+interface CustomModalProps {
+    open: boolean;
+    primaryHandler?: () => void;
+    secondaryHandler?: () => void;
+}
 
-    const [state, dispatch ] = useAppContext();
-    const { game } = state;
-
-
-
-    const handleReset = function () {
-        dispatch(resetFromGameover());
-    };
-
-    const handleHistory = function () {
-        console.log("Go to history!");
-        dispatch(setPage({
-            currentPage: Page.stats,
-        }))
-    };
+function CustomModal({ children, open }: PropsWithChildren<CustomModalProps>) {
 
     return(
         <Modal
-                open={game.isGameover}
+                open={open}
             >
                 <StyledCard>
                     <CardContent>
                         <Fade
-                            in={game.isGameover}
+                            in={open}
                         >
                             <Box
                                 display="flex"
@@ -48,73 +48,7 @@ function CustomModal() {
                                 justifyContent="center"
                                 alignItems="center"
                             >
-                                <Typography 
-                                    variant="h4"
-                                    marginBottom={5}
-                                >
-                                    GAME OVER
-                                </Typography>
-
-                                {
-                                    game.winner && 
-                                    <Box>
-                                        <Typography 
-                                            variant='h4'
-                                            marginBottom={5}
-                                        >
-                                            {
-                                                `${game.winner.name} wins!`
-                                            }
-                                        </Typography>
-                                    </Box>
-                                }
-
-                                {
-                                    (!game.winner && game.isGameover) && 
-                                    <Box>
-                                        <Typography 
-                                            variant='h4'
-                                            marginBottom={5}
-                                        >
-                                            {
-                                        `Draw!`
-                                            }
-                                        </Typography>
-                                    </Box>
-                                }
-
-                                <Box
-                                    display="flex"
-                                    gap={3}
-                                >
-
-                                    <Button
-                                        onClick={handleReset}
-                                        variant='contained'
-                                    >
-                                        <IconButton>
-                                            <RefreshIcon
-                                            sx={{
-                                                fontSize: 35
-                                            }}
-                                            />
-                                        </IconButton>
-                                    </Button>
-
-                                    <Button
-                                        onClick={handleHistory}
-                                        variant='contained'
-                                        color="secondary"
-                                    >
-                                        <IconButton>
-                                            <HistoryIcon
-                                            sx={{
-                                                fontSize: 35
-                                            }}
-                                            />
-                                        </IconButton>
-                                    </Button>
-                                </Box>
+                            {children}
                             </Box>
                         </Fade>
                     </CardContent>

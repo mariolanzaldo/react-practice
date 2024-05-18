@@ -16,6 +16,7 @@ const StyledTurnCard = styled(Card)(() => ({
     borderRadius: 2,
     backgroundColor: "#333",
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.4)",
+    wordBreak: "break-word",
 }))
 
 function TurnCard({ turn }: PropsWithChildren<TurnCardInterface>) {

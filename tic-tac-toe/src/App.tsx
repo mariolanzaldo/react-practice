@@ -4,6 +4,9 @@ import TicTacToe from './component/TicTacToe';
 import { useAppContext } from './state';
 import Main from './component/Main';
 import History from './component/History';
+import Route from './component/Router';
+import { Page, Routes } from './state/reducer';
+// import Route from './component/Router';
 
 declare module '@mui/material/Button' {
   interface Grid2PropsVariantOverrides {
@@ -58,19 +61,35 @@ function App() {
 
     <ThemeProvider theme={theme}>
       {
-        currentPage === "main" ? (
-          <Main />
+        currentPage === Page.main || window.location.pathname === Routes.main ? (
+         <Route path={Routes.main}>
+           <Main />
+         </Route>
         ) : null
       }
 
       {
-        currentPage === "board" ? (
-          <TicTacToe />
+        currentPage === Page.board || window.location.pathname === Routes.board ? (
+          
+          <Route path={Routes.board}>
+            <TicTacToe />
+          </Route>
+        //   <>
+        //   {setRoute("/board")}
+        //   <TicTacToe />
+        // </>
         ) : null
       }
       {
-        currentPage === "stats" ? (
-          <History /> 
+        currentPage === Page.stats || window.location.pathname === Routes.stats ? (
+          
+          <Route path={Routes.stats}>
+            <History />
+          </Route>
+          //  <>
+          //   {setRoute("/board")}
+          // <History />
+          //  </>
         ) : null
       }
 

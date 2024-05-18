@@ -7,5 +7,9 @@
 [x] Display actual Turn on board
 [x] Reset button implemented
 [x] History feature impelemented
-[] Create History component
-[] Refactor the current board grid to dinamically fill it
+[x] Add form validation
+[x] Add a table to display history in History component
+[x] Add a button that clears the history
+[x] Add a modal to confirm clear the history
+[x] Fix styles for long player names
+[x] Add routes when going to different components
