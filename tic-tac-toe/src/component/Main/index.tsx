@@ -3,7 +3,6 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { Page, Turn } from "../../state/reducer";
 import { useAppContext } from "../../state";
 import { setPage, startGame } from "../../state/actionTypes";
-// import CustomLink from "../CustomLink";
 
 type PlayerInput = {
     value: string;

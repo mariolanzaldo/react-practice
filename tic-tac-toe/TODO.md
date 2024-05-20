@@ -13,3 +13,5 @@
 [x] Add a modal to confirm clear the history
 [x] Fix styles for long player names
 [x] Add routes when going to different components
+[x] Simplify mapping through components 
+[x] Fix the back to menu button

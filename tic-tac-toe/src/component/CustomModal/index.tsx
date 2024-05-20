@@ -1,17 +1,9 @@
 import { Box, 
-    // Button, 
     Card, 
     CardContent, 
     Fade, 
-    // IconButton, 
     Modal, 
-    // Typography, 
     styled } from "@mui/material";
-// import { useAppContext } from "../../state";
-// import { resetFromGameover, setPage } from "../../state/actionTypes";
-// import RefreshIcon from '@mui/icons-material/Refresh';
-// import HistoryIcon from '@mui/icons-material/History';
-// import { Page } from "../../state/reducer";
 import { PropsWithChildren } from "react";
 
 const StyledCard = styled(Card)(({ theme }) => ({

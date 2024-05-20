@@ -3,6 +3,7 @@ import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import { useAppContext } from '../../state';
 import formatDate from '../../utils/formatDate';
 import { columns } from '../../utils/constants';
+import CustomTableRow from './CustomTableRow';
 
 const StyledPaper = styled(Paper)(() => ({
     width: '100%', 
@@ -38,6 +39,8 @@ function HistoryTable() {
     setPage(0);
   };
 
+  const paginatedRows = rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+
   return (
     <StyledPaper>
       <TableContainer
@@ -57,7 +60,7 @@ function HistoryTable() {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          {/* <TableBody>
               {
                 (!rows || rows.length === 0) ? (
                   <TableRow>
@@ -89,6 +92,25 @@ function HistoryTable() {
                       );
                     })}
                   </>)
+              }
+          </TableBody> */}
+          <TableBody>
+              {
+                (!rows || rows.length === 0) ? (
+                  <TableRow>
+                    <TableCell colSpan={columns.length} align="center">
+                      <Box  py={3}>
+                        <Typography>
+                          History log is empty, play a game!
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                  </TableRow>
+                ) : ( 
+                  paginatedRows.map((row) => (
+                    <CustomTableRow row={row} columns={columns}/>
+                  ))
+                )
               }
           </TableBody>
         </Table>

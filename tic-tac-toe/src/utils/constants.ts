@@ -10,7 +10,7 @@ export const WINNER_COMBOS = [
 ];
 
 
-interface Column {
+export interface Column {
     id: 'date' | 'winner' | 'symbol' | 'moves' | 'duration';
     label: string;
     minWidth?: number;

@@ -10,7 +10,7 @@ export enum Turn {
 }
 
 export enum Routes {
-    main = "/main",
+    main = "/",
     board = "/board",
     stats = "/stats",
 }
@@ -270,7 +270,7 @@ function appReducer(state: StateInterface, action: ActionType) {
 
         case ActionTypes.SET_PAGE: {
             const { currentPage } = payload!; 
-            window.location.pathname = `/${currentPage}`;
+            currentPage === Page.main ? window.location.pathname = `/` : window.location.pathname = `/${currentPage}`
             return {
                 ...state,
                 game: {

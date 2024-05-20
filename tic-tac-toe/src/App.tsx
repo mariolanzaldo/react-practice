@@ -14,7 +14,6 @@ declare module '@mui/material/Button' {
   }
 }
 
-
 const theme = createTheme({
   palette: {
     mode: 'dark'

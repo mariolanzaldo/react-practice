@@ -132,7 +132,6 @@ function TicTacToe() {
             >
                 Reset game
             </Button>
-
             <CustomModal open={game.isGameover}>
                 {ModalContent}    
             </CustomModal> 
