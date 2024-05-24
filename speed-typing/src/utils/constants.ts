@@ -12,9 +12,27 @@ export interface InitialStateFormInterface {
     confirmPassword: GenericFormField;
 }
 
+export interface InitialLoginFormInterface {
+    username: GenericFormField;
+    password: GenericFormField;
+}
+
 export const INPUT_MAX_LENGTH = 25;
 
 export const PASSWORD_INPUT_MAX_LENGTH = 80;
+
+export const INITIAL_LOGIN_FORM_STATE: InitialLoginFormInterface = {
+    username: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    password: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    }
+};
 
 export const INITIAL_FORM_STATE: InitialStateFormInterface = {
     username: {

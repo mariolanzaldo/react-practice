@@ -21,7 +21,7 @@ function useForm({ initialState, callback, validator }: useFormProps) {
             let hasErrors = false;
 
             for(const key in state) {
-                if(state[key as keyof InitialStateFormInterface].error) {
+                if(state[key as keyof InitialStateFormInterface]!.error) {
                     hasErrors = true;
                     break;
                 }
@@ -35,13 +35,13 @@ function useForm({ initialState, callback, validator }: useFormProps) {
     }, [isSubmited, state, callback]);
 
     useEffect(() => {
-        const delatDebounce = setTimeout(() => {
+        const delayDebounce = setTimeout(() => {
             dispatch(usernameExistence({
                 value: state.username.value,
             }))
-        }, 1000);
+        }, 400);
 
-        return () => clearTimeout(delatDebounce);
+        return () => clearTimeout(delayDebounce);
     }, [state.username.value, dispatch]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +76,7 @@ function useForm({ initialState, callback, validator }: useFormProps) {
         event.preventDefault();
 
         for (const key in state) {
-            if (state[key as keyof InitialStateFormInterface].value.trim() === "") {
+            if (state[key as keyof InitialStateFormInterface]!.value.trim() === "") {
                 const emptyFields = validator(state, key as keyof InitialStateFormInterface, appState.userExistence);
 
                 setState((prevState) => ({

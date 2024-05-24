@@ -1,4 +1,6 @@
 import { ActionType } from "../actions";
+import loginReducer from "./loginReducer";
+import usernameExistenceReducer from "./userExistenceReducer";
 import usersReducer from "./usersReducer";
 
 export interface GameStat {
@@ -8,15 +10,23 @@ export interface GameStat {
 }
 
 export interface User {
-    id: string;
-    username: string;
+    id?: string;
+    username?: string;
+    firstName?: string;
+    lastName?: string;
     password: string;
-    stats: GameStat[];
+    avatar?:string;
+    stats?: GameStat[];
 }
 
 export interface Game {
     date: string;
     mistakes: number;
+}
+
+export interface StandardError {
+    error: boolean;
+    errorMessage: string;
 }
 
 export enum Page {
@@ -31,6 +41,7 @@ export interface StateInterface {
     currentUser: User | null;
     userExistence: boolean;
     currentPage: Page;
+    globalError: StandardError;
 }
 
 export const initialState: StateInterface = {
@@ -42,12 +53,23 @@ export const initialState: StateInterface = {
     userExistence: false,
     currentUser: null,
     currentPage: Page.login,
+    globalError: {
+        error: false,
+        errorMessage: "",
+    },
 }
 
 function rootReducer(state: StateInterface, action: ActionType) {
+
+    const loginState = loginReducer(state, action);
+    console.log("AFTER STORING", loginState);
+
     const newState = {
         ...state,
-        users: usersReducer(state, action)!.users
+        users: usersReducer(state, action)!.users,
+        userExistence: usernameExistenceReducer(state, action).userExistence,
+        currentUser: loginState.currentUser,
+        globalError: loginState.globalError,
     }
 
     return newState;

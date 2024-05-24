@@ -1,27 +1,48 @@
 import { StateInterface } from ".";
 import { ActionType, ActionTypes } from "../actions";
-
+import { createAvatar } from "@dicebear/core";
+import { openPeeps } from "@dicebear/collection";
+import bcrypt from "bcryptjs";
 
 function usersReducer(state: StateInterface, action: ActionType) {
-    const { payload: { id, value }, type } = action;
-    console.log(id);
+    const { payload: { value }, type } = action;
+    // console.log(id);
 
     switch(type) {
         case ActionTypes.SIGN_UP:
-            console.log('Enters!', value);
-        return{
-            ...state
-        }
-        case ActionTypes.USERNAME_EXISTENCE:
             {
-                const isExistent = state.users.some((user) => user.username === value);
+                const avatar = createAvatar(openPeeps, {
+                    
+                    size: 1280,
+                    flip: false,
+                    accessoriesProbability: 20,
+                    facialHairProbability: 30,
+                    maskProbability: 2,
+
+                });
+
+                if(typeof value === "object") {
+                    const salt = bcrypt.genSaltSync(10);
+
+                    const hashedPassword = bcrypt.hashSync(value.password, salt);
     
-                return {
-                    ...state,
-                    userExistence: isExistent,
+                    const svg = avatar.toDataUriSync();
+    
+                    return{
+                        ...state,
+                        users: [
+                            ...state.users,
+                            {
+                                ...value as object,
+                                password: hashedPassword,
+                                avatar: svg,
+                                
+                            }
+                        ]
+                    }
                 }
+                break;
             }
-        
         default:
             return state;
     }

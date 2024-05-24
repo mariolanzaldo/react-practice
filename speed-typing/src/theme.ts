@@ -28,6 +28,19 @@ export const theme = createTheme({
                     margin: "20px auto",
                 }
             }
+        },
+        MuiAlert: {
+            styleOverrides: {
+                root: {
+                        position: "absolute",
+                        top: '0%',
+                        left: "60%",
+                        width: "40%",
+                        // backgroundColor: "#ffcccb",
+                        boxSizing: "border-box",
+                        zIndex: 999,
+                }
+            }
         }
     }
 });

@@ -3,8 +3,8 @@
 [x] Create signup view
     [x] Create a customHook to validate data
     [x] Have more descriptive errors in form
-    [] A user account must have name, last name, avatar (from predefined selection), password (store hash) 
-    [] Store the info using localStorage
+    [x] A user account must have name, last name, avatar (from predefined selection), password (store hash) 
+    [x] Store the info using localStorage
 
 [] Create login view
     [] It must contain form validation and restrict the length of the inputs
