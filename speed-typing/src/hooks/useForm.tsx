@@ -34,12 +34,13 @@ function useForm({ initialState, callback, validator }: useFormProps) {
 
     }, [isSubmited, state, callback]);
 
+    //TODO: Abstract the debounce from this hook
     useEffect(() => {
         const delayDebounce = setTimeout(() => {
             dispatch(usernameExistence({
                 value: state.username.value,
             }))
-        }, 400);
+        }, 1000);
 
         return () => clearTimeout(delayDebounce);
     }, [state.username.value, dispatch]);

@@ -14,8 +14,6 @@ function NotificationBar () {
         dispatch(cleanNotification());
     };
 
-    console.log("RENDERING", globalError.error);
-
     return(
         <Zoom in={globalError.error}>
             <Alert

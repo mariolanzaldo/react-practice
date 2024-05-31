@@ -7,7 +7,8 @@ function usernameExistenceReducer(state: StateInterface, action: ActionType) {
     switch(type) {
         case ActionTypes.USERNAME_EXISTENCE:
             {
-                const isExistent = state.users.some((user) => user.username === value);
+                const isExistent = state.users.some((user) => user.username === value) ?? false;
+                // console.log("FROM REDUCER",isExistent);
                 return {
                     ...state,
                     userExistence: isExistent,

@@ -61,3 +61,13 @@ export const INITIAL_FORM_STATE: InitialStateFormInterface = {
         errorMessage: "",
     }
 };
+
+
+export const DB_NAME = "SpeedTypingAppDB";
+export const DB_VERSION = 1;
+export const STORE_NAME = "users";
+export const STORE_CURRUSER="currentUser";
+
+//Game params
+export const PARAGRAPH = 1;
+export const TIME = 10;

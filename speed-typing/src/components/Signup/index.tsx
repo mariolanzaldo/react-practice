@@ -7,6 +7,7 @@ import { useAppContext } from "../../state";
 import { signup } from "../../state/actions";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+// import { saveUserToDB } from "../../utils/db";
 
 function Signup () {
     // eslint-disable-next-line
@@ -14,7 +15,7 @@ function Signup () {
     const navigate = useNavigate()
 
 
-    const submitForm = (state: InitialStateFormInterface) => {
+    const submitForm =async (state: InitialStateFormInterface) => {
         const { username, password, firstName, lastName } = state;
         
         dispatch(signup({
@@ -27,7 +28,7 @@ function Signup () {
                 stats: [],
             }
         }));
-
+        
         navigate('/login');
 
         return;
@@ -44,7 +45,6 @@ function Signup () {
         callback: submitForm,
         validator,
     });
-
 
     return(
 

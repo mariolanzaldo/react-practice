@@ -1,36 +1,31 @@
 import { Dispatch, PropsWithChildren, createContext, useContext, useEffect, useReducer } from "react";
 import rootReducer, { StateInterface, initialState } from "./reducers";
 import { ActionType } from "./actions";
+import { useInitializedStateContext } from "./contextState";
 
 type AppCtx = [StateInterface, Dispatch<ActionType>];
 
 const context = createContext<AppCtx>(null as unknown as AppCtx);
-// eslint-disable-next-line 
+
 export function useAppContext(): AppCtx {
     return useContext(context);
 }
 
-
 export function Provider({ children }: PropsWithChildren) {
 
-    const storeState = JSON.parse(localStorage.getItem("typing-app-state")!);
+    const { state: initialStateFromContext } = useInitializedStateContext();
 
-    const initializer = storeState ?? initialState;
-
-    const [state, dispatch ] = useReducer(
-        rootReducer, 
-        initializer as never
-    );
+    const [appState, dispatch] = useReducer(rootReducer, initialStateFromContext ?? initialState);
 
     useEffect(() => {
-        localStorage.setItem("typing-app-state", JSON.stringify(state));
-    }, [state]);
+        localStorage.setItem("typing-app", JSON.stringify(appState.currentUser));
+    });
 
-    const contextValue: AppCtx = [state, dispatch];
+    const contextValue: AppCtx = [appState, dispatch];
 
     return (
-        <context.Provider value={contextValue}>
-            {children}
-        </context.Provider>
-    )
+            <context.Provider value={contextValue}>
+                {children}
+            </context.Provider>
+    );
 }

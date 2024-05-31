@@ -10,9 +10,9 @@ function loginReducer(state: StateInterface, action: ActionType) {
             case ActionTypes.LOGIN: {
                 let isLoggedIn = false;
                 const foundUser = state.users.find((user) => user.username === (value as User).username);
-                
                 if(foundUser) {
                     isLoggedIn = bcrypt.compareSync((value as User).password, foundUser!.password);
+
 
                     if(isLoggedIn) {
                         return {
@@ -26,7 +26,7 @@ function loginReducer(state: StateInterface, action: ActionType) {
                     }
                     
                 }
-                console.log("Error");
+                
                 return {
                     ...state,
                     currentUser: null,
