@@ -69,5 +69,5 @@ export const STORE_NAME = "users";
 export const STORE_CURRUSER="currentUser";
 
 //Game params
-export const PARAGRAPH = 1;
-export const TIME = 10;
+export const PARAGRAPH = 70;
+export const TIME = 20;

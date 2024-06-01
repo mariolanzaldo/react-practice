@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, MenuItem, Button, Tooltip, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 const pages = ['Test', 'Stats'];
 const settings = ['Profile', 'Logout'];
@@ -82,7 +83,9 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} 
+                // onClick={handleCloseNavMenu} 
+                component={Link}  to={page.split(" ").join("")}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}

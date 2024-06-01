@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import testCalculator from "../utils/testCalculator";
 import { useAppContext } from "../state";
 import { setCurrentStats } from "../state/actions";
@@ -16,7 +16,8 @@ function UsetypingTest (text: string) {
     //TODO: Change this
     const [time, setTime ] = useState(TIME);
     const [mistakes, setMistakes] = useState(0);
-    const [wpm, setWpm] = useState(0); 
+    const [wpm, setWpm] = useState(0);
+    const [maxWpm, setMaxWpm] = useState(0);
     const [acc, setAcc] = useState(0);
     const [isBackspaceEnabled, setIsBackspaceEnabled] = useState(true);
 
@@ -24,31 +25,37 @@ function UsetypingTest (text: string) {
     const totalChars = useRef(0);
     const totalCorrectChars = useRef(0);
     const timer = useRef<NodeJS.Timeout | null>(null);
+    const startTime = useRef<Date | null>(null);
 
-    const handleRestart = () => {
+    const memoizedParagraph = useMemo(() => wordGenerator(PARAGRAPH), [text]);
+
+    const handleRestart = useCallback(() => {
         clearTimeout(timer.current!);
-        setParagraph(wordGenerator(PARAGRAPH));
+        setParagraph(memoizedParagraph);
         setWord('');
         setCharIndex(0);
         setTime(TIME);
         setMistakes(0);
         setWpm(0);
+        setMaxWpm(0);
         setAcc(0);
         totalChars.current = 0;
         totalCorrectChars.current = 0;
         timer.current = null;
+        startTime.current = null;
         dispatch(setCurrentStats({
             value: {
                 date: null,
                 mistakes: 0,
                 wpm: 0,
+                maxWpm: 0,
                 accuracy: 0,
                 isGameover: false,
             }
         }));
-    };
+    }, [dispatch, memoizedParagraph]);
 
-    const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
 
         if(time <= 0 || value.length >= paragraph.length) {
@@ -60,6 +67,7 @@ function UsetypingTest (text: string) {
                     date: null,
                     mistakes,
                     wpm,
+                    maxWpm,
                     accuracy: acc,
                     isGameover: true,
                 }
@@ -76,22 +84,35 @@ function UsetypingTest (text: string) {
 
         setWord(value);
         setCharIndex(value.length);
-        
-        const { mistakes: calcMistakes , wpm: calcWpm } = testCalculator(paragraph, value);
+
+        if(!startTime.current) {
+            startTime.current = new Date();
+        }
+
+        const currentTime = new Date();
+        const timeElapsed = (currentTime.getTime() - startTime.current.getTime()) / 1000;
+
+        const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed);
         
         setMistakes(calcMistakes);
         setWpm(calcWpm);
         
+        if(calcMaxWpm > maxWpm) {
+            setMaxWpm(calcMaxWpm);
+        }
+
         testAccuracy(value, paragraph);
 
         if(!timer.current) {
             timer.current = setTimeout(() => setTime(t => t - 1), 1000);
         }
-    };
+    // eslint-disable-next-line
+    }, [time, paragraph, dispatch, mistakes, wpm, acc, isBackspaceEnabled, maxWpm]);
 
-    const handleDisableBackspace = () => {
+    const handleDisableBackspace = useCallback(() => {
         setIsBackspaceEnabled(!isBackspaceEnabled);
-    }
+    // eslint-disable-next-line
+    }, []);
 
     function testAccuracy(value: string, paragraph: string) {
         if(value.length > charIndex) {
@@ -131,6 +152,7 @@ function UsetypingTest (text: string) {
                     date: null,
                     mistakes,
                     wpm,
+                    maxWpm,
                     accuracy: acc,
                     isGameover: true,
                 }
@@ -138,13 +160,8 @@ function UsetypingTest (text: string) {
         }
     }, [time]);
 
-    // const state = {
-
-    // }
-
     return {
-        // state,
-        mistakes, wpm, acc,
+        mistakes, wpm, acc, maxWpm,
         paragraph, word, charIndex, time,
         inputRef,
         handleInput,

@@ -6,10 +6,17 @@ interface ResultsProps {
     errors: number;
     accuracyPercentage: number;
     wpm: number;
+    maxWpm: number;
     handleRestart: () => void;
 }
 
-function Results ({errors, accuracyPercentage, wpm, handleRestart}: ResultsProps) {
+function Results ({
+    errors, 
+    accuracyPercentage, 
+    wpm, 
+    maxWpm, 
+    handleRestart
+    }: ResultsProps) {
     const initial = { opacity: 0};
     const animate = { opacity: 1};
     const duration = { duration: 0.3};
@@ -43,9 +50,16 @@ function Results ({errors, accuracyPercentage, wpm, handleRestart}: ResultsProps
                     </motion.div>
                 </Grid>
                 <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.5 }}>
+                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.2 }}>
                         <Typography variant="body1" component="div" textAlign="center" color="primary">
                             WPM: {wpm}
+                        </Typography>
+                    </motion.div>
+                </Grid>
+                <Grid item xs={12}>
+                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.5 }}>
+                        <Typography variant="body1" component="div" textAlign="center" color="primary">
+                            Max WPM: {maxWpm}
                         </Typography>
                     </motion.div>
                 </Grid>

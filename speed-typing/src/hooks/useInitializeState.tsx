@@ -19,10 +19,12 @@ function useInitializeState () {
                 const stateFromDB: StateInterface = {
                     users: usersDB ?? [],
                     game: {
-                        date: "",
+                        date: null,
                         mistakes: 0,
                         wpm: 0,
+                        maxWpm: 0,
                         accuracy: 0,
+                        isGameover: false,
                     },
                     userExistence: false,
                     currentUser,

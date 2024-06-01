@@ -1,0 +1,67 @@
+/* .digitUp {
+    animation: moveup 0.5s ease-out;
+}
+
+.digitDown {
+    animation: movedown 0.5s ease-out;
+}
+
+@keyframes moveup {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes movedown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+} */
+
+/* .digitPrevious,
+.digitCurrent {
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.digitPrevious {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.digitCurrent {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.digit.flip .digitPrevious {
+    transform: translateY(-100%);
+    opacity: 0;
+} */
+
+.speedoWrap {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.speedoDigits {
+    transition: 1s all;
+    transition-timing-function: cubic-bezier(0, 0.99, 1, 1.01);
+}

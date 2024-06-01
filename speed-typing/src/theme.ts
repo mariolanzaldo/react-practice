@@ -83,14 +83,14 @@ export const theme = createTheme({
                 }
             },
 
-            // variants: [
-            //     {
-            //         props: {variant: "elevation"},
-            //         style: {
-            //             width: "70%",
-            //         }
-            //     }
-            // ]
+            variants: [
+                {
+                    props: {variant: "outlined"},
+                    style: {
+                        width: "20px",
+                    }
+                }
+            ]
         },
         MuiAlert: {
             styleOverrides: {

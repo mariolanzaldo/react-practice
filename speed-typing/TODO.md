@@ -20,11 +20,17 @@
     [] Work on styles, adjust margins and so on...
 
 [] Test
- [x] When typing the errors and successful typings should be displayed
- [x] Indicate the current character of the text
- [x] Enable/disable the backspace
- [] Simplify the useState and put those fields in the context
- [] Implement the timer functionality
+    [x] When typing the errors and successful typings should be displayed
+    [x] Indicate the current character of the text
+    [x] Enable/disable the backspace
+    [x] Simplify the useState and put those fields in the context
+    [x] Show accuracy, max speed and average speed after test is done
+    [] Work on test modes
+
+[] Stats
+    [] Keep track of date, test time and  other statistics (accuracy, max speed and average speed)
+
+[] Implement the timer functionality
     [x] Implement countdown timer
     [] Implement progressive count timer
     [] Implement two types of animations

@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormGroup, Grid, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup, Grid, MenuItem, TextField } from "@mui/material";
 import wordGenerator from "../../utils/wordGenerator";
 import Timer from "../Timer";
 import RestartButton from "../RestartButton";
@@ -8,6 +8,7 @@ import usetypingTest from "../../hooks/useTypeingTest";
 import CustomModal from "../CustomModal";
 import { useAppContext } from "../../state";
 import { PARAGRAPH } from "../../utils/constants";
+import CustomSelect from "../CustomSelect";
 
 function TypingTest() {
     //TODO: Change this
@@ -17,9 +18,8 @@ function TypingTest() {
     // eslint-disable-next-line
     const [appState, dispatch] = useAppContext();
 
-
    const { paragraph, word, charIndex, time, inputRef, handleInput, handleDisableBackspace, handleRestart } = usetypingTest(text);
-
+    
    const ModalContent = (
     <Grid
         container
@@ -36,34 +36,58 @@ function TypingTest() {
                         errors={appState.game.mistakes}
                         accuracyPercentage={appState.game.accuracy}
                         wpm={appState.game.wpm}
+                        maxWpm = {appState.game.maxWpm}
                         handleRestart={handleRestart}
                     />
 
         </Grid>
     </Grid>
    );
+
+
     
     return (
         <Grid
             container
             gap={2}
+            marginTop={2}
         >
             <Grid
+                display="flex"
                 container
                 item
+                alignItems="center"
+                alignContent="center"
+                justifyContent="center"
                 xs={12}
                 
             >
                 <Grid
-                xs={3}
+                    item
+                    xs={3}
+                    display="flex"
+                    flexDirection="row"
+                    gap={3}
                 >
 
-                    <Timer timeLeft={time} />
+                    <Timer time={time} />
 
+                        {/* 
+                            TODO: Word on test modes
+                        */}
+                    <CustomSelect>
+                        <MenuItem value={"fixed"}>Fixed</MenuItem>
+                        <MenuItem value={"indefinite"}>Indefinite</MenuItem>
+                    </CustomSelect>
+
+                </Grid>
+                <Grid
+                    xs={3}
+                >
                     <FormGroup>
                         <FormControlLabel 
                         control={<Checkbox defaultChecked/>} 
-                        label="Backspace"
+                        label="Enable/disable Backspace"
                         onChange={handleDisableBackspace}
                         color="white" 
                         />

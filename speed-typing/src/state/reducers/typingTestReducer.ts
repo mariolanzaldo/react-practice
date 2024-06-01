@@ -7,12 +7,15 @@ function typingTestReducer(state: StateInterface, action: ActionType) {
     switch(type) {
         case ActionTypes.SET_CURRENT_STATS:
             {
+                
                 const { 
                     mistakes,
                     wpm,
+                    maxWpm,
                     accuracy,
                     isGameover,
                 } = value as Pick<Game, keyof Game>;
+                // console.log("REDUCER",maxWpm);
 
                 const timestamp = Date.now();
                 return {
@@ -21,6 +24,7 @@ function typingTestReducer(state: StateInterface, action: ActionType) {
                         date: timestamp,
                         mistakes,
                         wpm,
+                        maxWpm,
                         accuracy,
                         isGameover,
                     }

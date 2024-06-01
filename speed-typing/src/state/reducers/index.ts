@@ -24,6 +24,7 @@ export interface Game {
     date?: number | null;
     mistakes: number;
     wpm: number;
+    maxWpm: number;
     accuracy: number;
     isGameover: boolean;
 }
@@ -54,6 +55,7 @@ export const initialState: StateInterface = {
         date: null,
         mistakes: 0,
         wpm: 0,
+        maxWpm: 0,
         accuracy: 0,
         isGameover: false,
     },
