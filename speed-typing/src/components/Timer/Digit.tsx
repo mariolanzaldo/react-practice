@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import OdoMeter from "./Odometer";

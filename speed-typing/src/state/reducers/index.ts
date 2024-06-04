@@ -22,11 +22,11 @@ export interface User {
 
 export interface Game {
     date?: number | null;
-    mistakes: number;
-    wpm: number;
-    maxWpm: number;
-    accuracy: number;
-    isGameover: boolean;
+    mistakes?: number;
+    wpm?: number;
+    maxWpm?: number;
+    accuracy?: number;
+    isGameover?: boolean;
 }
 
 export interface StandardError {

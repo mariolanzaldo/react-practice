@@ -1,24 +1,26 @@
-import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import testCalculator from "../utils/testCalculator";
 import { useAppContext } from "../state";
 import { setCurrentStats } from "../state/actions";
-import wordGenerator from "../utils/wordGenerator";
-import { PARAGRAPH, TIME } from "../utils/constants";
+import testAccuracy from "../utils/testAccuracy";
+import useParagraph from "./useParagraph";
 
-function UsetypingTest (text: string) {
+interface UseTypingTest {
+    text: string;
+    initialTime: number;
+}
+
+function useTypingTest ({ text, initialTime }: UseTypingTest) {
     const [appState, dispatch ] = useAppContext();
-    console.log(appState);
+    const { accuracy: acc, mistakes, wpm, maxWpm } = appState.game;
+    const { paragraph, regenerateParagraph } = useParagraph({ text });
+
+
 
     // eslint-disable-next-line
-    const [paragraph, setParagraph ] = useState(text);
     const [word, setWord] = useState('');
     const [charIndex, setCharIndex] = useState(0);
-    //TODO: Change this
-    const [time, setTime ] = useState(TIME);
-    const [mistakes, setMistakes] = useState(0);
-    const [wpm, setWpm] = useState(0);
-    const [maxWpm, setMaxWpm] = useState(0);
-    const [acc, setAcc] = useState(0);
+    const [time, setTime ] = useState(initialTime);
     const [isBackspaceEnabled, setIsBackspaceEnabled] = useState(true);
 
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -27,18 +29,14 @@ function UsetypingTest (text: string) {
     const timer = useRef<NodeJS.Timeout | null>(null);
     const startTime = useRef<Date | null>(null);
 
-    const memoizedParagraph = useMemo(() => wordGenerator(PARAGRAPH), [text]);
+    // const memoizedParagraph = useMemo(() => wordGenerator(PARAGRAPH), [text]);
 
     const handleRestart = useCallback(() => {
         clearTimeout(timer.current!);
-        setParagraph(memoizedParagraph);
+        regenerateParagraph();
         setWord('');
         setCharIndex(0);
-        setTime(TIME);
-        setMistakes(0);
-        setWpm(0);
-        setMaxWpm(0);
-        setAcc(0);
+        setTime(initialTime);
         totalChars.current = 0;
         totalCorrectChars.current = 0;
         timer.current = null;
@@ -53,15 +51,15 @@ function UsetypingTest (text: string) {
                 isGameover: false,
             }
         }));
-    }, [dispatch, memoizedParagraph]);
+    }, [dispatch, initialTime]);
 
     const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        let newMaxWpm = 0;
         const { value } = event.target;
 
         if(time <= 0 || value.length >= paragraph.length) {
             clearTimeout(timer.current!);
 
-            //TODO: Do something here!
             dispatch(setCurrentStats({
                 value: {
                     date: null,
@@ -75,7 +73,6 @@ function UsetypingTest (text: string) {
 
             return;
         }
-
 
         if(!isBackspaceEnabled && (event.nativeEvent as InputEvent).inputType === 'deleteContentBackward') {
             event.preventDefault();
@@ -92,16 +89,25 @@ function UsetypingTest (text: string) {
         const currentTime = new Date();
         const timeElapsed = (currentTime.getTime() - startTime.current.getTime()) / 1000;
 
-        const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed);
+        const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed, initialTime);
+        console.log("WPM", calcWpm )
         
-        setMistakes(calcMistakes);
-        setWpm(calcWpm);
-        
-        if(calcMaxWpm > maxWpm) {
-            setMaxWpm(calcMaxWpm);
+        if(calcMaxWpm > maxWpm!) {
+            newMaxWpm = calcMaxWpm;
         }
 
-        testAccuracy(value, paragraph);
+        const calcAcc = testAccuracy(value, paragraph, charIndex, totalChars, totalCorrectChars);
+
+        dispatch(setCurrentStats({
+            value: {
+                date: null,
+                mistakes: calcMistakes,
+                wpm: calcWpm,
+                maxWpm: newMaxWpm,
+                accuracy: calcAcc,
+                isGameover: false,
+            }
+        }));
 
         if(!timer.current) {
             timer.current = setTimeout(() => setTime(t => t - 1), 1000);
@@ -113,17 +119,6 @@ function UsetypingTest (text: string) {
         setIsBackspaceEnabled(!isBackspaceEnabled);
     // eslint-disable-next-line
     }, []);
-
-    function testAccuracy(value: string, paragraph: string) {
-        if(value.length > charIndex) {
-            totalChars.current += 1;
-            if(value[charIndex] === paragraph[charIndex]) {
-                totalCorrectChars.current += 1;
-            }
-            
-            setAcc(Math.round(totalCorrectChars.current / totalChars.current * 100));
-        }
-    }
 
     useEffect(() => {
         const focusInput = () => {
@@ -160,14 +155,19 @@ function UsetypingTest (text: string) {
         }
     }, [time]);
 
+    useEffect(() => {
+        setTime(initialTime);
+    }, [initialTime]);
+
     return {
-        mistakes, wpm, acc, maxWpm,
-        paragraph, word, charIndex, time,
+        paragraph, 
+        word, 
+        charIndex, 
+        time, 
         inputRef,
-        handleInput,
-        handleDisableBackspace,
-        handleRestart,
+        isBackspaceEnabled, 
+        handleInput, handleDisableBackspace, handleRestart
     };
 }
 
-export default  UsetypingTest;
+export default  useTypingTest;

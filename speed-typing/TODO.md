@@ -26,6 +26,7 @@
     [x] Simplify the useState and put those fields in the context
     [x] Show accuracy, max speed and average speed after test is done
     [] Work on test modes
+    [x] Add a way to customize the amount of time
 
 [] Stats
     [] Keep track of date, test time and  other statistics (accuracy, max speed and average speed)
@@ -33,8 +34,14 @@
 [] Implement the timer functionality
     [x] Implement countdown timer
     [] Implement progressive count timer
-    [] Implement two types of animations
+    [] Implement two types of animations:
+        [x] Odometer
+        [] Pulse
 
 
 
+Miscellaneous
+    [] Change the error notifications to have accept and array of errors and add a queue-like behavior
 
+    [x] Find a way to ue MUI components in the odometer
+    [x] Refactor the code to  avoid duplication in odometer component

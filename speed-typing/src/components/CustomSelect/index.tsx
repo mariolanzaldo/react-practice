@@ -1,24 +1,28 @@
 import {Box, FormControl, InputLabel, Select} from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 
-function CustomSelect({ children }: PropsWithChildren) {
-  const [mode, setMode] = useState('');
+interface CustomSelect {
+  title: string;
+  value: string | number;
+  handleChange: (event: SelectChangeEvent<number | string>) => void;
+  mode: string;
+}
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setMode(event.target.value as string);
-    // console.log(mode);
-  };
+function CustomSelect({ title, handleChange, value, children, mode }: PropsWithChildren<CustomSelect>) {
 
+
+  const isDisabled = mode === 'indefinite' && title === 'Timer';
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="simple-select-label">Mode</InputLabel>
+        <InputLabel id="simple-select-label">{title}</InputLabel>
         <Select
+        disabled={isDisabled}
           labelId="simple-select-label"
           id="simple-select"
-          value={mode}
-          label="Mode"
+          value={value}
+          // label="Mode"
           onChange={handleChange}
         >
           {children}

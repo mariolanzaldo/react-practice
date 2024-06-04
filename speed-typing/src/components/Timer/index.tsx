@@ -12,6 +12,7 @@ function Timer({ time }: TimerProps) {
 
     return(
         <Grid
+            container
             display="flex"
             direction="row"
             flexDirection="row"

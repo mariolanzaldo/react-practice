@@ -55,13 +55,19 @@
     opacity: 0;
 } */
 
-.speedoWrap {
+.odoWrap {
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
 
-.speedoDigits {
+.odoDigits {
     transition: 1s all;
     transition-timing-function: cubic-bezier(0, 0.99, 1, 1.01);
+}
+
+.odoDigit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

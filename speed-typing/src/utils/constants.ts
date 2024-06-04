@@ -70,4 +70,4 @@ export const STORE_CURRUSER="currentUser";
 
 //Game params
 export const PARAGRAPH = 70;
-export const TIME = 20;
+export const TIME = 10;

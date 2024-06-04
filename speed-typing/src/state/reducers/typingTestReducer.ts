@@ -30,6 +30,22 @@ function typingTestReducer(state: StateInterface, action: ActionType) {
                     }
             }
         }
+        // case ActionTypes.SET_MAXWPM:
+        //     {   
+        //         const {
+        //             maxWpm,
+        //         } = value as Pick<Game, keyof Game>;
+        //         const {date, mistakes, wpm, accuracy, isGameover} = state.game;
+        //         console.log("REDUCER", maxWpm);
+
+        //         return {
+        //             ...state,
+        //             game: {
+        //                 date, mistakes, wpm, accuracy, isGameover,
+        //                 maxWpm,
+        //             }
+        //         }
+        //     }
         default:
             return state;
     }

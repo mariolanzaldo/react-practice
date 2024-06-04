@@ -6,6 +6,7 @@ export enum ActionTypes {
     LOGIN = "login",
     CLEAN_NOTIFICATION = "cleanNotification",
     SET_CURRENT_STATS = "setCurrentStats",
+    // SET_MAXWPM = "setMaxWpm",
 } 
 
 export type Value = number | Pick<User, keyof User> | Pick<Game, keyof Game> | boolean | string;
@@ -24,3 +25,4 @@ export * from "./signup";
 export * from "./usernameExistence";
 export * from "./login";
 export * from "./setCurrentStats";
+// export * from "./setMaxWpm";
