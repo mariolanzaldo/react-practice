@@ -37,6 +37,14 @@ function loginReducer(state: StateInterface, action: ActionType) {
                 }
             }
 
+            case ActionTypes.LOGOUT: {
+                localStorage.removeItem("typing-app");
+                return {
+                    ...state,
+                    currentUser: null,
+                }
+            }
+
             case ActionTypes.CLEAN_NOTIFICATION: {
                 return {
                     ...state,

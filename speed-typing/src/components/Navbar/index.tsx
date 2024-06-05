@@ -2,14 +2,21 @@ import * as React from 'react';
 
 import {AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, MenuItem, Button, Tooltip, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+import { useAppContext } from '../../state';
+import { logout } from '../../state/actions';
 
 const pages = ['Test', 'Stats'];
 const settings = ['Profile', 'Logout'];
 
 function Navbar() {
+
+  const [appState, dispatch] = useAppContext();
+  const { currentUser } = appState;
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -18,23 +25,47 @@ function Navbar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElNav(null);
+    const page = event.currentTarget.getAttribute('data-page');
+
+    if(page) {
+      navigate(`/${page.toLowerCase()}`);
+    }
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    dispatch(logout({
+      value: {
+        username: currentUser!.username!,
+        password: currentUser!.password!,
+      }
+    }));
+    navigate("/login");
+
   };
 
   return (
-    <AppBar position="static"
+    <AppBar 
+    position="static"
+    // position="sticky"
+
         sx={{
             margin: 0,
+            marginLeft: 0,
             padding: 0,
         }}
     >
-      <Container 
-        maxWidth="xl">
+      <Container
+        maxWidth="xl"
+        
+        sx={{
+          margin: 0,
+          marginLeft: 0,
+          padding: 0,
+      }}
+      >
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -42,6 +73,10 @@ function Navbar() {
             component="a"
             href="#app-bar-with-responsive-menu"
             display = {{ xs: 'none', md: 'flex'}}
+            // justifyContent="center"
+            // alignItems="center"
+            // textAlign="center"
+            // alignContent="center"
             fontWeight={700}
             letterSpacing={'0.3rem'}
             color='inherit'
@@ -53,7 +88,12 @@ function Navbar() {
             Typing Speed App
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ 
+            flexGrow: 1, 
+            display: { xs: 'flex', md: 'none' },
+            justifyContent: 'center',
+            alignItems: 'center',            
+         }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -84,7 +124,6 @@ function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} 
-                // onClick={handleCloseNavMenu} 
                 component={Link}  to={page.split(" ").join("")}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -111,13 +150,15 @@ function Navbar() {
           </Typography>
           <Box 
             display={{ xs: 'none', md: 'flex'}}
+            alignItems='center'
             flexGrow={1}
           >
             {pages.map((page) => (
               <Button
                 key={page}
+                data-page={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2,  color: 'white', display: 'block' }}
               >
                 {page}
               </Button>
@@ -127,7 +168,8 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={`${currentUser?.username}`} src={`${currentUser?.avatar}`} 
+                sx={{ width: 55, height: 55, background: "grey" }} />
               </IconButton>
             </Tooltip>
             <Menu

@@ -4,6 +4,7 @@ export enum ActionTypes {
     SIGN_UP = "signup",
     USERNAME_EXISTENCE = "usernameExistence",
     LOGIN = "login",
+    LOGOUT = "logout",
     CLEAN_NOTIFICATION = "cleanNotification",
     SET_CURRENT_STATS = "setCurrentStats",
     // SET_MAXWPM = "setMaxWpm",
@@ -24,5 +25,6 @@ export type ActionType = {
 export * from "./signup";
 export * from "./usernameExistence";
 export * from "./login";
+export * from "./logout";
 export * from "./setCurrentStats";
 // export * from "./setMaxWpm";

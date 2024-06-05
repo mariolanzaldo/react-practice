@@ -7,10 +7,9 @@ import useParagraph from "./useParagraph";
 
 interface UseTypingTest {
     text: string;
-    initialTime: number;
 }
 
-function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
+function useIndefiniteTyping ({ text }: UseTypingTest) {
     const [appState, dispatch ] = useAppContext();
     const { accuracy: acc, mistakes, wpm, maxWpm } = appState.game;
     const { paragraph, regenerateParagraph } = useParagraph({ text });
@@ -20,7 +19,7 @@ function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
     // eslint-disable-next-line
     const [word, setWord] = useState('');
     const [charIndex, setCharIndex] = useState(0);
-    const [time, setTime ] = useState(initialTime);
+    const [time, setTime ] = useState(0);
     const [isBackspaceEnabled, setIsBackspaceEnabled] = useState(true);
 
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -29,14 +28,12 @@ function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
     const timer = useRef<NodeJS.Timeout | null>(null);
     const startTime = useRef<Date | null>(null);
 
-    // const memoizedParagraph = useMemo(() => wordGenerator(PARAGRAPH), [text]);
-
     const handleRestart = useCallback(() => {
         clearTimeout(timer.current!);
         regenerateParagraph();
         setWord('');
         setCharIndex(0);
-        setTime(initialTime);
+        setTime(0);
         totalChars.current = 0;
         totalCorrectChars.current = 0;
         timer.current = null;
@@ -51,13 +48,13 @@ function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
                 isGameover: false,
             }
         }));
-    }, [dispatch, initialTime]);
+    }, [dispatch]);
 
     const handleInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         let newMaxWpm = 0;
         const { value } = event.target;
 
-        if(time <= 0 || value.length >= paragraph.length) {
+        if(value.length >= paragraph.length) {
             clearTimeout(timer.current!);
 
             dispatch(setCurrentStats({
@@ -89,8 +86,7 @@ function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
         const currentTime = new Date();
         const timeElapsed = (currentTime.getTime() - startTime.current.getTime()) / 1000;
 
-        const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed, initialTime);
-        console.log("WPM", calcWpm )
+        const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed, timeElapsed);
         
         if(calcMaxWpm > maxWpm!) {
             newMaxWpm = calcMaxWpm;
@@ -136,28 +132,13 @@ function useIndefiniteTyping ({ text, initialTime }: UseTypingTest) {
 
     useEffect(() => {
         if(timer.current && time > 0) {
-            timer.current = setTimeout(() => setTime(t => t - 1), 1000);
-        }
-
-        if(time <= 0) {
-            clearTimeout(timer.current!);
-
-            dispatch(setCurrentStats({
-                value: {
-                    date: null,
-                    mistakes,
-                    wpm,
-                    maxWpm,
-                    accuracy: acc,
-                    isGameover: true,
-                }
-            }));
+            timer.current = setTimeout(() => setTime(t => t + 1), 1000);
         }
     }, [time]);
 
     useEffect(() => {
-        setTime(initialTime);
-    }, [initialTime]);
+        setTime(0);
+    }, []);
 
     return {
         paragraph, 

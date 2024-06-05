@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 
 function Main() {
     //eslint-disable-next-line
-    const [appState, dispatch ] = useAppContext();
+    const [appState ] = useAppContext();
     
     if(!appState.currentUser) {
         return (
@@ -18,10 +18,7 @@ function Main() {
         <Grid
             container
             marginTop={-1}
-            // marginLeft={-3}
             padding={0}
-            // xs={12}
-            // width='100vw'
         >
             <Navbar />
 

@@ -186,32 +186,6 @@ function TypingTest() {
         setMode(event.target.value as string);
     };
 
-//    const { isBackspaceEnabled, paragraph, word, charIndex, time, inputRef, handleInput, handleDisableBackspace, handleRestart } = useTypingTest({text, initialTime});
-    
-//    const ModalContent = (
-//     <Grid
-//         container
-//         direction="column"
-//         alignItems="center"
-//     >
-//         <Grid
-//                 item
-//                 textAlign="center"
-//                 alignItems="center"
-//                 xs={9}
-//                 >
-//                     <Results 
-//                         errors={appState.game.mistakes!}
-//                         accuracyPercentage={appState.game.accuracy!}
-//                         wpm={appState.game.wpm!}
-//                         maxWpm = {appState.game.maxWpm!}
-//                         handleRestart={handleRestart}
-//                     />
-
-//         </Grid>
-//     </Grid>
-//    );
-
     return (
         <Grid
             container
@@ -270,7 +244,7 @@ function TypingTest() {
 
             {
                 mode === 'indefinite' ? 
-                <Indefinite text={text} initialTime={initialTime} /> : null
+                <Indefinite text={text} /> : null
             } 
 
         </Grid>

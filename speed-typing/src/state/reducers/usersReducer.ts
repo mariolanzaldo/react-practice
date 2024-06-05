@@ -1,4 +1,4 @@
-import { StateInterface } from ".";
+import { StateInterface, User } from ".";
 import { ActionType, ActionTypes } from "../actions";
 import { createAvatar } from "@dicebear/core";
 import { openPeeps } from "@dicebear/collection";
@@ -23,7 +23,7 @@ function usersReducer(state: StateInterface, action: ActionType): StateInterface
 
                             
                             const salt = bcrypt.genSaltSync(10);
-                            const hashedPassword = bcrypt.hashSync(value.password, salt);
+                            const hashedPassword = bcrypt.hashSync((value as User).password, salt);
                             const svg = avatar.toDataUriSync();
                             saveUser({
                                 ...value,

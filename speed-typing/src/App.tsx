@@ -6,11 +6,20 @@ import NotificationBar from './components/NotificationBar';
 import Main from './components/Main';
 import Stats from './components/Stats';
 import TypingTest from './components/TypingTest';
+import { Box } from '@mui/material';
 
 function App() {
 
   return (
-    <>
+    <Box
+      sx={{
+        width: "100vw",
+        margin: 0,
+        marginLeft: -1,
+        padding: 0,
+        // border: "1px solid yellow"
+      }}
+    >
       <NotificationBar />
         <BrowserRouter>
           <Routes>
@@ -22,7 +31,7 @@ function App() {
             </Route>
           </Routes>
           </BrowserRouter>
-    </>
+    </Box>
   )
 }
 

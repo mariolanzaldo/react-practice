@@ -1,7 +1,6 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
-import OdoMeter from "./Odometer";
 
 interface DigitProps {
     digit: string;
@@ -28,14 +27,26 @@ function Digit({ digit }: DigitProps ){
     return (
         <Box
             className={`${styles.digit} 
-            ${flip ? styles.flip : ""}
+            // ${flip ? styles.flip : ""}
             `}
         >   
             <Paper
                 variant="outlined"
                 className={styles.digitInner}
-            >
-                <OdoMeter value={parseInt(digit)}/>
+            >   
+                <Box
+                    className={styles.odoDigit}
+                >
+                    <Typography
+                        variant="h4"
+                        className={flip ? styles.innerDigit : ""}
+                    >
+                        {
+                            digit
+                        }
+                    </Typography>
+
+                </Box>
 
             </Paper>
         </Box>

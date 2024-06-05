@@ -14,10 +14,10 @@
 
 [] Main navbar
     [x] Create a basic template
-    [] Enable the buttons to navigate to different concerns
-    [] The user can logout
-    [] Fix the navbar gap at left and right
-    [] Work on styles, adjust margins and so on...
+    [x] Enable the buttons to navigate to different concerns
+    [x] The user can logout
+    [x] Fix the navbar gap at left and right
+    [x] Work on styles, adjust margins and so on...
 
 [] Test
     [x] When typing the errors and successful typings should be displayed
@@ -25,18 +25,18 @@
     [x] Enable/disable the backspace
     [x] Simplify the useState and put those fields in the context
     [x] Show accuracy, max speed and average speed after test is done
-    [] Work on test modes
+    [x] Work on test modes
     [x] Add a way to customize the amount of time
 
 [] Stats
     [] Keep track of date, test time and  other statistics (accuracy, max speed and average speed)
 
-[] Implement the timer functionality
+[x] Implement the timer functionality
     [x] Implement countdown timer
-    [] Implement progressive count timer
-    [] Implement two types of animations:
+    [x] Implement progressive count timer
+    [x] Implement two types of animations:
         [x] Odometer
-        [] Pulse
+        [x] Pulse
 
 
 

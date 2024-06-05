@@ -2,11 +2,12 @@ import { Grid, Typography } from "@mui/material";
 import timeFormatter from "../../utils/timeFormatter";
 import Digit from "./Digit";
 
-interface TimerProps {
+
+interface IndefiniteTimerProps {
     time: number;
 }
-
-function Timer({ time }: TimerProps) {
+function IndefiniteTimer({ time }: IndefiniteTimerProps
+) {
 
     const { minutes, seconds } = timeFormatter(time);
 
@@ -22,11 +23,11 @@ function Timer({ time }: TimerProps) {
             <Digit digit={minutes[0]} />
             <Digit digit={minutes[1]} />
             <Typography>:</Typography>
-            <Digit digit={seconds[0]} />
-            <Digit digit={seconds[1]} />
+            <Digit digit={seconds[0]}/>
+            <Digit digit={seconds[1]}/>
 
         </Grid>
     );
 }
 
-export default Timer;
+export default IndefiniteTimer;

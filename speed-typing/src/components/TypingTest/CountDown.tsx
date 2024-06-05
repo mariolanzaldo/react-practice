@@ -59,11 +59,14 @@ function CountDown({ text, initialTime }: CountDownProps) {
                     xs={12}
                     display="flex"
                     flexDirection="row"
-                    marginBottom={-7}
+                    justifyContent="center"
+                    alignItems="center"
+                    gap={2}
+                    marginBottom={-5}
                 >
                     <Grid
                         item
-                        xs={8}
+                        xs={4}
                         display="flex"
                         flexDirection="row"
                         justifyContent="center"
@@ -85,7 +88,7 @@ function CountDown({ text, initialTime }: CountDownProps) {
                         <FormGroup>
                             <FormControlLabel 
                             control={<Checkbox defaultChecked/>} 
-                            label={isBackspaceEnabled ? "Disable backspace" : "Enable backspace"}
+                            label={"Enable backspace"}
                             onChange={handleDisableBackspace}
                             color="white" 
                             />

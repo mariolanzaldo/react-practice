@@ -1,23 +1,24 @@
 import { Checkbox, FormControlLabel, FormGroup, Grid, TextField } from "@mui/material";
-import Timer from "../Timer";
+// import Timer from "../Timer";
 import RestartButton from "../RestartButton";
 import Results from "../Results";
 import PureContent from "./Content";
 import CustomModal from "../CustomModal";
 import { useAppContext } from "../../state";
 import useIndefiniteTyping from "../../hooks/useIndefiniteTyping";
+import IndefiniteTimer from "../IndefiniteTimer";
 
 interface IndefiniteProps {
     text: string;
-    initialTime: number;
+    // initialTime: number;
 }
 
-function Indefinite({ text, initialTime }: IndefiniteProps) {
+function Indefinite({ text }: IndefiniteProps) {
     
         const [appState] = useAppContext();
     
     
-       const { isBackspaceEnabled, paragraph, word, charIndex, time, inputRef, handleInput, handleDisableBackspace, handleRestart } = useIndefiniteTyping({text, initialTime});
+       const { isBackspaceEnabled, paragraph, word, charIndex, time, inputRef, handleInput, handleDisableBackspace, handleRestart } = useIndefiniteTyping({text});
         
        const ModalContent = (
         <Grid
@@ -67,7 +68,8 @@ function Indefinite({ text, initialTime }: IndefiniteProps) {
                         alignItems="center"
                     >
 
-                        <Timer time={time} />
+                        {/* <Timer time={time} /> */}
+                        <IndefiniteTimer time={time} />
                     </Grid>
     
 

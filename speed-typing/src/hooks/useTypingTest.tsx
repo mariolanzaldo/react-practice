@@ -90,7 +90,6 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
         const timeElapsed = (currentTime.getTime() - startTime.current.getTime()) / 1000;
 
         const { mistakes: calcMistakes , wpm: calcWpm, maxWpm: calcMaxWpm } = testCalculator(paragraph, value, timeElapsed, initialTime);
-        console.log("WPM", calcWpm )
         
         if(calcMaxWpm > maxWpm!) {
             newMaxWpm = calcMaxWpm;
