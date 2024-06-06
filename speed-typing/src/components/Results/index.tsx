@@ -23,57 +23,137 @@ function Results ({
 
     return (
         <motion.div initial={initial} animate={animate} transition={duration}>
-             <Grid 
+            <Grid 
                 container 
                 spacing={2} 
                 display="flex"
                 justifyContent="center" alignItems="center" 
                 direction="column"
+                width={400}
             >
                 <Grid item xs={12}>
                     <Typography variant="h5" component="div" textAlign="center" color="primary">
                         Results
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 0.5 }}>
-                        <Typography variant="body1" component="div" textAlign="center" color="primary">
-                            Accuracy: {accuracyPercentage}%
-                        </Typography>
-                    </motion.div>
+                <Grid 
+                    container 
+                    item 
+                    xs={12}
+                    gap={20}    
+                >   
+                    <Grid
+                        item
+                        xs={4}
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.5}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                Accuracy:
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={2}
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.5}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                {accuracyPercentage}%
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                </Grid>
+                <Grid 
+                     container 
+                     item 
+                     xs={12}
+                     gap={20}   
+                >
+                    <Grid
+                        item
+                        xs={4}
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.7}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                Mistakes:
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={2}
+
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.7}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                {errors}
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                </Grid>
+                <Grid 
+                     container 
+                     item 
+                     xs={12}
+                     gap={20} 
+                >
+                    <Grid
+                        item
+                        xs={4} 
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.9}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                WPM:
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                    <Grid
+                        item
+                        xs={2}
+                    >
+                        <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.9}}>
+                            <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                {wpm}
+                            </Typography>
+                        </motion.div>
+                    </Grid>
+                </Grid>
+                <Grid 
+                     container 
+                     item 
+                     xs={12}
+                     gap={20}   
+                >
+                <Grid
+                            item
+                            xs={4}
+                        >
+                            <motion.div initial={initial} animate={animate} transition={{...duration, delay: 1.1}}>
+                                <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                    Max WPM:
+                                </Typography>
+                            </motion.div>
+                        </Grid>
+                        <Grid
+                            item
+                            xs={2}
+                        >   
+                            <motion.div initial={initial} animate={animate} transition={{...duration, delay: 1.1}}>
+                                <Typography variant="body1" component="div" textAlign="center" color="primary">
+                                    {maxWpm}
+                                </Typography>
+                            </motion.div>
+                        </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1 }}>
-                        <Typography variant="body1" component="div" textAlign="center" color="error">
-                            Errors: {errors}
-                        </Typography>
-                    </motion.div>
-                </Grid>
-                <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.2 }}>
-                        <Typography variant="body1" component="div" textAlign="center" color="primary">
-                            WPM: {wpm}
-                        </Typography>
-                    </motion.div>
-                </Grid>
-                <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.5 }}>
-                        <Typography variant="body1" component="div" textAlign="center" color="primary">
-                            Max WPM: {maxWpm}
-                        </Typography>
-                    </motion.div>
-                </Grid>
-                <Grid item xs={12}>
-                    <motion.div initial={initial} animate={animate} transition={{ ...duration, delay: 1.7 }}>
+                    <motion.div initial={initial} animate={animate} transition={{...duration, delay: 1.2}}>
                         <RestartButton onRestart={handleRestart} />
                     </motion.div>
 
                 </Grid>
-            </Grid>
+            </Grid>  
         </motion.div>
-        
-        
-
+             
     );
 }
 

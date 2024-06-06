@@ -31,9 +31,9 @@ function CountDown({ text, initialTime }: CountDownProps) {
         >
             <Grid
                     item
-                    textAlign="center"
-                    alignItems="center"
-                    xs={9}
+                    // textAlign="center"
+                    // alignItems="center"
+                    xs={12}
                     >
                         <Results 
                             errors={appState.game.mistakes!}
@@ -88,7 +88,8 @@ function CountDown({ text, initialTime }: CountDownProps) {
                         <FormGroup>
                             <FormControlLabel 
                             control={<Checkbox defaultChecked/>} 
-                            label={"Enable backspace"}
+                            // label={"Enable backspace"}
+                            label={isBackspaceEnabled ? "Disable backspace" : "Enable backspace"}
                             onChange={handleDisableBackspace}
                             color="white" 
                             />

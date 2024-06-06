@@ -1,18 +1,37 @@
 import { Avatar, Box, Button, Container, CssBaseline, Grid, Paper, TextField, Typography, Link } from "@mui/material";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { INITIAL_FORM_STATE, INPUT_MAX_LENGTH, InitialStateFormInterface, PASSWORD_INPUT_MAX_LENGTH } from "../../utils/constants";
+import { INITIAL_FORM_STATE, INPUT_MAX_LENGTH, InitialStateFormInterface, PASSWORD_INPUT_MAX_LENGTH, SEED } from "../../utils/constants";
 import useForm from "../../hooks/useForm";
 import { validator } from "../../utils/validator";
 import { useAppContext } from "../../state";
 import { signup } from "../../state/actions";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-// import { saveUserToDB } from "../../utils/db";
+import { createAvatar } from "@dicebear/core";
+import { openPeeps } from "@dicebear/collection";
+import { useCallback, useState } from "react";
 
 function Signup () {
     // eslint-disable-next-line
     const [_, dispatch ] = useAppContext();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const generateRandomAvatar = useCallback(() => {
+        const randomIndex = Math.floor(Math.random() * SEED.length);
+
+        return  createAvatar(openPeeps, {
+            size: 1280,
+            seed: SEED[randomIndex],
+            accessoriesProbability: 35,
+            facialHairProbability: 30,
+            maskProbability: 20,
+        }).toDataUriSync();
+    }, []);
+
+    const [avatar, setAvatar] = useState(generateRandomAvatar);
+
+    const handleRandomizeAvatar = () => {
+        setAvatar(generateRandomAvatar());
+    }
 
 
     const submitForm =async (state: InitialStateFormInterface) => {
@@ -25,6 +44,7 @@ function Signup () {
                 firstName: firstName.value,
                 lastName: lastName.value,
                 password: password.value,
+                avatar: avatar,
                 stats: [],
             }
         }));
@@ -39,7 +59,6 @@ function Signup () {
         handleChange,
         handleSubmit,
         handleBlur,
-        // errors,
     } = useForm({
         initialState: INITIAL_FORM_STATE,
         callback: submitForm,
@@ -63,13 +82,14 @@ function Signup () {
                     textAlign="center"
                     marginBottom={3}
                 >
-                    <Avatar
-                        sx={{
-                            bgcolor: "secondary.main"
-                        }}                    >
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h2">
+                    <Avatar 
+                                src={`${avatar}`}
+                                sx={{ width: 75, height: 75 }}
+                            />
+                    <Typography 
+                        component="h1"
+                        variant="h5"
+                    >
                         Signup
                     </Typography>
                 </Grid>
@@ -178,6 +198,21 @@ function Signup () {
                                 }}
                             
                             />
+
+                        </Grid>
+                        <Grid
+                            container
+                            item
+                            xs={12}
+                            justifyContent="center"
+                        >
+                            <Button
+                                onClick={handleRandomizeAvatar}
+                                variant="outlined"
+                                color="secondary"
+                            >
+                                Randomize Avatar
+                            </Button>
 
                         </Grid>
 

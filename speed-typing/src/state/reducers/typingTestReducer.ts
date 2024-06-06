@@ -7,7 +7,6 @@ function typingTestReducer(state: StateInterface, action: ActionType) {
     switch(type) {
         case ActionTypes.SET_CURRENT_STATS:
             {
-                
                 const { 
                     mistakes,
                     wpm,

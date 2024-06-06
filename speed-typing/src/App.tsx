@@ -7,6 +7,7 @@ import Main from './components/Main';
 import Stats from './components/Stats';
 import TypingTest from './components/TypingTest';
 import { Box } from '@mui/material';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<Main />}>
               <Route path="stats" element={<Stats />}/>
               <Route path="test" element={<TypingTest />}/>
+              <Route path="profile" element={<Profile />}/>
             </Route>
           </Routes>
           </BrowserRouter>

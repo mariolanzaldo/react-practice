@@ -10,7 +10,7 @@ export function initDB (): Promise<IDBDatabase> {
         return dbInstance;
     }
 
-    return new Promise((res, rej) => {
+    return new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
 
         request.onupgradeneeded = (event) => {
@@ -30,10 +30,10 @@ export function initDB (): Promise<IDBDatabase> {
 
         request.onsuccess = (event) => {
             dbInstance = Promise.resolve((event?.target as IDBOpenDBRequest).result);
-            res(dbInstance);
+            resolve(dbInstance);
         };
 
-        request.onerror = () => rej(request.error);
+        request.onerror = () => reject(request.error);
     });
 }
 

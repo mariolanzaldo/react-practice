@@ -90,7 +90,7 @@ function Login() {
         }
     };
 
-    if(appState.currentUser ) navigate('/');
+    if(appState.currentUser ) navigate('/test');
 
     return (
         <Paper

@@ -4,13 +4,15 @@
     [x] Create a customHook to validate data
     [x] Have more descriptive errors in form
     [x] A user account must have name, last name, avatar (from predefined selection), password (store hash) 
-    [] Refactor to store info using indexDB
+    [x] Refactor to store info using indexDB
         [x] Create a custom hook to initialize and retrieve initial data
         [x] Create an outer provider to inject the initial state to the app provider
-        [] Database must open the connection just once
+        [x] Database must open the connection just once
 
 [x] Create login view
     [x] It must contain form validation and restrict the length of the inputs
+
+[] Create a profile view
 
 [] Main navbar
     [x] Create a basic template
@@ -42,6 +44,13 @@
 
 Miscellaneous
     [] Change the error notifications to have accept and array of errors and add a queue-like behavior
-
     [x] Find a way to ue MUI components in the odometer
     [x] Refactor the code to  avoid duplication in odometer component
+    [x] Add a button to randomize the avatar when signup
+    [x] Fix the way presenting data on the modal
+    [x] Fix the profile issue
+    [] Add a route to edit profile
+    [x] Indicate active route on navbar
+    [x] Clicking on profile redirects to login and logout the session
+
+

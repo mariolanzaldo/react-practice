@@ -68,6 +68,32 @@ export const DB_VERSION = 1;
 export const STORE_NAME = "users";
 export const STORE_CURRUSER="currentUser";
 
+//Avatars
+export const SEED = [
+    "Maggie",
+    "Oliver",
+    "Molly",
+    "Simon",
+    "Charlie",
+    "Missy",
+    "Abby",
+    "Tinkerbell",
+    "Loki",
+    "Ginger",
+    "Snickers",
+    "Midnight",
+    "Sadie",
+    "Buddy",
+    "Princess",
+    "Max",
+    "Jack",
+    "Shadow",
+    "Lilly",
+    "Gracie",
+    "Felix",
+    "Aneka",
+];
+
 //Game params
-export const PARAGRAPH = 50;
+export const PARAGRAPH = 5;
 export const TIME = 10;

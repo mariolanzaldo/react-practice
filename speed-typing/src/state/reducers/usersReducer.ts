@@ -1,7 +1,7 @@
 import { StateInterface, User } from ".";
 import { ActionType, ActionTypes } from "../actions";
-import { createAvatar } from "@dicebear/core";
-import { openPeeps } from "@dicebear/collection";
+// import { createAvatar } from "@dicebear/core";
+// import { openPeeps } from "@dicebear/collection";
 import bcrypt from "bcryptjs";
 import { saveUser } from "../../utils/db/asyncHelper";
 
@@ -13,22 +13,12 @@ function usersReducer(state: StateInterface, action: ActionType): StateInterface
             {
                 if (typeof value === "object") {
 
-                    const avatar = createAvatar(openPeeps, {
-                                size: 1280,
-                                flip: false,
-                                accessoriesProbability: 20,
-                                facialHairProbability: 30,
-                                maskProbability: 2,
-                            });
-
                             
                             const salt = bcrypt.genSaltSync(10);
                             const hashedPassword = bcrypt.hashSync((value as User).password, salt);
-                            const svg = avatar.toDataUriSync();
                             saveUser({
                                 ...value,
                                 password: hashedPassword,
-                                avatar: svg,
                             });
 
                     return {
@@ -38,7 +28,6 @@ function usersReducer(state: StateInterface, action: ActionType): StateInterface
                             {
                                 ...value,
                                 password: hashedPassword,
-                                avatar: svg,
                             }
                         ]
                     }
@@ -53,4 +42,3 @@ function usersReducer(state: StateInterface, action: ActionType): StateInterface
 }
 
 export default usersReducer;
-// export default usersReducer;

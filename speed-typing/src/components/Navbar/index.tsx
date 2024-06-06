@@ -7,7 +7,7 @@ import { useAppContext } from '../../state';
 import { logout } from '../../state/actions';
 
 const pages = ['Test', 'Stats'];
-const settings = ['Profile', 'Logout'];
+// const settings = ['Profile', 'Logout'];
 
 function Navbar() {
 
@@ -25,15 +25,16 @@ function Navbar() {
     setAnchorElUser(event.currentTarget);
   };
 
+  
   const handleCloseNavMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElNav(null);
     const page = event.currentTarget.getAttribute('data-page');
-
+    
     if(page) {
       navigate(`/${page.toLowerCase()}`);
     }
   };
-
+  
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     dispatch(logout({
@@ -43,7 +44,12 @@ function Navbar() {
       }
     }));
     navigate("/login");
-
+    
+  };
+  
+  const handleProfileMenu = () => {
+    setAnchorElUser(null);
+    navigate("/profile");
   };
 
   return (
@@ -73,10 +79,6 @@ function Navbar() {
             component="a"
             href="#app-bar-with-responsive-menu"
             display = {{ xs: 'none', md: 'flex'}}
-            // justifyContent="center"
-            // alignItems="center"
-            // textAlign="center"
-            // alignContent="center"
             fontWeight={700}
             letterSpacing={'0.3rem'}
             color='inherit'
@@ -158,7 +160,13 @@ function Navbar() {
                 key={page}
                 data-page={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2,  color: 'white', display: 'block' }}
+                sx={{ 
+                  my: 2,  
+                  color: 'white', 
+                  display: 'block',
+                  borderBottom: location.pathname === `/${page.toLowerCase()}` ? '2px solid white' : 'none',
+                }}
+                
               >
                 {page}
               </Button>
@@ -188,11 +196,13 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              
+                <MenuItem key={"Profile"} onClick={handleProfileMenu}>
+                  <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key={"Logout"} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
