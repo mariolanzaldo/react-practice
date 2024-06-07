@@ -12,16 +12,16 @@
 [x] Create login view
     [x] It must contain form validation and restrict the length of the inputs
 
-[] Create a profile view
+[x] Create a profile view
 
-[] Main navbar
+[x] Main navbar
     [x] Create a basic template
     [x] Enable the buttons to navigate to different concerns
     [x] The user can logout
     [x] Fix the navbar gap at left and right
     [x] Work on styles, adjust margins and so on...
 
-[] Test
+[x] Test
     [x] When typing the errors and successful typings should be displayed
     [x] Indicate the current character of the text
     [x] Enable/disable the backspace
@@ -49,8 +49,11 @@ Miscellaneous
     [x] Add a button to randomize the avatar when signup
     [x] Fix the way presenting data on the modal
     [x] Fix the profile issue
-    [] Add a route to edit profile
+    [x] Add a route to edit profile
     [x] Indicate active route on navbar
     [x] Clicking on profile redirects to login and logout the session
+    [x] Align to left the labels in results modal and delete colon
+    [x] Checkout the label in the timer and mode since it is overlapping the border
+    [x] Change the randomize avatar text for an icon and keep it closer to the avatar
 
 

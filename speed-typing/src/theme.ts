@@ -24,6 +24,12 @@ declare module '@mui/material/Typography' {
     }
 }
 
+declare module '@mui/material/Button' {
+    interface ButtonPropsVariantOverrides {
+        rounded: true;
+    }
+}
+
 
 //   interface TypographyVariantsOptions {
 //     test?: React.CSSProperties;
@@ -49,8 +55,29 @@ export const theme = createTheme({
                     // height: "100px",
                     // border: "1px solid red"
                 }
-            }
+            },
+            variants: [
+                {
+                    props: { variant: "rounded" },
+                    style: {
+                        borderRadius: '100%',
+                        width: 10,
+                        height: 55,
+                        border: "1px solid #dd33fa"
+                    }
+                }
+            ],
         },
+        // MuiIconButton: {
+        //     variants: [
+        //         {
+        //             props: { variant: "small" },
+        //             style: {
+        //                 border: "1px solid #dd33fa"
+        //             }
+        //         }
+        //     ]
+        // },
         MuiTextField: {
             variants: [
                 {

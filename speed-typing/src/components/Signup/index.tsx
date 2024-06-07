@@ -1,38 +1,20 @@
-import { Avatar, Box, Button, Container, CssBaseline, Grid, Paper, TextField, Typography, Link } from "@mui/material";
-import { INITIAL_FORM_STATE, INPUT_MAX_LENGTH, InitialStateFormInterface, PASSWORD_INPUT_MAX_LENGTH, SEED } from "../../utils/constants";
+import { Avatar, Box, Button, Container, CssBaseline, Grid, Paper, TextField, Typography, Link, IconButton } from "@mui/material";
+import { INITIAL_FORM_STATE, INPUT_MAX_LENGTH, InitialStateFormInterface, PASSWORD_INPUT_MAX_LENGTH } from "../../utils/constants";
 import useForm from "../../hooks/useForm";
 import { validator } from "../../utils/validator";
 import { useAppContext } from "../../state";
 import { signup } from "../../state/actions";
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-import { createAvatar } from "@dicebear/core";
-import { openPeeps } from "@dicebear/collection";
-import { useCallback, useState } from "react";
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import useRandomAvatar from "../../hooks/useRandomAvatar";
 
 function Signup () {
     // eslint-disable-next-line
     const [_, dispatch ] = useAppContext();
     const navigate = useNavigate();
 
-    const generateRandomAvatar = useCallback(() => {
-        const randomIndex = Math.floor(Math.random() * SEED.length);
-
-        return  createAvatar(openPeeps, {
-            size: 1280,
-            seed: SEED[randomIndex],
-            accessoriesProbability: 35,
-            facialHairProbability: 30,
-            maskProbability: 20,
-        }).toDataUriSync();
-    }, []);
-
-    const [avatar, setAvatar] = useState(generateRandomAvatar);
-
-    const handleRandomizeAvatar = () => {
-        setAvatar(generateRandomAvatar());
-    }
-
+    const { avatar, handleRandomizeAvatar } = useRandomAvatar({ currentAvatar: undefined });
 
     const submitForm =async (state: InitialStateFormInterface) => {
         const { username, password, firstName, lastName } = state;
@@ -82,10 +64,53 @@ function Signup () {
                     textAlign="center"
                     marginBottom={3}
                 >
-                    <Avatar 
-                                src={`${avatar}`}
-                                sx={{ width: 75, height: 75 }}
-                            />
+
+                        <Grid
+                            container
+                            item
+                            xs={12}
+                            justifyContent="center"
+                        >
+
+                            <Grid
+                                container
+                                item
+                                marginLeft={3}
+                                justifyContent="center"
+                                xs={4}
+                            >
+                                <Avatar 
+                                    src={`${avatar}`}
+                                    sx={{ width: 75, height: 75 }}
+                                />
+                            </Grid>
+
+                            <Grid
+                                container
+                                item
+                                xs={1}
+                                justifyContent="center"
+                                alignItems="flex-end"
+                            >       
+                                    {/* <Button
+                                        variant="rounded"
+                                        size="small"
+                                    > */}
+                                        <IconButton
+                                            // variant="rounded"
+                                            onClick={handleRandomizeAvatar}
+                                            size="small"
+                                            color="secondary"
+                                            sx={{ border: "1px solid #dd33fa" }}   
+                                        >
+                                            <ShuffleIcon />
+                                        </IconButton>
+                                    {/* </Button> */}
+
+                            </Grid>
+                            
+
+                        </Grid>
                     <Typography 
                         component="h1"
                         variant="h5"
@@ -200,22 +225,6 @@ function Signup () {
                             />
 
                         </Grid>
-                        <Grid
-                            container
-                            item
-                            xs={12}
-                            justifyContent="center"
-                        >
-                            <Button
-                                onClick={handleRandomizeAvatar}
-                                variant="outlined"
-                                color="secondary"
-                            >
-                                Randomize Avatar
-                            </Button>
-
-                        </Grid>
-
                     </Grid>
 
                     <Button

@@ -81,8 +81,8 @@ function rootReducer(state: StateInterface, action: ActionType) {
         users: usersState.users,
         userExistence: usernameExistenceReducer(state, action).userExistence,
         game: gameState.game,
-        currentUser: loginState.currentUser,
-        globalError: loginState.globalError,
+        currentUser: loginState?.currentUser,
+        globalError: loginState?.globalError,
     };
 
     return newState;

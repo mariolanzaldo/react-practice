@@ -31,7 +31,13 @@ function Results ({
                 direction="column"
                 width={400}
             >
-                <Grid item xs={12}>
+                <Grid 
+                    container
+                    item
+                    justifyContent="center"
+                    alignSelf="center"
+                    xs={12}
+                >
                     <Typography variant="h5" component="div" textAlign="center" color="primary">
                         Results
                     </Typography>
@@ -43,12 +49,13 @@ function Results ({
                     gap={20}    
                 >   
                     <Grid
+                        container
                         item
                         xs={4}
                     >
                         <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.5}}>
                             <Typography variant="body1" component="div" textAlign="center" color="primary">
-                                Accuracy:
+                                Accuracy
                             </Typography>
                         </motion.div>
                     </Grid>
@@ -64,18 +71,19 @@ function Results ({
                     </Grid>
                 </Grid>
                 <Grid 
-                     container 
+                     container
                      item 
                      xs={12}
                      gap={20}   
                 >
                     <Grid
+                        container
                         item
                         xs={4}
                     >
                         <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.7}}>
                             <Typography variant="body1" component="div" textAlign="center" color="primary">
-                                Mistakes:
+                                Mistakes
                             </Typography>
                         </motion.div>
                     </Grid>
@@ -98,12 +106,13 @@ function Results ({
                      gap={20} 
                 >
                     <Grid
+                        container
                         item
                         xs={4} 
                     >
                         <motion.div initial={initial} animate={animate} transition={{...duration, delay: 0.9}}>
                             <Typography variant="body1" component="div" textAlign="center" color="primary">
-                                WPM:
+                                WPM
                             </Typography>
                         </motion.div>
                     </Grid>
@@ -124,13 +133,14 @@ function Results ({
                      xs={12}
                      gap={20}   
                 >
-                <Grid
+                        <Grid
+                            container
                             item
                             xs={4}
                         >
                             <motion.div initial={initial} animate={animate} transition={{...duration, delay: 1.1}}>
                                 <Typography variant="body1" component="div" textAlign="center" color="primary">
-                                    Max WPM:
+                                    Max WPM
                                 </Typography>
                             </motion.div>
                         </Grid>

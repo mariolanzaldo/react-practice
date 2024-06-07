@@ -1,4 +1,5 @@
 import { StateInterface, User } from ".";
+// import { updateUser } from "../../utils/db/asyncHelper";
 import { ActionType, ActionTypes } from "../actions";
 import bcrypt from "bcryptjs";
 
@@ -12,7 +13,6 @@ function loginReducer(state: StateInterface, action: ActionType) {
                 const foundUser = state.users.find((user) => user.username === (value as User).username);
                 if(foundUser) {
                     isLoggedIn = bcrypt.compareSync((value as User).password, foundUser!.password);
-
 
                     if(isLoggedIn) {
                         return {

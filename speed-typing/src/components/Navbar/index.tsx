@@ -7,7 +7,6 @@ import { useAppContext } from '../../state';
 import { logout } from '../../state/actions';
 
 const pages = ['Test', 'Stats'];
-// const settings = ['Profile', 'Logout'];
 
 function Navbar() {
 

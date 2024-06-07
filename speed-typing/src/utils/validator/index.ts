@@ -1,15 +1,15 @@
 import { GenericObject } from '../../hooks/useForm';
-import { InitialStateFormInterface } from '../constants';
+import { InitialStateFormInterface, InitialStateProfileForm } from '../constants';
 import validateNameField from './validateNameField';
 import validatePassword from './validatePassword';
 import validateUsername from './validateUsername';
 
-export  function validator (state: InitialStateFormInterface , fieldName: keyof InitialStateFormInterface, userExistence: boolean) {
+export  function validator (state: InitialStateFormInterface | InitialStateProfileForm , fieldName: keyof InitialStateFormInterface, userExistence: boolean) {
     const errors: GenericObject = {};
 
     switch(fieldName) {
         case "username": {
-            const newState = validateUsername(state[fieldName], userExistence);
+            const newState = validateUsername((state as InitialStateFormInterface)[fieldName], userExistence);
 
             return {
                 [fieldName]: {...newState}

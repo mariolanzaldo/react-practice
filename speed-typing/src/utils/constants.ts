@@ -12,6 +12,13 @@ export interface InitialStateFormInterface {
     confirmPassword: GenericFormField;
 }
 
+export interface InitialStateProfileForm {
+    firstName:GenericFormField;
+    lastName: GenericFormField;
+    password: GenericFormField;
+    confirmPassword: GenericFormField;
+}
+
 export interface InitialLoginFormInterface {
     username: GenericFormField;
     password: GenericFormField;
@@ -40,6 +47,29 @@ export const INITIAL_FORM_STATE: InitialStateFormInterface = {
         error: false,
         errorMessage: "",
     },
+    firstName: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    lastName: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    password: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    },
+    confirmPassword: {
+        value: "",
+        error: false,
+        errorMessage: "",
+    }
+};
+
+export const INITIAL_STATE_PROFILE_FORM: InitialStateProfileForm = {
     firstName: {
         value: "",
         error: false,

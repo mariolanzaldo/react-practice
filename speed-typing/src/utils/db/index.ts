@@ -84,38 +84,43 @@ export function getUsersFromDB(): Promise<User[]> {
     })
 }
 
-// export function setCurrentUser(): Promise<User | null> {
-//     return new Promise<User | null>((resolve, reject) => {
-        
-//         try{
-            
-//             const transaction = dbInstance?.transaction([STORE_CURRUSER], 'readwrite');
-//             const store = transaction?.objectStore(STORE_CURRUSER);
-    
-//             const currentUser = store?.getAll();
-//             console.log("")
-//         } catch (error) {
-//             console.error('Something went wrong', error);
-//         }
-        
-//     })
-// }
+export function updateUserInDB(user: User): Promise<User[]> {
+    return new Promise<User[]>((resolve, reject) => {
+        getDBInstance().then((db) => {
+            const transaction = db.transaction([STORE_NAME], 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
 
-// export function getCurrentUserFromDB(): Promise<User | undefined> {
-//     // eslint-disable-next-line no-async-promise-executor
-//     return new Promise<User | undefined>(async (resolve, reject) =>{
-//         const request = indexedDB.open(DB_NAME, DB_VERSION);
-//         console.error(reject);
+            const getRequest = store.get(user.id!);
 
-//         request.onsuccess = () => {
-//             const db = request.result;
-//             const tx = db.transaction([STORE_NAME], 'readwrite');
-//             const store = tx.objectStore(STORE_NAME);
-//             const currentUserIndex = store.index('currentUser');
+            getRequest.onsuccess = () => {
+                const existingUser = getRequest.result;
 
-//             const data = currentUserIndex.getAll();
-//             console.log(data);
-//             resolve(data.result[0]);
-//           };
-//     })
-// }
+                if(existingUser) {
+                    const updateRequest = store.put({
+                        ...existingUser, ...user
+                    });
+
+                    updateRequest.onsuccess = () => {
+                        console.log("User updated successfully", user);
+                        resolve(existingUser.result);
+                    };
+
+                    updateRequest.onerror = () => {
+                        console.error("Error updating user", updateRequest.error);
+                        reject(updateRequest.error);
+                    };
+                } else {
+                    reject(new Error("User not found"));
+                }
+            };
+
+            getRequest.onerror = () => {
+                console.error("Error fetching user", getRequest.error);
+                reject(getRequest.error);
+            };
+        }).catch(error => {
+            console.error("Error in updateUserInDB", error);
+            reject(error);
+        });
+    });
+}

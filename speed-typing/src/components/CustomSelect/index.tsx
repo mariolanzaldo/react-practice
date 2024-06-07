@@ -20,9 +20,9 @@ function CustomSelect({ title, handleChange, value, children, mode }: PropsWithC
         <Select
         disabled={isDisabled}
           labelId="simple-select-label"
-          id="simple-select"
+          id="simple-select-label"
           value={value}
-          // label="Mode"
+          label={title}
           onChange={handleChange}
         >
           {children}

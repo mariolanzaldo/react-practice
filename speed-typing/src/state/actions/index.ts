@@ -7,6 +7,7 @@ export enum ActionTypes {
     LOGOUT = "logout",
     CLEAN_NOTIFICATION = "cleanNotification",
     SET_CURRENT_STATS = "setCurrentStats",
+    UPDATE_USER = "updateUser",
     // SET_MAXWPM = "setMaxWpm",
 } 
 
@@ -27,4 +28,5 @@ export * from "./usernameExistence";
 export * from "./login";
 export * from "./logout";
 export * from "./setCurrentStats";
+export * from "./updateUser";
 // export * from "./setMaxWpm";
