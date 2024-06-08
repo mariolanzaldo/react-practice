@@ -4,6 +4,8 @@ import { useAppContext } from "../state";
 import { setCurrentStats } from "../state/actions";
 import testAccuracy from "../utils/testAccuracy";
 import useParagraph from "./useParagraph";
+import { saveStat } from "../utils/db/asyncHelper";
+import { GameStat } from "../state/reducers";
 
 interface UseTypingTest {
     text: string;
@@ -14,8 +16,6 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
     const [appState, dispatch ] = useAppContext();
     const { accuracy: acc, mistakes, wpm, maxWpm } = appState.game;
     const { paragraph, regenerateParagraph } = useParagraph({ text });
-
-
 
     // eslint-disable-next-line
     const [word, setWord] = useState('');
@@ -58,17 +58,24 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
         if(time <= 0 || value.length >= paragraph.length) {
             clearTimeout(timer.current!);
 
-            dispatch(setCurrentStats({
-                value: {
-                    date: null,
-                    mistakes,
-                    wpm,
-                    maxWpm,
-                    accuracy: acc,
-                    isGameover: true,
-                }
-            }));
+            const  timestamp = Date.now();
 
+            const stats = {
+                date: timestamp,
+                username: appState.currentUser?.username,
+                mistakes,
+                wpm,
+                maxWpm,
+                accuracy: acc,
+                isGameover: true,
+            }
+
+            saveStat(stats as GameStat);
+
+            dispatch(setCurrentStats({
+                value: stats,
+            }));
+            
             return;
         }
 
@@ -97,6 +104,7 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
 
         dispatch(setCurrentStats({
             value: {
+                username: appState.currentUser?.username,
                 date: null,
                 mistakes: calcMistakes,
                 wpm: calcWpm,
@@ -110,7 +118,7 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
             timer.current = setTimeout(() => setTime(t => t - 1), 1000);
         }
     // eslint-disable-next-line
-    }, [time, paragraph, dispatch, mistakes, wpm, acc, isBackspaceEnabled, maxWpm]);
+    }, [time, paragraph, dispatch, mistakes, wpm, acc, isBackspaceEnabled, maxWpm, charIndex, initialTime]);
 
     const handleDisableBackspace = useCallback(() => {
         setIsBackspaceEnabled(!isBackspaceEnabled);
@@ -139,16 +147,23 @@ function useTypingTest ({ text, initialTime }: UseTypingTest) {
         if(time <= 0) {
             clearTimeout(timer.current!);
 
+            const stats = {
+                date: Date.now(),
+                username: appState.currentUser?.username,
+                mistakes,
+                wpm,
+                maxWpm,
+                accuracy: acc,
+                isGameover: true,
+            };
+
+            saveStat(stats as GameStat);
+
+
             dispatch(setCurrentStats({
-                value: {
-                    date: null,
-                    mistakes,
-                    wpm,
-                    maxWpm,
-                    accuracy: acc,
-                    isGameover: true,
-                }
+                value: stats,
             }));
+
         }
     }, [time]);
 

@@ -1,4 +1,4 @@
-import { Game, User } from "../reducers";
+import { Game, GameStat, User } from "../reducers";
 
 export enum ActionTypes {
     SIGN_UP = "signup",
@@ -8,10 +8,12 @@ export enum ActionTypes {
     CLEAN_NOTIFICATION = "cleanNotification",
     SET_CURRENT_STATS = "setCurrentStats",
     UPDATE_USER = "updateUser",
+    SAVE_STATS = "updateStats",
+    SET_USER_STATS = "getStats",
     // SET_MAXWPM = "setMaxWpm",
 } 
 
-export type Value = number | Pick<User, keyof User> | Pick<Game, keyof Game> | boolean | string;
+export type Value = number | Pick<User, keyof User> | Pick<Game, keyof Game> | GameStat[] | boolean | string;
 
 export type ActionPayload = {
     id?: string; 
@@ -29,4 +31,5 @@ export * from "./login";
 export * from "./logout";
 export * from "./setCurrentStats";
 export * from "./updateUser";
-// export * from "./setMaxWpm";
+export * from "./saveStats";
+export * from "./setUserStats";

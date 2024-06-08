@@ -96,7 +96,7 @@ export const INITIAL_STATE_PROFILE_FORM: InitialStateProfileForm = {
 export const DB_NAME = "SpeedTypingAppDB";
 export const DB_VERSION = 1;
 export const STORE_NAME = "users";
-export const STORE_CURRUSER="currentUser";
+export const STORE_STATS="stats";
 
 //Avatars
 export const SEED = [
@@ -125,5 +125,47 @@ export const SEED = [
 ];
 
 //Game params
-export const PARAGRAPH = 5;
+export const PARAGRAPH = 3;
 export const TIME = 10;
+
+
+//Stats
+
+export interface Column {
+    id: 'date' | 'mistakes' | 'wpm' | 'maxWpm' | 'accuracy';
+    label: string;
+    minWidth?: number;
+    align?: 'right';
+    format?: (value: number) => string;
+  }
+
+  export const columns: readonly Column[] = [
+    { 
+      id: 'date', 
+      label: 'Date', 
+      minWidth: 80 
+  },
+    { 
+      id: 'mistakes', 
+      label: 'Mistakes', 
+      minWidth: 80
+  },
+    {
+      id: 'wpm',
+      label: 'WPM',
+      minWidth: 80,
+      align: 'right',
+    },
+    {
+      id: 'maxWpm',
+      label: 'maxWPM',
+      minWidth: 80,
+      align: 'right',
+    },
+    {
+      id: 'accuracy',
+      label: 'Accuracy',
+      minWidth: 80,
+      align: 'right',
+    },
+  ];

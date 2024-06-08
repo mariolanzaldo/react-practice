@@ -4,6 +4,8 @@ import { useAppContext } from "../state";
 import { setCurrentStats } from "../state/actions";
 import testAccuracy from "../utils/testAccuracy";
 import useParagraph from "./useParagraph";
+import { saveStat } from "../utils/db/asyncHelper";
+import { GameStat } from "../state/reducers";
 
 interface UseTypingTest {
     text: string;
@@ -57,15 +59,23 @@ function useIndefiniteTyping ({ text }: UseTypingTest) {
         if(value.length >= paragraph.length) {
             clearTimeout(timer.current!);
 
+            const  timestamp = Date.now();
+
+            const stats = {
+                date: timestamp,
+                username: appState.currentUser?.username,
+                mistakes,
+                wpm,
+                maxWpm,
+                accuracy: acc,
+                isGameover: true,
+            }
+
+            saveStat(stats as GameStat);
+
+
             dispatch(setCurrentStats({
-                value: {
-                    date: null,
-                    mistakes,
-                    wpm,
-                    maxWpm,
-                    accuracy: acc,
-                    isGameover: true,
-                }
+                value: stats,
             }));
 
             return;

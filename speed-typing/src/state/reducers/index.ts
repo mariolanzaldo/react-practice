@@ -1,13 +1,17 @@
 import { ActionType } from "../actions";
 import loginReducer from "./loginReducer";
+import statsReducer from "./statsReducer";
 import typingTestReducer from "./typingTestReducer";
 import usernameExistenceReducer from "./userExistenceReducer";
 import usersReducer from "./usersReducer";
 
 export interface GameStat {
-    date: string;
+    username: string;
+    date: number;
     mistakes: number;
-    speed: number;
+    accuracy: number;
+    maxWpm: number;
+    wpm: number;
 }
 
 export interface User {
@@ -17,7 +21,6 @@ export interface User {
     lastName?: string;
     password: string;
     avatar?:string;
-    stats?: GameStat[];
 }
 
 export interface Game {
@@ -47,6 +50,7 @@ export interface StateInterface {
     userExistence: boolean;
     currentPage: Page;
     globalError: StandardError;
+    stats: GameStat[];
 }
 
 export const initialState: StateInterface = {
@@ -62,6 +66,7 @@ export const initialState: StateInterface = {
     userExistence: false,
     currentUser: null,
     currentPage: Page.login,
+    stats: [],
     //TODO: Create a globalError[]. Try to create a queue rather than an array
     globalError: {
         error: false,
@@ -75,6 +80,7 @@ function rootReducer(state: StateInterface, action: ActionType) {
    const loginState = loginReducer(state, action);
     const usersState = usersReducer(state, action);
     const gameState = typingTestReducer(state, action);
+    const statsState = statsReducer(state, action);
 
     const newState = {
         ...state,
@@ -83,6 +89,7 @@ function rootReducer(state: StateInterface, action: ActionType) {
         game: gameState.game,
         currentUser: loginState?.currentUser,
         globalError: loginState?.globalError,
+        stats: statsState?.stats,
     };
 
     return newState;

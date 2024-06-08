@@ -35,7 +35,7 @@ function Profile() {
     const submitForm = useCallback((state: InitialStateProfileForm) => {
         const { password, firstName, lastName } = state;
 
-        if(currentUser?.stats) {
+        // if(currentUser?.stats) {
             dispatch(updateUser({
                 value: {
                     id: currentUser?.id,
@@ -44,12 +44,11 @@ function Profile() {
                     lastName: lastName.value,
                     password: password.value,
                     avatar,
-                    stats: [...currentUser.stats],
                 }
             }));
 
             navigate('/test');
-        }
+        // }
 
         return;
     }, [dispatch, avatar, currentUser]);

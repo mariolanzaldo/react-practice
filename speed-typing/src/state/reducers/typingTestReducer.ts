@@ -1,4 +1,6 @@
 import { Game, StateInterface } from ".";
+// import { saveStat } from "../../utils/db/asyncHelper";
+// import { updateUser } from "../../utils/db/asyncHelper";
 import { ActionType, ActionTypes } from "../actions";
 
 function typingTestReducer(state: StateInterface, action: ActionType) {
@@ -14,18 +16,36 @@ function typingTestReducer(state: StateInterface, action: ActionType) {
                     accuracy,
                     isGameover,
                 } = value as Pick<Game, keyof Game>;
-
                 const timestamp = Date.now();
+
+
+                const currentGame = {
+                    date: timestamp,
+                    mistakes,
+                    wpm,
+                    maxWpm,
+                    accuracy,
+                };
+
+                // if(isGameover) {
+                // //     saveStat(currentGame as GameStat);
+
+                //     return {
+                //         ...state,
+                //         game: {
+                //             ...currentGame,
+                //             isGameover,
+                //         },
+                //         stats: [...state.stats, currentGame],
+                //     }
+                // }
+
                 return {
                     ...state,
                     game: {
-                        date: timestamp,
-                        mistakes,
-                        wpm,
-                        maxWpm,
-                        accuracy,
+                        ...currentGame,
                         isGameover,
-                    }
+                    },
             }
         }
         

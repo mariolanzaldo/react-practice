@@ -3,12 +3,12 @@ import wordGenerator from "../../utils/wordGenerator";
 // import { useAppContext } from "../../state";
 import { PARAGRAPH } from "../../utils/constants";
 import CustomSelect from "../CustomSelect";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import CountDown from "./CountDown";
 import Indefinite from "./Indefinite";
 
 function TypingTest() {
-    const text = wordGenerator(PARAGRAPH);
+    const text = useMemo(() => wordGenerator(PARAGRAPH), []);
     const [initialTime, setInitialTime] = useState(10);
     const [mode, setMode] = useState('fixed');
 
@@ -53,6 +53,7 @@ function TypingTest() {
                         <MenuItem value={10}>10 seconds</MenuItem>
                         <MenuItem value={60}>1 minute</MenuItem>
                         <MenuItem value={120}>2 minutes</MenuItem>
+                        <MenuItem value={180}>3 Minutes</MenuItem>
                     </CustomSelect>
                     
                 </Grid>
@@ -75,12 +76,12 @@ function TypingTest() {
 
             {
                 mode === 'fixed' ? 
-                <CountDown text={text} initialTime={initialTime} /> : null
+                <CountDown key="fixed-mode" text={text} initialTime={initialTime} /> : null
             } 
 
             {
                 mode === 'indefinite' ? 
-                <Indefinite text={text} /> : null
+                <Indefinite key="indefinite-mode" text={text} /> : null
             } 
 
         </Grid>

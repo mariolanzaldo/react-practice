@@ -27,7 +27,6 @@ function Signup () {
                 lastName: lastName.value,
                 password: password.value,
                 avatar: avatar,
-                stats: [],
             }
         }));
         

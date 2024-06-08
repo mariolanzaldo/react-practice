@@ -6,21 +6,16 @@ import PureContent from "./Content";
 import useTypingTest from "../../hooks/useTypingTest";
 import CustomModal from "../CustomModal";
 import { useAppContext } from "../../state";
-// import CustomSelect from "../CustomSelect";
+import { memo } from "react";
 
 interface CountDownProps {
-    // mode:string;
     text: string;
     initialTime: number;
-    // setInitialTime: (value: number) => void;
-    // setMode: (value: string) => void;
-
 }
 
-function CountDown({ text, initialTime }: CountDownProps) {
+function CountDownC({ text, initialTime }: CountDownProps) {
     
         const [appState] = useAppContext();
-    
        const { isBackspaceEnabled, paragraph, word, charIndex, time, inputRef, handleInput, handleDisableBackspace, handleRestart } = useTypingTest({text, initialTime});
         
        const ModalContent = (
@@ -31,8 +26,6 @@ function CountDown({ text, initialTime }: CountDownProps) {
         >
             <Grid
                     item
-                    // textAlign="center"
-                    // alignItems="center"
                     xs={12}
                     >
                         <Results 
@@ -136,5 +129,7 @@ function CountDown({ text, initialTime }: CountDownProps) {
             </Grid>
         );
 }
+
+const CountDown = memo(CountDownC)
 
 export default CountDown;

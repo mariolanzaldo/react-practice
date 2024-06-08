@@ -1,7 +1,8 @@
 import { 
+    GameStat,
     User 
 } from "../../state/reducers";
-import { DB_NAME, DB_VERSION, STORE_CURRUSER, STORE_NAME } from "../constants";
+import { DB_NAME, DB_VERSION, STORE_STATS, STORE_NAME } from "../constants";
 
 let dbInstance: Promise<IDBDatabase> | null = null;
 
@@ -17,14 +18,11 @@ export function initDB (): Promise<IDBDatabase> {
             const db = (event.target as IDBOpenDBRequest).result;
 
             if(!db.objectStoreNames.contains(STORE_NAME)) {
-                const appStore = db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true});
-
-                appStore.createIndex('users', 'users', { unique: false});
-                appStore.createIndex('currentUser', 'currentUser', { unique: false });
+                db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true});
             }
 
-            if(!db.objectStoreNames.contains(STORE_CURRUSER)) {
-                db.createObjectStore(STORE_CURRUSER, { keyPath: 'id', autoIncrement: true});
+            if(!db.objectStoreNames.contains(STORE_STATS)) {
+                db.createObjectStore(STORE_STATS, { keyPath: 'id', autoIncrement: true});
             }
         }
 
@@ -123,4 +121,49 @@ export function updateUserInDB(user: User): Promise<User[]> {
             reject(error);
         });
     });
+}
+
+
+export  function saveStatsToDB(stat: GameStat) {
+    return  new Promise<void>((resolve, reject) => {
+        getDBInstance().then(db => {
+            const transaction = db.transaction([STORE_STATS], 'readwrite');
+            const store = transaction.objectStore(STORE_STATS);
+
+            const request = store.add(stat);
+
+            request.onsuccess = () => {
+                console.log("Stat saved successfully", stat);
+                resolve();
+            };
+
+            request.onerror = () => {
+                console.error("Error saving stat", request.error);
+                reject(request.error);
+            };
+        }).catch(error => {
+            console.error("Error in saveStatsToDB", error);
+            reject(error);
+        });
+    })
+}
+
+
+export function getStatsFromDB(): Promise<GameStat[]> {
+    return new Promise<GameStat[]>((resolve, reject) => {
+        getDBInstance().then((db) => {
+            const transaction = db.transaction([STORE_STATS], 'readonly');
+            const store = transaction.objectStore(STORE_STATS);
+            const userRequest = store.getAll();
+
+            userRequest.onsuccess = () => {
+                resolve(userRequest.result);
+            };
+
+            userRequest.onerror = () => {
+                reject(userRequest.error);
+            }
+
+        }). catch(reject);
+    })
 }

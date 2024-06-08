@@ -28,6 +28,7 @@ function useInitializeState () {
                     },
                     userExistence: false,
                     currentUser,
+                    stats: [],
                     currentPage: Page.login,
                     globalError: {
                         error: false,
